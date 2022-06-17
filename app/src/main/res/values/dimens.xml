@@ -13,7 +13,7 @@
 
     <!-- Bottom Navigation -->
     <dimen name="height_bottom_nav_view_main">56dp</dimen>
-    <dimen name="size_bottom_nav_icon">36dp</dimen>
+    <dimen name="size_bottom_nav_icon">30dp</dimen>
 
     <!-- General -->
     <dimen name="elevation_all">4dp</dimen>

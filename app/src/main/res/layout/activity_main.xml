@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-<!--                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.CHECKOUT_SUCCESS ? View.GONE : View.VISIBLE}"-->
+<!--             android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.CHECKOUT_SUCCESS ? View.GONE : View.VISIBLE}"-->
 <!--             app:navigationIcon="@drawable/toolbar_menu"-->
 
             <TextView
@@ -38,22 +38,22 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:text="Pokemon  "
                 tools:layout_editor_absoluteX="177dp"
                 tools:layout_editor_absoluteY="30dp"
-                tools:text="Stylish"
+                tools:text="PocketMon"
                 tools:visibility="visible" />
 <!--                android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.HOME ? View.GONE : View.VISIBLE}"-->
 <!--  android:text="@{viewModel.currentFragmentType.value}"-->
 
             <ImageView
                 android:id="@+id/image_toolbar_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_bottom_navigation"
+                android:background="@drawable/ic_toolbar_ball"
                 tools:visibility="gone"/>
-<!--                            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.HOME ? View.VISIBLE : View.GONE}"
--->
+<!--  android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.HOME ? View.VISIBLE : View.GONE}"-->
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -81,8 +81,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:itemIconSize="@dimen/size_bottom_nav_icon"
             app:menu="@menu/bottom_nav_menu"/>
+<!--        android:backgroundTint="+@drawable/bottom_nav_item_selector"-->
 <!--                    android:visibility="@{(viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PAYMENT) || viewModel.currentFragmentType == CurrentFragmentType.CHECKOUT_SUCCESS ? View.GONE : View.VISIBLE}"-->
-<!--         app:itemIconTint="@drawable/bottom_nav_item_selector"-->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

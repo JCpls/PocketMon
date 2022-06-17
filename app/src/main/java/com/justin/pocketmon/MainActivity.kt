@@ -29,21 +29,18 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val db = FirebaseFirestore.getInstance()
 
-        // Create a new user with a first and last name
         // Create a new user with a first and last name
         val user: MutableMap<String, Any> = HashMap()
         user["first"] = "Ada"
         user["last"] = "Lovelace"
         user["born"] = 1815
-
-// Add a new document with a generated ID
 
 // Add a new document with a generated ID
         db.collection("users")
@@ -55,13 +52,10 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
 
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
 //        setupToolbar()
         setupBottomNav()
 //        setupDrawer()
 //        setupNavController()
-
     }
 
 
@@ -115,6 +109,11 @@ class MainActivity : AppCompatActivity() {
 //        bindingBadge.lifecycleOwner = this
 //        bindingBadge.viewModel = viewModel
     }
+
+// ----------------- 跳轉 --------------------
+//    binding.button.setOnClicklistener{it
+//        findNavController(R.id.nav_fragmenthome).navigate(NavigationDirections.navigateToChatFragment())
+//    }
 
     /**
      * Set up [NavController.addOnDestinationChangedListener] to record the current fragment, it better than another design
