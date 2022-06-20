@@ -38,7 +38,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Pokemon  "
+                android:text="PocketMon  "
                 tools:layout_editor_absoluteX="177dp"
                 tools:layout_editor_absoluteY="30dp"
                 tools:text="PocketMon"

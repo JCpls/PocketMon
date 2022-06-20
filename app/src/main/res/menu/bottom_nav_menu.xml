@@ -8,17 +8,17 @@
 
     <item
         android:id="@+id/navigation_chat"
-        android:icon="@drawable/ic_nav_fire"
+        android:icon="@drawable/ic_nav_message"
         android:title=""/>
 
     <item
         android:id="@+id/navigation_plan"
-        android:icon="@drawable/ic_nav_fire"
+        android:icon="@drawable/ic_nav_plan"
         android:title=""/>
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_nav_fire"
+        android:icon="@drawable/ic_nav_profile"
         android:title=""/>
 
 </menu>

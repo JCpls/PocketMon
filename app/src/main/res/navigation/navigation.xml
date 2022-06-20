@@ -26,6 +26,26 @@
         tools:layout="@layout/fragment_plan" >
     </fragment>
 
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.justin.pocketmon.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeEditFragment"
+        android:name="com.justin.pocketmon.home.edit.HomeEditFragment"
+        android:label="HomeEditFragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/planEditFragment"
+        android:name="com.justin.pocketmon.plan.edit.PlanEditFragment"
+        android:label="PlanEditFragment" >
+    </fragment>
+
+
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
@@ -35,20 +55,29 @@
     <action android:id="@+id/navigate_to_plan_fragment" app:destination="@id/planFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
-    <action android:id="@+id/navigate_to_profile_fragment" app:destination="@id/navigation3"
+    <action android:id="@+id/navigate_to_profile_fragment" app:destination="@id/profileFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
-    <navigation android:id="@+id/navigation3"
-        app:startDestination="@id/navigation2">
-        <navigation
-            android:id="@+id/navigation2"
-            app:startDestination="@id/profileFragment">
-            <fragment
-                android:id="@+id/profileFragment"
-                android:name="com.justin.pocketmon.profile.ProfileFragment"
-                android:label="ProfileFragment"
-                tools:layout="@layout/fragment_profile"></fragment>
-        </navigation>
-    </navigation>
+    <action android:id="@+id/navigate_to_home_edit_fragment" app:destination="@id/homeEditFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
+    <action android:id="@+id/navigate_to_plan_edit_fragment" app:destination="@id/planEditFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
+
+
 
 </navigation>
+<!--    <navigation android:id="@+id/navigation3"-->
+<!--        app:startDestination="@id/navigation2">-->
+<!--        <navigation-->
+<!--            android:id="@+id/navigation2"-->
+<!--            app:startDestination="@id/profileFragment">-->
+<!--            <fragment-->
+<!--                android:id="@+id/profileFragment"-->
+<!--                android:name="com.justin.pocketmon.profile.ProfileFragment"-->
+<!--                android:label="ProfileFragment"-->
+<!--                tools:layout="@layout/fragment_profile"></fragment>-->
+<!--        </navigation>-->
+<!--    </navigation>-->
+
