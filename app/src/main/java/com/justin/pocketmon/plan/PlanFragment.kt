@@ -36,7 +36,6 @@ class PlanFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
        // binding.isLiveDataDesign = PocketmonApplication.instance.isLiveDataDesign()
         binding.viewModel = viewModel
-
         binding.recycleviewPlan.layoutManager = LinearLayoutManager(context)
         binding.recycleviewPlan.addItemDecoration(
             DividerItemDecoration(
@@ -46,7 +45,7 @@ class PlanFragment : Fragment() {
         )
 
         viewModel.plan.observe(viewLifecycleOwner, Observer {
-            Logger.i("Livedata plan = $it")
+            Logger.i("Justin Livedata plan = $it")
         })
         return binding.root
     }

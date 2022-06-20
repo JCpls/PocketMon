@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="articledData"-->
-<!--            type="com.justin.pocketmon.data.Articledata" />-->
-<!--    </data>-->
+    <data>
+        <variable
+            name="planData"
+            type="com.justin.pocketmon.data.Plan" />
+    </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
