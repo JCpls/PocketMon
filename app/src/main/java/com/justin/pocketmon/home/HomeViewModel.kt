@@ -7,10 +7,12 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.data.source.PocketmonRepository
 import kotlinx.coroutines.Job
 
 
 class HomeViewModel : ViewModel() {
+//    (val type: String, private val repository: PocketmonRepository)
 
     val articleData = MutableLiveData<List<Articledata>>()
 

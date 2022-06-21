@@ -20,7 +20,7 @@ import kotlin.coroutines.suspendCoroutine
 */
 object PocketmonRemoteDataSource : PocketmonDataSource {
 
-    private const val PATH_PLANS = "plans"
+    private const val PATH_PLANS = "Plans"
     private const val PATH_ARTICLES = "articles"
     private const val KEY_CREATED_TIME = "createdTime"
 
@@ -90,7 +90,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
         val document = plans.document()
 
         plan.id = document.id
-        plan.createdTime = Calendar.getInstance().timeInMillis
+//        plan.createdTime = Calendar.getInstance().timeInMillis
 
         document
             .set(plan)

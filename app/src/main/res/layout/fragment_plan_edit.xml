@@ -78,11 +78,11 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="14sp"
-                android:text="@={viewModel.plan.description}"
                 app:layout_constraintBottom_toTopOf="@+id/button_publish"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_publish_tag" />
+<!--             android:text="text"-->
 
             <Button
                 android:id="@+id/button_publish"

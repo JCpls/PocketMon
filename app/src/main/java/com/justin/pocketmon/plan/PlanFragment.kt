@@ -34,19 +34,29 @@ class PlanFragment : Fragment() {
 
         val binding = FragmentPlanBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-       // binding.isLiveDataDesign = PocketmonApplication.instance.isLiveDataDesign()
+        binding.isLiveDataDesign = PocketmonApplication.instance.isLiveDataDesign()
         binding.viewModel = viewModel
-        binding.recycleviewPlan.layoutManager = LinearLayoutManager(context)
-        binding.recycleviewPlan.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                LinearLayoutManager.VERTICAL
-            )
-        )
 
-        viewModel.plan.observe(viewLifecycleOwner, Observer {
-            Logger.i("Justin Livedata plan = $it")
+        binding.recycleviewPlan.layoutManager = LinearLayoutManager(context)
+        binding.recycleviewPlan.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
+        binding.recycleviewPlan.adapter = PlanAdapter(PlanAdapter.OnClickListener {
+
+            Logger.d("click, it=$it")
+            viewModel.getArticlesResult()
+//            viewModel.delete(it)
         })
+
+// --- submistList here ---
+        viewModel.plan.observe(viewLifecycleOwner, Observer {
+            (binding.recycleviewPlan.adapter as PlanAdapter).submitList(it)
+            binding.swipeRefreshLayout.isRefreshing = false
+            Logger.i("Justin Livedata plan = $it")
+
+
+        })
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getArticlesResult()
+        }
         return binding.root
     }
 }

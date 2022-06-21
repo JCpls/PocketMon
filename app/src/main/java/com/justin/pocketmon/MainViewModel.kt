@@ -15,15 +15,15 @@ import kotlinx.coroutines.Job
 */
 class MainViewModel(private val repository: PocketmonRepository) : ViewModel() {
 
-    private val _author = MutableLiveData<Plan>().apply {
-        value = Plan(
-            "justinyang29",
-            "Justin",
-            "瘦身計畫",
-            "哈哈哈",
-            2
-        )
-    }
+//    private val _author = MutableLiveData<Plan>().apply {
+//        value = Plan(
+//            "justinyang29",
+//            "Justin",
+//            "瘦身計畫",
+//            "哈哈哈",
+//            2
+//        )
+//    }
 
     private val _refresh = MutableLiveData<Boolean>()
 
