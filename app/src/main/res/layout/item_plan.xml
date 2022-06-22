@@ -13,7 +13,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#eeeeee">
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:shadowColor="@color/cardview_shadow_end_color"
+        android:background="@color/ocean_blue">
+
+        <ImageView
+            android:id="@+id/plan_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:imageUrl="@{itemPlan.image}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src = "@drawable/ic_fire"/>
 
         <TextView
             android:id="@+id/plan_title"

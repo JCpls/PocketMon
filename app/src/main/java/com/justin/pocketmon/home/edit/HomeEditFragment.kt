@@ -9,6 +9,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.NavigationDirections.Companion.navigateToHomeFragment
 import com.justin.pocketmon.R
@@ -20,6 +22,9 @@ class HomeEditFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // [START storage_field_initialization]
+        //storage = Firebase.storage
+        // [END storage_field_initialization]
 
     }
 

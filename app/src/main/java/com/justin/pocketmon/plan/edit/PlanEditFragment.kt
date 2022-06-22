@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import com.justin.pocketmon.databinding.FragmentPlanEditBinding
 import com.justin.pocketmon.home.edit.HomeEditViewModel
 
-//class PlanEditFragment: Fragment() {
+class PlanEditFragment: Fragment() {
 //    private val viewModel by viewModels<PlanEditViewModel> { getVmFactory(ProfileFragmentArgs.fromBundle(requireArguments()).userKey) }
 //    override fun onCreateView(
 //        inflater: LayoutInflater,
@@ -23,4 +23,4 @@ import com.justin.pocketmon.home.edit.HomeEditViewModel
 //        binding.viewModel = viewModel
 //    }
 //        return binding.root
-//}
+}

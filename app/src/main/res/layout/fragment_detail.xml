@@ -1,14 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".detail.DetailFragment">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable name="viewModel" type="com.justin.pocketmon.detail.DetailViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/white"
+        tools:context=".detail.DetailFragment">
 
-</FrameLayout>
+        <ScrollView
+            android:id="@+id/recycler_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/layout_detail_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:id="@+id/text_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:imageUrl="@{viewModel.selectedDream.image}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+                <TextView
+                    android:id="@+id/text_detail_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/noto_sans"
+                    android:letterSpacing="0.15"
+                    android:lines="1"
+                    android:text="@{String.valueOf(viewModel.selectedDream.id)}"
+                    android:textColor="@color/gray_888888"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_detail_image"
+                    tools:text="3345678" />
+
+                <TextView
+                    android:id="@+id/text_detail_story"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/noto_sans"
+                    android:letterSpacing="0.15"
+                    android:lineSpacingExtra="12sp"
+                    android:text="@{viewModel.selectedDream.content}"
+                    android:textColor="@color/gray_646464"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_detail_id" />
+
+
+                <!-- stock -->
+                <TextView
+                    android:id="@+id/text_detail_stock_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text=""
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_detail_story" />
+
+                <View
+                    android:id="@+id/view_detail_stock_separation"
+                    style="@style/DetailSeparation"
+                    android:layout_marginStart="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_detail_stock_title"
+                    app:layout_constraintStart_toEndOf="@+id/text_detail_stock_title"
+                    app:layout_constraintTop_toTopOf="@+id/text_detail_stock_title" />
+
+                <TextView
+                    android:id="@+id/text_detail_stock"
+                    style="@style/DetailContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_detail_stock_separation"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view_detail_stock_separation"
+                    app:layout_constraintTop_toTopOf="@+id/view_detail_stock_separation" />
+
+
+                <!-- texture -->
+                <TextView
+                    android:id="@+id/text_detail_texture_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="內容"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_detail_stock_title" />
+
+                <View
+                    android:id="@+id/view_detail_texture_separation"
+                    style="@style/DetailSeparation"
+                    android:layout_marginStart="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_detail_texture_title"
+                    app:layout_constraintStart_toEndOf="@+id/text_detail_texture_title"
+                    app:layout_constraintTop_toTopOf="@+id/text_detail_texture_title" />
+
+                <TextView
+                    android:id="@+id/text_detail_texture"
+                    style="@style/DetailContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_detail_texture_separation"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view_detail_texture_separation"
+                    app:layout_constraintTop_toTopOf="@+id/view_detail_texture_separation" />
+
+                <!-- wash -->
+                <TextView
+                    android:id="@+id/text_detail_wash_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="計畫"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_detail_texture_title" />
+
+                <View
+                    android:id="@+id/view_detail_wash_separation"
+                    style="@style/DetailSeparation"
+                    android:layout_marginStart="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_detail_wash_title"
+                    app:layout_constraintStart_toEndOf="@+id/text_detail_wash_title"
+                    app:layout_constraintTop_toTopOf="@+id/text_detail_wash_title" />
+
+                <TextView
+                    android:id="@+id/text_detail_wash"
+                    style="@style/DetailContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/view_detail_wash_separation"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view_detail_wash_separation"
+                    app:layout_constraintTop_toTopOf="@+id/view_detail_wash_separation" />
+
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/button_detail_close"-->
+<!--                    android:layout_width="@dimen/size_detail_close"-->
+<!--                    android:layout_height="@dimen/size_detail_close"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:background="@drawable/ic_close"-->
+
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--                 android:onClick="@{() -> viewModel.leaveDetail()}"-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_detail_bottom"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_all_bottom_layout"
+            android:elevation="@dimen/elevation_all"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/button_detail_add"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:letterSpacing="0.15"
+                android:text="@string/add2cart"
+                android:background="@drawable/button_add2plan_black_ripple"
+
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+<!--             android:onClick="@{() -> viewModel.navigateToAdd2cart(viewModel.product)}"-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -5,7 +5,7 @@
     tools:context=".home.HomeFragment">
 
     <data>
-        <variable name="viewModel" type="com.justin.pocketmon.home.HomeFragment"/>
+        <variable name="viewModel" type="com.justin.pocketmon.home.HomeViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,6 +68,7 @@
                     android:layout_height="match_parent"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="vertical"
+                    app:spanCount="2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +91,5 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

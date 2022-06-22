@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     tools:context=".plan.PlanFragment">
 
     <data>
@@ -16,7 +17,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plan_page"
-        android:layout_margin="50dp"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -25,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
+<!--原版-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleview_plan"
                 android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_plan" />
+
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

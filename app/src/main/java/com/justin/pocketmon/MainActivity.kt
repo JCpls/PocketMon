@@ -1,6 +1,7 @@
 package com.justin.pocketmon
 
 import android.content.ContentValues.TAG
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -11,6 +12,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -27,6 +29,7 @@ import java.util.logging.Logger
 
 class MainActivity : AppCompatActivity() {
 
+// --------------------------
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

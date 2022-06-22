@@ -12,5 +12,6 @@ data class Plan(
     var description: List<String> = listOf(""),
     var degree: Long = 2,
     var createdTime: Timestamp = Timestamp.now(),
+    var image: String = ""
 
 ): Parcelable

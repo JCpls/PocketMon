@@ -10,18 +10,20 @@ import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.databinding.ItemDreamHomeBinding
 import java.text.SimpleDateFormat
 
-class HomeAdapter : ListAdapter<Articledata, RecyclerView.ViewHolder>(DiffCallback) {
+class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<Articledata, RecyclerView.ViewHolder>(DiffCallback) {
+
 
     class ArticleViewHolder(private var binding: ItemDreamHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(articledata: Articledata) {
+        fun bind(articledata: Articledata, onClickListener: OnClickListener) {
 
             binding.articledData = articledata
             binding.textAuthorName.text = articledata.name
             binding.textTitle.text = articledata.title
             binding.textContent.text = articledata.content
             binding.textCategory.text = articledata.category
+
 
             if (articledata.category == "0") {
                 binding.textCategory.setTextColor(Color.rgb(0, 0, 200))
@@ -43,6 +45,7 @@ class HomeAdapter : ListAdapter<Articledata, RecyclerView.ViewHolder>(DiffCallba
             val dataTime = sdf.format(time)
             binding.textTime.text = dataTime
 
+            binding.root.setOnClickListener{onClickListener.onClick(articledata)}
 
             binding.executePendingBindings()
         }
@@ -67,7 +70,7 @@ class HomeAdapter : ListAdapter<Articledata, RecyclerView.ViewHolder>(DiffCallba
             is ArticleViewHolder -> {
                 val articleItem = getItem(position) as Articledata
 
-                holder.bind(articleItem)
+                holder.bind(articleItem, onClickListener)
             }
         }
 
@@ -83,8 +86,9 @@ class HomeAdapter : ListAdapter<Articledata, RecyclerView.ViewHolder>(DiffCallba
             return oldItem == newItem
         }
 
-
     }
-
+    class OnClickListener(val clickListener: (articledata: Articledata) -> Unit) {
+        fun onClick(articledata: Articledata) = clickListener(articledata)
+    }
 
 }

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.google.firebase.firestore.auth.User
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
+import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.factory.ArticleViewModelFactory
 import com.justin.pocketmon.factory.TypeViewModelFactory
 import com.justin.pocketmon.factory.ViewModelFactory
 
@@ -18,10 +20,10 @@ fun Fragment.getVmFactory(): ViewModelFactory {
     return ViewModelFactory(repository)
 }
 
-//fun Fragment.getVmFactory(type:String): TypeViewModelFactory {
-//    val repository = (requireContext().applicationContext as PocketmonApplication).repository
-//    return TypeViewModelFactory(type,repository)
-//}
+fun Fragment.getVmFactory(articledata: Articledata): ArticleViewModelFactory {
+    val repository = (requireContext().applicationContext as PocketmonApplication).repository
+    return ArticleViewModelFactory(articledata, repository)
+}
 
 
 

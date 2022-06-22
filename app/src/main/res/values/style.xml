@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DetailTitle">
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:letterSpacing">0.15</item>
+        <item name="android:textColor">@color/gray_646464</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="DetailSeparation">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">14dp</item>
+        <item name="android:background">@color/gray_cccccc</item>
+    </style>
+
+    <style name="DetailContent">
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:letterSpacing">0.15</item>
+        <item name="android:textColor">@color/black_3f3a3a</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>

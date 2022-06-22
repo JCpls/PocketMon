@@ -1,15 +1,42 @@
 package com.justin.pocketmon.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.justin.pocketmon.R
+import com.justin.pocketmon.databinding.FragmentDetailBinding
+import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.util.Logger
 
 class DetailFragment : Fragment() {
+
+    private val viewModel by viewModels<DetailViewModel> { getVmFactory(DetailFragmentArgs.fromBundle(requireArguments()).articleKey) }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        val binding = FragmentDetailBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+
+        viewModel.selectedDream.observe(viewLifecycleOwner, Observer {
+            Logger.i("selectedDream = $it")
+        })
+
+        return binding.root
+    }
+}
+
 
 //    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
 //                              savedInstanceState: Bundle?): View? {
@@ -51,6 +78,3 @@ class DetailFragment : Fragment() {
 //        binding.detailItemTextureContent.text = product.texture
 //        binding.detailItemOriginContent.text = product.place
 //
-//        return binding.root
-//    }
-}

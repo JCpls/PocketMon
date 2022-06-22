@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
@@ -16,6 +18,9 @@ import com.justin.pocketmon.util.ServiceLocator.repository
 
 class HomeFragment: Fragment() {
 
+    private val viewModel by viewModels<HomeViewModel> { getVmFactory() }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,7 +28,12 @@ class HomeFragment: Fragment() {
     ): View? {
 
 // viewPager
-        val binding = FragmentHomeBinding.inflate(inflater)
+
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+
         val viewPagerAdapter = HomePagerAdapter(this)
         val viewPager = binding.homeViewpager2
         viewPager.adapter = viewPagerAdapter
@@ -43,12 +53,23 @@ class HomeFragment: Fragment() {
 
 // recyclerview
         val viewModel = HomeViewModel()
-        val adapter = HomeAdapter()
-        binding.recycleviewHome.adapter = adapter
+//        val adapter = HomeAdapter()
+//      binding.recycleviewHome.adapter = adapter
+        binding.recycleviewHome.adapter = HomeAdapter(
+            HomeAdapter.OnClickListener {
+                viewModel.navigateToDetail(it)
+            }
+        )
+
+//        binding.swipeRefreshLayout.setOnRefreshListener {
+//            viewModel.refresh()
+//        }
 
         viewModel.articleData.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-            adapter.notifyDataSetChanged()
+            (binding.recycleviewHome.adapter as HomeAdapter).submitList(it)
+            (binding.recycleviewHome.adapter as HomeAdapter).notifyDataSetChanged()
+//            adapter.submitList(it)
+//            adapter.notifyDataSetChanged()
             binding.swipeRefreshLayout.isRefreshing = false
 
         })
@@ -63,6 +84,16 @@ class HomeFragment: Fragment() {
         }
 
 
+// handle navigation to detail
+        viewModel.navigateToDetail.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    findNavController().navigate(NavigationDirections.navigateToDetailFragment(it))
+                    viewModel.onDetailNavigated()
+                }
+            }
+        )
 
 
         return binding.root
