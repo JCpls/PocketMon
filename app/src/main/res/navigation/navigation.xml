@@ -75,6 +75,7 @@
         app:popUpToInclusive="true" />
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
 
+
 </navigation>
 <!--    <navigation android:id="@+id/navigation3"-->
 <!--        app:startDestination="@id/navigation2">-->

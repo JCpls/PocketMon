@@ -4,6 +4,7 @@ package com.justin.pocketmon
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 
 
@@ -21,3 +22,16 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .into(imgView)
     }
 }
+
+//@BindingAdapter("images")
+//fun bindRecyclerViewWithImages(recyclerView: RecyclerView, images: List<String>?) {
+//    images?.let {
+//        recyclerView.adapter?.apply {
+//            when (this) {
+//                is DetailGalleryAdapter -> {
+//                    submitImages(it)
+//                }
+//            }
+//        }
+//    }
+//}
