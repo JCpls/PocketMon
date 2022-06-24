@@ -74,6 +74,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/item_dream_home" />
+<!--                 android:clipToPadding="false"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="15dp"
+                    android:paddingBottom="15dp"-->
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

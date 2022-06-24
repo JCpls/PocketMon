@@ -10,6 +10,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.databinding.FragmentHomeBinding
@@ -53,8 +55,13 @@ class HomeFragment: Fragment() {
 
 // recyclerview
         val viewModel = HomeViewModel()
-//        val adapter = HomeAdapter()
+
+// stagger style recyclerview
+        binding.recycleviewHome.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+//      val adapter = HomeAdapter()
 //      binding.recycleviewHome.adapter = adapter
+
         binding.recycleviewHome.adapter = HomeAdapter(
             HomeAdapter.OnClickListener {
                 viewModel.navigateToDetail(it)

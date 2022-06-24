@@ -1,30 +1,17 @@
 package com.justin.pocketmon
 
 import android.content.ContentValues.TAG
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
-import android.util.Log.i
-import android.view.Gravity
-import android.view.LayoutInflater
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
-import java.util.logging.Logger
 
 
 class MainActivity : AppCompatActivity() {
@@ -105,6 +92,8 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
+
+
 // badge
 //        val menuView = binding.bottomNavView.getChildAt(0) as BottomNavigationMenuView
 //        val itemView = menuView.getChildAt(2) as BottomNavigationItemView

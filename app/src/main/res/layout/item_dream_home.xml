@@ -15,7 +15,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-
+        android:elevation="30dp"
         android:background="@drawable/bg_dream_item2">
 
 
@@ -23,13 +23,17 @@
             android:id="@+id/dream_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             app:imageUrl="@{articledData.image}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 <!--        可以直接用反引號把網址包起來locke-in-->
 <!-- app:imageUrl="@{`https://img.kenalice.tw/2019/03/1551657543-00266a21b76f114bd8b5f508af2b0ed6.jpg`}"-->
+<!--         android:padding="2dp"
+            app:circularflow_defaultRadius="12dp"
+             android:adjustViewBounds="true"-->
 
         <TextView
             android:id="@+id/text_title"
