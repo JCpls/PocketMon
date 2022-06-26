@@ -64,9 +64,12 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    android:clipToPadding="true"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:orientation="vertical"
                     app:spanCount="2"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -74,10 +77,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/item_dream_home" />
-<!--                 android:clipToPadding="false"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="15dp"
-                    android:paddingBottom="15dp"-->
+
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

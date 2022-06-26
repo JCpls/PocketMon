@@ -24,16 +24,17 @@ class PlanAdapter(private val onClickListener: OnClickListener ) :
 
             binding.itemPlan = plan
             binding.planTitle.text = plan.title
-            binding.textAuthorName.text = plan.ownerId
-            binding.textContent.text = plan.description[0]
-            //
-            binding.textContent2.text = plan.description[1]
-
-
-            val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm")
-            val time = plan.createdTime?.seconds?.times(1000L)
-            val dataTime = sdf.format(time)
-            binding.textTime.text = dataTime
+            binding.planDegreeText.text = plan.degree.toString()
+//            binding.textAuthorName.text = plan.ownerId
+//            binding.textContent.text = plan.description[0]
+//            //
+//            binding.textContent2.text = plan.description[1]
+//
+//
+//            val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm")
+//            val time = plan.createdTime?.seconds?.times(1000L)
+//            val dataTime = sdf.format(time)
+//            binding.textTime.text = dataTime
 
             binding.root.setOnClickListener { onClickListener.onClick(plan) }
             binding.executePendingBindings()
