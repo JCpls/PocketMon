@@ -25,36 +25,11 @@ class DetailViewModel
     val leaveDetail: LiveData<Boolean>
         get() = _leaveDetail
 
-    // Handle navigation to Add2cart
+    // Handle navigation to PlanPage
     private val _navigateToPlanPage = MutableLiveData<Articledata>()
 
     val navigateToPlanPage: LiveData<Articledata>
         get() = _navigateToPlanPage
-
-
-
-    // it for gallery circles design
-    private val _snapPosition = MutableLiveData<Int>()
-
-    val snapPosition: LiveData<Int>
-        get() = _snapPosition
-
-    /**
-     * When the gallery scroll, at the same time circles design will switch.
-     */
-    fun onGalleryScrollChange(
-        layoutManager: RecyclerView.LayoutManager?,
-        linearSnapHelper: LinearSnapHelper
-    ) {
-        val snapView = linearSnapHelper.findSnapView(layoutManager)
-        snapView?.let {
-            layoutManager?.getPosition(snapView)?.let {
-                if (it != snapPosition.value) {
-                    _snapPosition.value = it
-                }
-            }
-        }
-    }
 
     fun navigateToStartPlan(articledata: Articledata) {
         _navigateToPlanPage.value = articledata
@@ -73,3 +48,26 @@ class DetailViewModel
 //    }
 
 }
+
+// it for gallery circles design
+//    private val _snapPosition = MutableLiveData<Int>()
+//
+//    val snapPosition: LiveData<Int>
+//        get() = _snapPosition
+
+/**
+ * When the gallery scroll, at the same time circles design will switch.
+ */
+//    fun onGalleryScrollChange(
+//        layoutManager: RecyclerView.LayoutManager?,
+//        linearSnapHelper: LinearSnapHelper
+//    ) {
+//        val snapView = linearSnapHelper.findSnapView(layoutManager)
+//        snapView?.let {
+//            layoutManager?.getPosition(snapView)?.let {
+//                if (it != snapPosition.value) {
+//                    _snapPosition.value = it
+//                }
+//            }
+//        }
+//    }

@@ -25,7 +25,7 @@
             android:id="@+id/plan_page_intro"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Select and make your plan now: "
+            android:text="Select and get closer to your dream now: "
             android:fontFamily="@font/press_start_2p"
             android:textSize="12sp"
             android:lineHeight="20dp"
