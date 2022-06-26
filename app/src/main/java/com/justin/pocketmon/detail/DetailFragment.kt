@@ -60,6 +60,15 @@ class DetailFragment : Fragment() {
             viewModel.navigateToStartPlan()
 
         }
+
+        binding.buttonDetailMessage.setOnClickListener{
+            viewModel.navigateToChatRoom()
+        }
+
+        binding.buttonDetailMessage.setOnClickListener{
+            viewModel.navigateToCommentDialog()
+        }
+
         // --- submistList here ---
 
         viewModel.navigateToPlanPage.observe(
@@ -68,6 +77,26 @@ class DetailFragment : Fragment() {
                 it?.let {
                     findNavController().navigate(NavigationDirections.navigateToPlanFragment())
                     viewModel.onDetailtoPlanPageNavigated()
+                }
+            }
+        )
+
+        viewModel.navigateToChat.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    findNavController().navigate(NavigationDirections.navigateToChatFragment())
+                    viewModel.onDetailtoChatRoomNavigated()
+                }
+            }
+        )
+
+        viewModel.navigateToComment.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    findNavController().navigate(NavigationDirections.navigateToCommentDialog())
+                    viewModel.onDetailtoCommentDialogNavigated()
                 }
             }
         )

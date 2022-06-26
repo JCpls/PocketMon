@@ -104,6 +104,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/recycler_detail_image"
                     tools:text="3345678" />
 
+                <ImageButton
+                    android:id="@+id/button_detail_comment"
+                    android:layout_width="@dimen/size_detail_close"
+                    android:layout_height="@dimen/size_detail_close"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/ic_detail_comment"
+                    android:onClick="@{() -> viewModel.navigateToComment()}"
+                  app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/dream_detail_id"
+                    app:layout_constraintBottom_toBottomOf="@+id/dream_detail_id" />
+
                 <TextView
                     android:id="@+id/detail_dream_createdTime"
                     android:layout_width="0dp"
@@ -239,6 +250,18 @@
                     android:onClick="@{() -> viewModel.leaveDetail()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/button_detail_message"
+                    android:layout_width="@dimen/size_detail_close"
+                    android:layout_height="@dimen/size_detail_close"
+                    android:background="@drawable/ic_detail_message"
+                    android:onClick="@{() -> viewModel.navigateToChat()}"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

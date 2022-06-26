@@ -1,5 +1,6 @@
 package com.justin.pocketmon.plan
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -25,6 +26,25 @@ class PlanAdapter(private val onClickListener: OnClickListener ) :
             binding.itemPlan = plan
             binding.planTitle.text = plan.title
             binding.planDegreeText.text = plan.degree.toString()
+
+            if (plan.degree.toString() == "0") {
+                binding.planDegreeText.setTextColor(Color.rgb(0, 0, 200))
+            } else if (plan.degree.toString() == "1") {
+                binding.planDegreeText.setTextColor(Color.rgb(0, 0, 200))
+            } else if (plan.degree.toString() == "2") {
+                binding.planDegreeText.setTextColor(Color.rgb(0, 160, 0))
+            } else if (plan.degree.toString() == "3") {
+                binding.planDegreeText.setTextColor(Color.rgb(0, 160, 0))
+            } else if (plan.degree.toString() == "4") {
+                binding.planDegreeText.setTextColor(Color.rgb(0, 160, 0))
+            } else {
+                binding.planDegreeText.setTextColor(Color.rgb(160, 0, 160))
+            }
+
+
+
+
+
 //            binding.textAuthorName.text = plan.ownerId
 //            binding.textContent.text = plan.description[0]
 //            //

@@ -35,6 +35,44 @@ class DetailViewModel
     val leaveDetail: LiveData<Boolean>
         get() = _leaveDetail
 
+
+    // Handle leave to ChatRoom
+    private val _navigateToChat = MutableLiveData<Boolean>()
+
+    val navigateToChat: LiveData<Boolean>
+        get() = _navigateToChat
+
+    fun navigateToChatRoom() {
+        _navigateToChat.value = true
+    }
+
+    fun onDetailtoChatRoomNavigated() {
+        _navigateToChat.value = null
+    }
+
+    fun navigateToChat() {
+        _navigateToChat.value = true
+    }
+
+    // Handle leave to comment
+    private val _navigateToComment = MutableLiveData<Boolean>()
+
+    val navigateToComment: LiveData<Boolean>
+        get() = _navigateToComment
+
+    fun navigateToCommentDialog() {
+        _navigateToComment.value = true
+    }
+
+    fun onDetailtoCommentDialogNavigated() {
+        _navigateToComment.value = null
+    }
+
+    fun navigateToComment() {
+        _navigateToComment.value = true
+    }
+
+
     // Handle navigation to PlanPage
     private val _navigateToPlanPage = MutableLiveData<Boolean?>()
 
@@ -131,9 +169,6 @@ class DetailViewModel
 
 
 }
-
-
-
 
 
 // ------ for detail gallery further upgrades

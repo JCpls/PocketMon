@@ -54,6 +54,13 @@
             app:nullable="false"/>
     </fragment>
 
+    <dialog
+        android:id="@+id/commentDialog"
+        android:name="com.justin.pocketmon.comment.CommentDialog"
+        android:label="CommentDialog"
+        tools:layout="@layout/dialog_comment">
+    </dialog>
+
 
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
         app:popUpTo="@id/navigation"
@@ -74,6 +81,7 @@
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
+    <action android:id="@+id/navigate_to_comment_dialog" app:destination="@id/commentDialog"/>
 
 
 </navigation>

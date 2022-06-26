@@ -3,25 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".chat.ChatFragment">
+    tools:context=".comment.CommentDialog">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
+        android:layout_margin="30dp"
         android:textSize="16sp"
+        android:lineHeight="30dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="chat-room function" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="15dp"
-        android:textSize="16sp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="to be continued..." />
+        android:text="You can leave your comments here ❤❤❤️️️" />
 
 </FrameLayout>

@@ -36,9 +36,9 @@
             android:layout_height="wrap_content"
             android:text="Select and get closer to your dream now: "
             android:fontFamily="@font/press_start_2p"
-            android:textSize="12sp"
-            android:lineHeight="20dp"
-            android:layout_marginTop="70dp"
+            android:textSize="14sp"
+            android:lineHeight="25dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
