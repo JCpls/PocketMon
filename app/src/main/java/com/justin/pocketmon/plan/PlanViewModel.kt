@@ -1,6 +1,7 @@
 package com.justin.pocketmon.plan
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -70,35 +71,36 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
         getArticlesResult()
+//        publishPlan()
     }
 
-    fun publishPlan(plan: Plan) {
-
-        coroutineScope.launch {
-
-            _status.value = LoadApiStatus.LOADING
-
-            when (val result = repository.publishPlan(plan)) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-                    leave(true)
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                }
-                else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
-                    _status.value = LoadApiStatus.ERROR
-                }
-            }
-        }
-    }
+//    fun publishPlan(plan: Plan) {
+//        Log.i("justin","檢查計畫頁有無收到plan1" )
+//        coroutineScope.launch {
+//            Log.i("justin","檢查計畫頁有無收到plan2")
+//            _status.value = LoadApiStatus.LOADING
+//
+//            when (val result = repository.publishPlan(plan)) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//                    leave(true)
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//                else -> {
+//                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//            }
+//        }
+//    }
 
     fun getArticlesResult() {
 

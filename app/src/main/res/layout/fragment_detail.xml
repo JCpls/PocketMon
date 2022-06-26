@@ -257,23 +257,25 @@
 
             <Button
                 android:id="@+id/button_detail_add"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/white"
                 android:fontFamily="@font/press_start_2p"
-                android:textSize="10dp"
                 android:letterSpacing="0.15"
                 android:text="Press to add to ur list"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:textColor="@color/white"
+                android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:onClick="@{() -> viewModel.navigateToStartPlan(viewModel.selectedDream)}"/>
+                app:layout_constraintVertical_bias="0.0" />
+            <!--              android:onClick="@{() -> viewModel.navigateToStartPlan(viewModel.selectedDream)}"-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

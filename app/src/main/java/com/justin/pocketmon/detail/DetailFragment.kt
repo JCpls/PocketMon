@@ -2,6 +2,7 @@ package com.justin.pocketmon.detail
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,14 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.databinding.FragmentDetailBinding
 import com.justin.pocketmon.NavigationDirections
+import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.ext.getVmFactory
+import com.squareup.okhttp.internal.Internal.logger
+import java.sql.Timestamp
 
 class DetailFragment : Fragment() {
 
@@ -30,37 +36,31 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-     //   binding.recyclerDetailGallery.adapter = DetailGalleryAdapter()
-//        binding.recyclerDetailCircles.adapter = DetailCircleAdapter()
-//
-//        viewModel.selectedDream.observe(viewLifecycleOwner, Observer {
-//            Logger.i("selectedDream = $it")
-//        })
-//
-//        val linearSnapHelper = LinearSnapHelper().apply {
-//            attachToRecyclerView(binding.recyclerDetailGallery)
-//        }
-//
-//        binding.recyclerDetailGallery.setOnScrollChangeListener { _, _, _, _, _ ->
-//            viewModel.onGalleryScrollChange(
-//                binding.recyclerDetailGallery.layoutManager,
-//                linearSnapHelper
-//            )
-//        }
-        //  以上 ----binding.recyclerDetailGallery.adapter = DetailGalleryAdapter()
+// add data from DetailFragment to Plan collection
+        val db = FirebaseFirestore.getInstance()
+        val document = db.collection("Plans").document()
 
-        // ---- set the initial position to the center of infinite gallery
-//        viewModel.selectedDream.value?.let { articleData ->
-//            binding.recyclerDetailGallery
-//                .scrollToPosition(articleData.image.size * 100)
-//
-//            viewModel.snapPosition.observe(
-//                viewLifecycleOwner,
-//                Observer {
-//                    (binding.recyclerDetailCircles.adapter as DetailCircleAdapter).selectedPosition.value = (it % articleData.image.size)
-//                }
-//            )
-//        }
+        binding.buttonDetailAdd.setOnClickListener{
+
+            val plan = Plan()
+            plan.id = document.id
+            // livedata 必須要 .value 才能夠賦值
+            viewModel.selectedDream.value?.let {
+                Log.d("justin","初檢查從detail帶過來的資料 => $plan ")
+                plan.title = it.title
+                plan.image = it.image
+                plan.ownerId = it.name
+                plan.description = listOf(it.content)
+                plan.degree = it.category.toLong()
+                plan.createdTime = com.google.firebase.Timestamp.now()
+            }
+            viewModel.publishPlan(plan)
+            Log.d("justin","再檢查從detail帶過來的資料 => $plan ")
+
+            viewModel.navigateToStartPlan()
+
+        }
+        // --- submistList here ---
 
         viewModel.navigateToPlanPage.observe(
             viewLifecycleOwner,
@@ -84,6 +84,43 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 }
+
+
+
+
+
+
+//   binding.recyclerDetailGallery.adapter = DetailGalleryAdapter()
+//        binding.recyclerDetailCircles.adapter = DetailCircleAdapter()
+//
+//        viewModel.selectedDream.observe(viewLifecycleOwner, Observer {
+//            Logger.i("selectedDream = $it")
+//        })
+//
+//        val linearSnapHelper = LinearSnapHelper().apply {
+//            attachToRecyclerView(binding.recyclerDetailGallery)
+//        }
+//
+//        binding.recyclerDetailGallery.setOnScrollChangeListener { _, _, _, _, _ ->
+//            viewModel.onGalleryScrollChange(
+//                binding.recyclerDetailGallery.layoutManager,
+//                linearSnapHelper
+//            )
+//        }
+//  以上 ----binding.recyclerDetailGallery.adapter = DetailGalleryAdapter()
+
+// ---- set the initial position to the center of infinite gallery
+//        viewModel.selectedDream.value?.let { articleData ->
+//            binding.recyclerDetailGallery
+//                .scrollToPosition(articleData.image.size * 100)
+//
+//            viewModel.snapPosition.observe(
+//                viewLifecycleOwner,
+//                Observer {
+//                    (binding.recyclerDetailCircles.adapter as DetailCircleAdapter).selectedPosition.value = (it % articleData.image.size)
+//                }
+//            )
+//        }
 
 
 //    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

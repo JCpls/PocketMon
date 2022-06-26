@@ -1,5 +1,6 @@
 package com.justin.pocketmon.data.source.remote
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -85,13 +86,17 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
     override suspend fun publishPlan (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
-
+        Log.i("justin","檢查計畫頁有無收到plan3")
         val plans = FirebaseFirestore.getInstance().collection(PATH_PLANS)
+        Log.i("justin","檢查計畫頁有無收到plans = $plans")
         val document = plans.document()
+        Log.i("justin","檢查計畫頁有無收到document = $document")
 
         plan.id = document.id
-//        plan.createdTime = Calendar.getInstance().timeInMillis
+        Log.i("justin","檢查計畫頁有無收到plan = $plan")
+        Log.i("justin","檢查計畫頁有無收到plan id ${plan.id}  => ${document.id}")
 
+//      plan.createdTime = Calendar.getInstance().timeInMillis
         document
             .set(plan)
             .addOnCompleteListener { task ->
