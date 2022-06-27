@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">PocketMon</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- General -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="you_know_nothing">you know nothing</string>
+
+    <!-- Detail -->
+    <string name="color">顏色</string>
+    <string name="size">尺寸</string>
+    <string name="stock">庫存</string>
+    <string name="texture">材質</string>
+    <string name="wash">洗滌</string>
+    <string name="place">產地</string>
+    <string name="note">備註</string>
+    <string name="add2cart">加入購物車</string>
+    <string name="select_color">選擇顏色</string>
+    <string name="select_size">選擇尺寸</string>
+    <string name="select_amount">選擇數量</string>
+    <string name="stock_not_enough">庫存不足</string>
+
+
 </resources>

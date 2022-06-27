@@ -13,11 +13,33 @@
 
     <!-- Bottom Navigation -->
     <dimen name="height_bottom_nav_view_main">56dp</dimen>
-    <dimen name="size_bottom_nav_icon">36dp</dimen>
+    <dimen name="size_bottom_nav_icon">30dp</dimen>
 
     <!-- General -->
     <dimen name="elevation_all">4dp</dimen>
     <dimen name="height_all_bottom_layout">80dp</dimen>
+
+    <!-- Home -->
+    <dimen name="height_home_tab">48dp</dimen>
+    <dimen name="space_home_grid">16dp</dimen>
+    <dimen name="width_home_item">156dp</dimen>
+    <dimen name="height_home_item">220dp</dimen>
+    <dimen name="space_outside_horizontal_home_item">16dp</dimen>
+    <dimen name="space_inside_horizontal_home_item">8dp</dimen>
+    <dimen name="space_outside_vertical_home_item">24dp</dimen>
+    <dimen name="space_inside_vertical_home_item">12dp</dimen>
+
+    <!-- Detail -->
+    <dimen name="space_detail_color">8dp</dimen>
+    <dimen name="space_detail_circle">8dp</dimen>
+    <dimen name="height_detail_gallery">500dp</dimen>
+    <dimen name="size_detail_color">24dp</dimen>
+    <dimen name="edge_detail_color">1dp</dimen>
+    <dimen name="size_detail_close">44dp</dimen>
+    <dimen name="size_detail_circle">6dp</dimen>
+    <dimen name="radius_detail_circle">3dp</dimen>
+    <dimen name="edge_detail_circle">1px</dimen>
+
 
 
 </resources>

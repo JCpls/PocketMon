@@ -9,6 +9,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="chat-room function" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="15dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="to be continued..." />
 
 </FrameLayout>

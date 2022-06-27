@@ -1,49 +1,36 @@
 package com.justin.pocketmon
 
 import android.content.ContentValues.TAG
-import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
-import android.util.Log.i
-import android.view.Gravity
-import android.view.LayoutInflater
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
-import java.util.logging.Logger
 
 
 class MainActivity : AppCompatActivity() {
 
+// --------------------------
     private lateinit var binding: ActivityMainBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val db = FirebaseFirestore.getInstance()
 
-        // Create a new user with a first and last name
         // Create a new user with a first and last name
         val user: MutableMap<String, Any> = HashMap()
         user["first"] = "Ada"
         user["last"] = "Lovelace"
         user["born"] = 1815
-
-// Add a new document with a generated ID
 
 // Add a new document with a generated ID
         db.collection("users")
@@ -55,13 +42,10 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
 
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
 //        setupToolbar()
         setupBottomNav()
 //        setupDrawer()
 //        setupNavController()
-
     }
 
 
@@ -108,6 +92,8 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
+
+
 // badge
 //        val menuView = binding.bottomNavView.getChildAt(0) as BottomNavigationMenuView
 //        val itemView = menuView.getChildAt(2) as BottomNavigationItemView
@@ -115,6 +101,11 @@ class MainActivity : AppCompatActivity() {
 //        bindingBadge.lifecycleOwner = this
 //        bindingBadge.viewModel = viewModel
     }
+
+// ----------------- 跳轉 --------------------
+//    binding.button.setOnClicklistener{it
+//        findNavController(R.id.nav_fragmenthome).navigate(NavigationDirections.navigateToChatFragment())
+//    }
 
     /**
      * Set up [NavController.addOnDestinationChangedListener] to record the current fragment, it better than another design
