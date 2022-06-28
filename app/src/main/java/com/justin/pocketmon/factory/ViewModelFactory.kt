@@ -30,9 +30,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel()
 
-                isAssignableFrom(PlanEditViewModel::class.java) ->
-                    PlanEditViewModel(repository)
-
                 isAssignableFrom(PlanViewModel::class.java) ->
                     PlanViewModel(repository)
 

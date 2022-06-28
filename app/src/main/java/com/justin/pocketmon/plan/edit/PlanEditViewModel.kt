@@ -16,15 +16,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PlanEditViewModel(private val repository: PocketmonRepository) : ViewModel() {
+class PlanEditViewModel
 
-    private val _plan = MutableLiveData<Plan>().apply {
-        value = Plan(
-        )
+    (private val plan: Plan, private val repository: PocketmonRepository) : ViewModel() {
+
+    private val _selectedPlan = MutableLiveData<Plan>().apply {
+        value = plan
     }
 
-    val plan: LiveData<Plan>
-        get() = _plan
+    val selectedPlan: LiveData<Plan>
+        get() = _selectedPlan
+
 
     private val _leave = MutableLiveData<Boolean>()
 

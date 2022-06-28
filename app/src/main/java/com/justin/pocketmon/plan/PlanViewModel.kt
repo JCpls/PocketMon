@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
+import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
@@ -23,15 +24,19 @@ import kotlinx.coroutines.launch
 
 class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
 
+    // plan for getting liveData from firebase
     private val _plan = MutableLiveData<List<Plan>>()
 
     val plan: LiveData<List<Plan>>
         get() = _plan
 
+
     private val _leave = MutableLiveData<Boolean?>()
 
     val leave: LiveData<Boolean?>
         get() = _leave
+
+
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -156,4 +161,19 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
     fun onLeft() {
         _leave.value = null
     }
+
+    // Handle navigation to planEditFragment
+    private val _navigateToPlanEdit = MutableLiveData<Plan>()
+    val navigateToPlanEdit: LiveData<Plan>
+        get() = _navigateToPlanEdit
+
+    fun navigateToPlanEdit(plan: Plan) {
+        _navigateToPlanEdit.value = plan
+    }
+    fun onPlanNavigated() {
+        _navigateToPlanEdit.value = null
+    }
+
+
+
 }

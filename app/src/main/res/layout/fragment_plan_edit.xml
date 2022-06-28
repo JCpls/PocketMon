@@ -6,114 +6,21 @@
         <variable
             name="viewModel"
             type="com.justin.pocketmon.plan.edit.PlanEditViewModel"/>
-        <import type="com.justin.pocketmon.network.LoadApiStatus"/>
-        <import type="android.view.View"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-<!--        android:onClick="@{() -> viewModel.leave(false)}"-->
-<!--        android:clickable="@{viewModel.status == LoadApiStatus.LOADING ? false : true}">-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_publish"
-            android:layout_width="0dp"
-            android:layout_height="500dp"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-<!--             android:background="@drawable/bg_publish"-->
+    <TextView
+        android:id="@+id/dream_detail_title_text"
+        style="@style/DetailContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="@{viewModel.selectedPlan.title}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="PlanEdit"/>
 
-            <EditText
-                android:id="@+id/edit_publish_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="8dp"
-                android:paddingHorizontal="8dp"
-                android:gravity="center_vertical"
-                android:hint="Title"
-                android:maxLines="2"
-                android:textColor="@color/white"
-                android:textColorHint="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@={viewModel.plan.title}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/edit_publish_tag"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="8dp"
-                android:paddingHorizontal="8dp"
-                android:gravity="center_vertical"
-                android:hint="Tag"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textColorHint="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:text="@={viewModel.plan.ownerId}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_publish_title" />
-
-            <EditText
-                android:id="@+id/edit_publish_content"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="8dp"
-                android:padding="8dp"
-                android:background="@drawable/ripple_button_article_tag"
-                android:gravity="top|start"
-                android:hint="Content"
-                android:letterSpacing="0.15"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/button_publish"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_publish_tag" />
-<!--             android:text="text"-->
-
-            <Button
-                android:id="@+id/button_publish"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/ripple_button_article_tag"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text='@{viewModel.status != LoadApiStatus.LOADING ? "Publish" : ""}'
-                android:gravity="center"
-                android:textAllCaps="false"
-                android:onClick="@{() -> viewModel.publishPlan(viewModel.plan)}"
-                android:clickable="@{viewModel.status == LoadApiStatus.LOADING ? false : true}"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_publish_content" />
-
-            <ProgressBar
-                android:id="@+id/progress_payment_checkout"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:visibility="@{viewModel.status == LoadApiStatus.LOADING ? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="@+id/button_publish"
-                app:layout_constraintEnd_toEndOf="@+id/button_publish"
-                app:layout_constraintStart_toStartOf="@+id/button_publish"
-                app:layout_constraintTop_toTopOf="@+id/button_publish"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
