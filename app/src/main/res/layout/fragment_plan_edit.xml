@@ -8,19 +8,305 @@
             type="com.justin.pocketmon.plan.edit.PlanEditViewModel"/>
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/planEdit_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".plan.edit.PlanEditFragment">
 
-    <TextView
-        android:id="@+id/dream_detail_title_text"
-        style="@style/DetailContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="16dp"
-        android:text="@{viewModel.selectedPlan.title}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="PlanEdit"/>
+        <ScrollView
+            android:id="@+id/recycler_planEdit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/layout_planEdit_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_planEdit1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/detail_bg_mario"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_mario_02"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageButton
+                    android:id="@+id/button_planEdit_close"
+                    android:layout_width="@dimen/size_detail_close"
+                    android:layout_height="@dimen/size_detail_close"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/ic_close"
+                    android:onClick="@{() -> viewModel.leavePlanEdit()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/planEdit_plan_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="370dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@{viewModel.selectedPlan.title}"
+                    android:textColor="@color/mario_red"
+                    android:textSize="15sp"
+                    android:lineHeight="30dp"
+                    android:maxLines="2"
+                    android:fontFamily="@font/press_start_2p"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_planEdit_close"
+                    tools:text ="夢想名稱" />
+
+                <TextView
+                    android:id="@+id/planEdit_plan_content"
+                    style="@style/DetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="14dp"
+                    android:text="夢想描述"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray_999999"
+                    android:fontFamily="@font/noto_sans"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_title" />
+
+                <View
+                    android:id="@+id/view_description_separation"
+                    style="@style/DetailSeparation"
+                    android:layout_width="2dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_content"
+                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_content"
+                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_content" />
+
+                <TextView
+                    android:id="@+id/planEdit_plan_content_text"
+                    style="@style/DetailContent"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:maxLines="4"
+                    android:padding="8dp"
+                    android:background="@drawable/bg_dream_item3"
+                    android:text="@{viewModel.selectedPlan.description[0]}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_content" />
+
+                <!-- degree of completion -->
+                <TextView
+                    android:id="@+id/planEdit_plan_degree"
+                    style="@style/DetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:text="完成程度"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray_999999"
+                    android:fontFamily="@font/noto_sans"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_content"/>
+
+                <TextView
+                    android:id="@+id/planEdit_plan_degree_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_dream_item3"
+                    android:textSize="22sp"
+                    android:padding="8dp"
+                    android:text="@{String.valueOf(viewModel.selectedPlan.degree)}"
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_degree"
+                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_degree"
+                    app:layout_constraintEnd_toEndOf="@+id/planEdit_plan_degree"
+                    tools:text = "100"/>
+<!--                  android:textColor="@{判斷數字級距給予顏色的判斷式}"-->
+
+
+                <TextView
+                    android:id="@+id/planEdit_plan_list"
+                    style="@style/DetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="14dp"
+                    android:text="執行計畫"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray_999999"
+                    android:fontFamily="@font/noto_sans"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_content_text" />
+
+                <View
+                    android:id="@+id/view_plan_separation"
+                    style="@style/DetailSeparation"
+                    android:layout_marginStart="13dp"
+                    android:layout_width="2dp"
+                    android:layout_height="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_list"
+                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_list"
+                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_list" />
+
+                <TextView
+                    android:id="@+id/planEdit_plan_list_text"
+                    style="@style/DetailContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray_cccccc"
+                    android:text="您還尚未有執行計畫，趕快新增，啟程逐夢吧!"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_list"
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list_text"
+                    tools:listitem="@layout/item_plan_edit" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+        
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_planEdit_bottom"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_bottom_layout"
+                android:elevation="@dimen/elevation_all"
+                android:background="@color/gray_999999"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/button_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:background="@drawable/ic_add_mark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <Button
+                    android:id="@+id/button_plan_add"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:letterSpacing="0.15"
+                    android:text="新增計畫"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <!--              android:onClick="@{() -> viewModel.navigateToStartPlan(viewModel.selectedDream)}"-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+
+    <!--                <View-->
+    <!--                    android:id="@+id/view_title_separation"-->
+    <!--                    style="@style/DetailSeparation"-->
+    <!--                    android:layout_width="2dp"-->
+    <!--                    android:layout_height="9dp"-->
+    <!--                    android:layout_marginStart="13dp"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_title"-->
+    <!--                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_title"-->
+    <!--                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_title" />-->
+
+    <!--                <View-->
+    <!--                    android:id="@+id/view_degree_separation"-->
+    <!--                    style="@style/DetailSeparation"-->
+    <!--                    android:layout_width="1dp"-->
+    <!--                    android:layout_height="7dp"-->
+    <!--                    android:layout_marginStart="13dp"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_degree"-->
+    <!--                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_degree"-->
+    <!--                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_degree" />-->
+
+    <!--                <CheckBox-->
+    <!--                    android:id="@+id/checkBox1"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginTop="10dp"-->
+    <!--                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_list_text"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list_text"/>-->
+
+    <!--                <EditText-->
+    <!--                    android:id="@+id/checkBox_text1"-->
+    <!--                    android:layout_width="200dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="@+id/checkBox1"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toEndOf="@+id/checkBox1"-->
+    <!--                    app:layout_constraintTop_toTopOf="@+id/checkBox1" />-->
+
+    <!--                <CheckBox-->
+    <!--                    android:id="@+id/checkBox2"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginTop="10dp"-->
+    <!--                    app:layout_constraintStart_toStartOf="@+id/checkBox1"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/checkBox1"/>-->
+
+    <!--                <EditText-->
+    <!--                    android:id="@+id/checkBox_text2"-->
+    <!--                    android:layout_width="200dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="@+id/checkBox2"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toEndOf="@+id/checkBox2"-->
+    <!--                    app:layout_constraintTop_toTopOf="@+id/checkBox2" />-->
+
+    <!--                <CheckBox-->
+    <!--                    android:id="@+id/checkBox3"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginTop="10dp"-->
+    <!--                    app:layout_constraintStart_toStartOf="@+id/checkBox2"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/checkBox2"/>-->
+
+    <!--                <EditText-->
+    <!--                    android:id="@+id/checkBox_text3"-->
+    <!--                    android:layout_width="200dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="@+id/checkBox3"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toEndOf="@+id/checkBox3"-->
+    <!--                    app:layout_constraintTop_toTopOf="@+id/checkBox3" />-->

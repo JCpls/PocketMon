@@ -81,8 +81,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:itemIconSize="@dimen/size_bottom_nav_icon"
             app:menu="@menu/bottom_nav_menu"/>
-<!--        android:backgroundTint="+@drawable/bottom_nav_item_selector"-->
-<!--                    android:visibility="@{(viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PAYMENT) || viewModel.currentFragmentType == CurrentFragmentType.CHECKOUT_SUCCESS ? View.GONE : View.VISIBLE}"-->
+<!--         android:backgroundTint="@drawable/bottom_nav_item_selector"-->
+<!--         android:visibility="@{(viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PAYMENT) || viewModel.currentFragmentType == CurrentFragmentType.CHECKOUT_SUCCESS ? View.GONE : View.VISIBLE}"-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

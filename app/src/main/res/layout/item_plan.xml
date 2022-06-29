@@ -16,8 +16,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:shadowColor="@color/cardview_shadow_end_color"
-        android:background="@color/ocean_blue">
+        android:background="@drawable/bg_dream_item2"
+        android:shadowColor="@color/cardview_shadow_end_color">
 
         <ImageView
             android:id="@+id/plan_image"

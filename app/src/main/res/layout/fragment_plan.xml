@@ -17,7 +17,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plan_page"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -59,11 +58,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
+                <TextView
+                    android:id="@+id/detail_bg_mario"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_mario_02"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
             <!--原版-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview_plan"
                     android:layout_width="350dp"
-                    android:layout_height="340dp"
+                    android:layout_height="350dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_marginTop="140dp"

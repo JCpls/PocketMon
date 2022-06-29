@@ -134,7 +134,7 @@
 
                 <!-- dream title -->
                 <TextView
-                    android:id="@+id/dream_detail_title"
+                    android:id="@+id/planEdit_plan_title"
                     style="@style/DetailTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,9 +151,9 @@
                     android:id="@+id/view_detail_stock_separation"
                     style="@style/DetailSeparation"
                     android:layout_marginStart="13dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/dream_detail_title"
-                    app:layout_constraintStart_toEndOf="@+id/dream_detail_title"
-                    app:layout_constraintTop_toTopOf="@+id/dream_detail_title" />
+                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_title"
+                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_title"
+                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_title" />
 
                 <TextView
                     android:id="@+id/dream_detail_title_text"
@@ -181,7 +181,7 @@
                     android:textColor="@color/mario_red"
                     android:fontFamily="@font/press_start_2p"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_title" />
 
                 <View
                     android:id="@+id/view_detail_texture_separation"

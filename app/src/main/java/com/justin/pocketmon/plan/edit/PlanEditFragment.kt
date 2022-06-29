@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.data.Plan
@@ -32,6 +33,14 @@ class PlanEditFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        viewModel.leavePlanEdit.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    if (it) findNavController().popBackStack()
+                }
+            }
+        )
 
         return binding.root
     }

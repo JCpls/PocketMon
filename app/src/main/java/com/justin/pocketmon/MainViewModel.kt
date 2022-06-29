@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.source.PocketmonRepository
+import com.justin.pocketmon.util.CurrentFragmentType
 import com.justin.pocketmon.util.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,9 @@ class MainViewModel(private val repository: PocketmonRepository) : ViewModel() {
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    // Record current fragment to support data binding
+    val currentFragmentType = MutableLiveData<CurrentFragmentType>()
 
     /**
      * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the

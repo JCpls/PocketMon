@@ -10,7 +10,7 @@ data class Plan(
     var ownerId: String = "",
     var title: String = "",
     var description: List<String> = listOf(""),
-    var degree: Long = 2,
+    var degree: Long = 0L,
     var createdTime: Timestamp = Timestamp.now(),
     var image: String = ""
 

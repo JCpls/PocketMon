@@ -27,6 +27,12 @@ class PlanEditViewModel
     val selectedPlan: LiveData<Plan>
         get() = _selectedPlan
 
+    // Handle leave planEdit
+    private val _leavePlanEdit = MutableLiveData<Boolean>()
+
+    val leavePlanEdit: LiveData<Boolean>
+        get() = _leavePlanEdit
+
 
     private val _leave = MutableLiveData<Boolean>()
 
@@ -96,6 +102,10 @@ class PlanEditViewModel
 
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
+    }
+
+    fun leavePlanEdit() {
+        _leavePlanEdit.value = true
     }
 
     fun onLeft() {
