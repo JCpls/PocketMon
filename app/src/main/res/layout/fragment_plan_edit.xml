@@ -6,6 +6,11 @@
         <variable
             name="viewModel"
             type="com.justin.pocketmon.plan.edit.PlanEditViewModel"/>
+
+        <variable
+            name="isLiveDataDesign"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -170,24 +175,34 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_cccccc"
-                    android:text="您尚未有執行計畫，趕快新增，啟程逐夢吧!"
+                    android:textSize="18sp"
+                    android:textColor="@color/black_3f3a3a"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/planEdit_plan_list"
-                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list"/>
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list"
+                    tools:text = "您尚未有執行計畫，趕快新增，啟程逐夢吧!" />
+
+<!--                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--                    android:id="@+id/swipeRefreshLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    tools:layout_editor_absoluteX="42dp"-->
+<!--                    tools:layout_editor_absoluteY="0dp">-->
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/planEdit_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list_text"
                     tools:listitem="@layout/item_plan_edit" />
+
+                <!--                 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

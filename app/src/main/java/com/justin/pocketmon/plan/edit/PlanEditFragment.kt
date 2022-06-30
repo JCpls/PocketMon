@@ -12,11 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.justin.pocketmon.NavigationDirections
+import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.databinding.FragmentDetailBinding
 import com.justin.pocketmon.databinding.FragmentPlanEditBinding
 import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.home.edit.HomeEditViewModel
+import com.justin.pocketmon.plan.PlanAdapter
 import com.justin.pocketmon.util.Logger
 
 class PlanEditFragment: Fragment() {
@@ -31,7 +33,23 @@ class PlanEditFragment: Fragment() {
         val binding = FragmentPlanEditBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.isLiveDataDesign = PocketmonApplication.instance.isLiveDataDesign()
         binding.viewModel = viewModel
+
+        // recyclerView
+        viewModel.planEdit.observe(viewLifecycleOwner, Observer {
+            (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
+            (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
+//            binding.swipeRefreshLayout.isRefreshing = false
+
+            Logger.i("Justin Livedata plan = $it")
+
+        })
+//        binding.swipeRefreshLayout.setOnRefreshListener {
+//            viewModel.getArticlesResult()
+//        }
+
+
 
         viewModel.leavePlanEdit.observe(
             viewLifecycleOwner,

@@ -28,6 +28,21 @@ class PlanToDoViewModel
         get() = _addedTodo
 
 
+        // Handle navigation to PlanEditPage
+        private val _navigateToPlanEditPage = MutableLiveData<Plan?>()
+
+        val navigateToPlanEditPage: LiveData<Plan?>
+            get() = _navigateToPlanEditPage
+
+        fun navigateToPlanEditPage() {
+            _navigateToPlanEditPage.value = plan
+        }
+
+        fun onToDotoPlanEditNavigated() {
+            _navigateToPlanEditPage.value = null
+        }
+
+
         private val _leave = MutableLiveData<Boolean?>()
 
         val leave: LiveData<Boolean?>
@@ -67,7 +82,7 @@ class PlanToDoViewModel
         }
 
 
-        fun addToDo(plan:Plan) {
+        fun addToDo(plan: Plan) {
             Log.i("justin","檢查ToDo有無收到plan1" )
             coroutineScope.launch {
                 Log.i("justin","檢查ToDo有無收到plan2")

@@ -1,7 +1,6 @@
 package com.justin.pocketmon.plan.todo
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +23,8 @@ import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.home.edit.HomeEditViewModel
 import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditFragmentArgs
+import com.justin.pocketmon.util.Logger
+import com.justin.pocketmon.util.Logger.i
 import com.justin.pocketmon.util.ServiceLocator.repository
 import java.util.stream.Collectors.toList
 
@@ -56,15 +57,30 @@ class PlanToDoDialog : AppCompatDialogFragment() {
 
 
             val plan = viewModel.addedTodo.value!!
-            plan.method =  binding.planTodoEdit.text.toString()
 
-            Log.d("justin","first check for data from PlanEditPage => $plan")
+            plan.method.add(binding.planTodoEdit.text.toString())
+            Logger.i("plan.method = ${plan.method}")
+//             plan.method = binding.planTodoEdit.text
+
+            Logger.d("first check for data from PlanEditPage => $plan")
 
             viewModel.addToDo(plan)
-            Log.d("justin","再檢查從planEdit帶過來的資料 => $plan")
+            Logger.d("再檢查從planEdit帶過來的資料 => $plan")
 
+            viewModel.navigateToPlanEditPage()
 
         }
+
+        viewModel.navigateToPlanEditPage.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    findNavController().navigate(NavigationDirections.navigateToPlanEditFragment(it))
+                    viewModel.onToDotoPlanEditNavigated()
+                }
+            }
+        )
+
 
         return binding.root
     }

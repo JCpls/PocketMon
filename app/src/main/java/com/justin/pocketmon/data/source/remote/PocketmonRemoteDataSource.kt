@@ -116,11 +116,13 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
     override suspend fun addToDo (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
-
+        Logger.i("RemoteDataSource plan = $plan")
+        Logger.i("RemoteDataSource plan.method = ${plan.method}")
         FirebaseFirestore.getInstance()
             .collection(PATH_PLANS)
             .document(plan.id)
-            .update("method", plan.method)
+            .update("method", FieldValue.arrayUnion(plan.method.last()))
+//            .update("method", plan.method)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Logger.i("add ToDo list task.isSuccessful")

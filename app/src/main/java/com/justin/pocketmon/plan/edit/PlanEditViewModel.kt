@@ -27,6 +27,13 @@ class PlanEditViewModel
     val selectedPlan: LiveData<Plan>
         get() = _selectedPlan
 
+    // plan for getting liveData from firebase
+    private val _planEdit = MutableLiveData<List<Plan>>()
+
+    val planEdit: LiveData<List<Plan>>
+        get() = _planEdit
+
+
     // Handle leave planEdit
     private val _leavePlanEdit = MutableLiveData<Boolean>()
 
@@ -64,6 +71,12 @@ class PlanEditViewModel
     val status: LiveData<LoadApiStatus>
         get() = _status
 
+    // status for the loading icon of swl
+    private val _refreshStatus = MutableLiveData<Boolean>()
+
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
+
     // error: The internal MutableLiveData that stores the error of the most recent request
     private val _error = MutableLiveData<String>()
 
@@ -89,6 +102,41 @@ class PlanEditViewModel
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
+    }
+
+
+    fun getArticlesResult() {
+
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            val result = repository.getArticles()
+
+            _planEdit.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
+        }
     }
 
     //
