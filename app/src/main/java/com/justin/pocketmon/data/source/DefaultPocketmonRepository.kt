@@ -1,10 +1,7 @@
 package com.justin.pocketmon.data.source
 
 import androidx.lifecycle.MutableLiveData
-import com.justin.pocketmon.data.Article
-import com.justin.pocketmon.data.Author
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.Result
+import com.justin.pocketmon.data.*
 
 /* Concrete implementation to load PocketMon sources.
 */
@@ -26,6 +23,10 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
 
     override suspend fun publishPlan (plan: Plan): Result<Boolean> {
         return remoteDataSource.publishPlan(plan)
+    }
+
+    override suspend fun addToDo (plan: Plan): Result<Boolean> {
+        return remoteDataSource.addToDo(plan)
     }
 
     override suspend fun delete(article: Article): Result<Boolean> {

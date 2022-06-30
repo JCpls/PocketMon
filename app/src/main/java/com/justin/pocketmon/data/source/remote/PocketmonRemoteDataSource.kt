@@ -2,14 +2,13 @@ package com.justin.pocketmon.data.source.remote
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Article
-import com.justin.pocketmon.data.Author
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.Result
+import com.justin.pocketmon.data.*
 import com.justin.pocketmon.data.source.PocketmonDataSource
 import com.justin.pocketmon.util.Logger
 import java.util.*
@@ -115,6 +114,32 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                 }
             }
     }
+
+    override suspend fun addToDo (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_PLANS)
+            .document(plan.id)
+            .update("method", plan.method)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("add ToDo list task.isSuccessful")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+
+
 
     override suspend fun delete(article: Article): Result<Boolean> = suspendCoroutine { continuation ->
 

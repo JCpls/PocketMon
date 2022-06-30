@@ -1,10 +1,7 @@
 package com.justin.pocketmon.data.source
 
 import androidx.lifecycle.MutableLiveData
-import com.justin.pocketmon.data.Article
-import com.justin.pocketmon.data.Author
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.Result
+import com.justin.pocketmon.data.*
 
 
 /* Main entry point for accessing PocketMon sources.
@@ -18,6 +15,8 @@ interface PocketmonDataSource {
     fun getLiveArticles(): MutableLiveData<List<Article>>
 
     suspend fun publishPlan(plan: Plan): Result<Boolean>
+
+    suspend fun addToDo(plan: Plan): Result<Boolean>
 
     suspend fun delete(article: Article): Result<Boolean>
 }

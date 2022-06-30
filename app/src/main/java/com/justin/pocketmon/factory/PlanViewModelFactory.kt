@@ -9,6 +9,7 @@ import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.detail.DetailViewModel
 import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditViewModel
+import com.justin.pocketmon.plan.todo.PlanToDoViewModel
 
 @Suppress("UNCHECKED_CAST")
 class PlanViewModelFactory constructor(
@@ -22,6 +23,9 @@ class PlanViewModelFactory constructor(
 
                 isAssignableFrom(PlanEditViewModel::class.java) ->
                     PlanEditViewModel(plan, repository)
+
+                isAssignableFrom(PlanToDoViewModel::class.java) ->
+                    PlanToDoViewModel(plan, repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

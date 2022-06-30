@@ -79,7 +79,7 @@ class DetailFragment : Fragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let {
-                    findNavController().navigate(NavigationDirections.navigateToPlanFragment())
+                    findNavController().navigate(NavigationDirections.navigateToPlanFragment(  ))
                     viewModel.onDetailtoPlanPageNavigated()
                 }
             }

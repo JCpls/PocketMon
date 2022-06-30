@@ -164,6 +164,7 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
 
     // Handle navigation to planEditFragment
     private val _navigateToPlanEdit = MutableLiveData<Plan>()
+
     val navigateToPlanEdit: LiveData<Plan>
         get() = _navigateToPlanEdit
 

@@ -78,6 +78,7 @@ class HomeViewModel: ViewModel() {
 
     // Handle navigation to detail
     private val _navigateToDetail = MutableLiveData<Articledata>()
+
     val navigateToDetail: LiveData<Articledata>
         get() = _navigateToDetail
 

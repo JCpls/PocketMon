@@ -41,7 +41,10 @@
     <dimen name="edge_detail_circle">1px</dimen>
 
     <!-- PlanEdit -->
-
     <dimen name="height_bottom_layout">50dp</dimen>
+
+    <!-- PlanToDo Dialog -->
+    <dimen name="height_ToDo">100dp</dimen>
+
 
 </resources>

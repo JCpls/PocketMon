@@ -34,6 +34,25 @@ class PlanEditViewModel
         get() = _leavePlanEdit
 
 
+    // Handle navigate to PlanTodo dialog
+    private val _navigateToPlanTodo = MutableLiveData<Plan>()
+
+    val navigateToPlanTodo: LiveData<Plan>
+        get() = _navigateToPlanTodo
+
+    fun navigateToPlanTodo(plan: Plan) {
+        _navigateToPlanTodo.value = plan
+    }
+
+    fun onPlanEditToPlanTodoNavigated() {
+        _navigateToPlanTodo.value = null
+    }
+
+    fun navigateToAddTodo() {
+        _navigateToPlanTodo.value = plan
+    }
+
+
     private val _leave = MutableLiveData<Boolean>()
 
     val leave: LiveData<Boolean>
@@ -72,6 +91,7 @@ class PlanEditViewModel
         Logger.i("------------------------------------")
     }
 
+    //
     fun publishPlan(plan: Plan) {
 
         coroutineScope.launch {

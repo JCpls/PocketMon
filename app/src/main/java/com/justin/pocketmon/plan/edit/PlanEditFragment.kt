@@ -42,6 +42,16 @@ class PlanEditFragment: Fragment() {
             }
         )
 
+        viewModel.navigateToPlanTodo.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    findNavController().navigate(NavigationDirections.navigateToPlanTodoDialog(it))
+                    viewModel.onPlanEditToPlanTodoNavigated()
+                }
+            }
+        )
+
         return binding.root
     }
 }

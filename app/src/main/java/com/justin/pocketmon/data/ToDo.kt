@@ -4,15 +4,14 @@ import android.os.Parcelable
 import com.google.firebase.Timestamp
 import kotlinx.parcelize.Parcelize
 
+
 @Parcelize
-data class Plan(
+data class ToDo(
+
     var id: String = "",
     var ownerId: String = "",
-    var title: String = "",
-    var description: List<String> = listOf(""),
-    var degree: Long = 0L,
+    var planId: String = "",
+    var method: String = "",
     var createdTime: Timestamp = Timestamp.now(),
-    var image: String = "",
-    var method: String = ""
 
 ): Parcelable
