@@ -11,5 +11,6 @@ data class Article(
     var createdTime: Long = -1,
     var title: String = "",
     var content: String = "",
-    val author: Author? = null
+    var comment: MutableList<String> = mutableListOf(""),
+    val author: Author? = null,
 ) : Parcelable

@@ -33,6 +33,10 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.addToDo(plan)
     }
 
+    override suspend fun addComment (articledata: Articledata): Result<Boolean> {
+        return remoteDataSource.addComment(articledata)
+    }
+
     override suspend fun delete(article: Article): Result<Boolean> {
         return remoteDataSource.delete(article)
     }

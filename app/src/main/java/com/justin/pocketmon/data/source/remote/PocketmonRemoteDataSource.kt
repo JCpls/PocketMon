@@ -21,7 +21,7 @@ import kotlin.coroutines.suspendCoroutine
 object PocketmonRemoteDataSource : PocketmonDataSource {
 
     private const val PATH_PLANS = "Plans"
-    private const val PATH_ARTICLES = "articles"
+    private const val PATH_ARTICLE = "Article"
     private const val KEY_CREATED_TIME = "createdTime"
 
     override suspend fun loginMockData(id: String): Result<Author> {
@@ -99,7 +99,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
         val liveData = MutableLiveData<List<Article>>()
 
         FirebaseFirestore.getInstance()
-            .collection(PATH_ARTICLES)
+            .collection(PATH_ARTICLE)
             .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
 
@@ -153,6 +153,8 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
+
+
     override suspend fun addToDo (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
         Logger.i("RemoteDataSource plan = $plan")
         Logger.i("RemoteDataSource plan.method = ${plan.method}")
@@ -179,6 +181,30 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
 
+    override suspend fun addComment (articledata: Articledata): Result<Boolean> = suspendCoroutine { continuation ->
+        Logger.i("RemoteDataSource articledata = $articledata")
+        Logger.i("RemoteDataSource articledata.comment = ${articledata.comment}")
+        Logger.i("articledata.uid = ${articledata.uid}")
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ARTICLE)
+            .document(articledata.uid)
+            .update("comment", FieldValue.arrayUnion(articledata.comment.last()))
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("add comment task.isSuccessful")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
 
 
     override suspend fun delete(article: Article): Result<Boolean> = suspendCoroutine { continuation ->
@@ -192,7 +218,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
             else -> {
                 FirebaseFirestore.getInstance()
-                    .collection(PATH_ARTICLES)
+                    .collection(PATH_ARTICLE)
                     .document(article.id)
                     .delete()
                     .addOnSuccessListener {

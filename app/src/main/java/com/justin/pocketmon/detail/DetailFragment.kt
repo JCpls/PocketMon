@@ -99,7 +99,7 @@ class DetailFragment : Fragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let {
-                    findNavController().navigate(NavigationDirections.navigateToCommentDialog())
+                    findNavController().navigate(NavigationDirections.navigateToCommentDialog(it))
                     viewModel.onDetailtoCommentDialogNavigated()
                 }
             }

@@ -51,6 +51,10 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun addComment(articledata: Articledata): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun delete(article: Article): Result<Boolean> {
         TODO("Not yet implemented")
     }

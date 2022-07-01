@@ -63,6 +63,10 @@
         android:name="com.justin.pocketmon.comment.CommentDialog"
         android:label="CommentDialog"
         tools:layout="@layout/dialog_comment">
+
+        <argument android:name="commentKey"
+            app:argType="com.justin.pocketmon.data.Articledata"
+            app:nullable="false"/>
     </dialog>
 
     <dialog

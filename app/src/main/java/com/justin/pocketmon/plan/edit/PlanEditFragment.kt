@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.content.contentValuesOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -43,6 +44,7 @@ class PlanEditFragment: Fragment() {
         viewModel.planEdit.observe(viewLifecycleOwner, Observer {
 
                 it.method.let {
+                    
                     adapter.submitList(it)
                 }
 

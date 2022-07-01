@@ -55,13 +55,13 @@ class DetailViewModel
     }
 
     // Handle leave to comment
-    private val _navigateToComment = MutableLiveData<Boolean>()
+    private val _navigateToComment = MutableLiveData<Articledata>()
 
-    val navigateToComment: LiveData<Boolean>
+    val navigateToComment: LiveData<Articledata>
         get() = _navigateToComment
 
     fun navigateToCommentDialog() {
-        _navigateToComment.value = true
+        _navigateToComment.value = articledata
     }
 
     fun onDetailtoCommentDialogNavigated() {
@@ -69,7 +69,7 @@ class DetailViewModel
     }
 
     fun navigateToComment() {
-        _navigateToComment.value = true
+        _navigateToComment.value = articledata
     }
 
 
