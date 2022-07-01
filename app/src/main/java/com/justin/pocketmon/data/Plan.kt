@@ -13,7 +13,7 @@ data class Plan(
     var degree: Long = 0L,
     var createdTime: Timestamp = Timestamp.now(),
     var image: String = "",
-    var method: MutableList<String> = mutableListOf()
+    var method: MutableList<String> = mutableListOf("")
 //            MutableList<String> = mutableListOf("")
 //             List<String> = listOf("")
 

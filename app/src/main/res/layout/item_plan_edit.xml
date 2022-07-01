@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="planData" type="com.justin.pocketmon.data.Plan" />
-        <variable name="viewModel" type="com.justin.pocketmon.data.Plan"/>
+            name="planData" type="String" />
+        <variable name="viewModel" type="com.justin.pocketmon.plan.edit.PlanEditViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

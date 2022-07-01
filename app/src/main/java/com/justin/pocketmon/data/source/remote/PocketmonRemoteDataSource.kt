@@ -56,6 +56,44 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
+
+    override suspend fun getToDoList(plan: Plan): Result<Plan> = suspendCoroutine { continuation ->
+
+        Logger.i("RemoteDataSource todo belongs to plan.id = ${plan.id}")
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_PLANS)
+//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .document(plan.id)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+//                    val list = mutableListOf<Plan>()
+//                    for (document in task.result) {
+//                        Logger.d(document.id + " => " + document.data)
+//
+//                        val todo = document.toObject(Plan::class.java)
+//                        list.add(todo)
+//                    }
+
+                    val item = (task.result.toObject(Plan::class.java)!!)
+                    Logger.i("task.result = ${item}")
+
+                    continuation.resume(Result.Success(item))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
 
         val liveData = MutableLiveData<List<Article>>()

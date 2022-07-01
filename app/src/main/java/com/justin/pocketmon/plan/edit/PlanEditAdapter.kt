@@ -11,28 +11,26 @@ import com.justin.pocketmon.databinding.ItemPlanEditBinding
 import com.justin.pocketmon.plan.PlanAdapter
 
 class PlanEditAdapter () :
-    ListAdapter<Plan, RecyclerView.ViewHolder>(DiffCallback) {
+    ListAdapter<String, RecyclerView.ViewHolder>(DiffCallback) {
 
     class PlanEditViewHolder(private var binding: ItemPlanEditBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(plan: Plan) {
+        fun bind(plan: String) {
 
-            binding.viewModel = plan
-//            binding.itemPlanEditTodo.text = plan.method
-
+            binding.planData = plan
+            binding.itemPlanEditTodo.text = plan
 
             binding.executePendingBindings()
-            binding.root
 
         }
     }
-    companion object DiffCallback : DiffUtil.ItemCallback<Plan>() {
-        override fun areItemsTheSame(oldItem: Plan, newItem: Plan): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem === newItem
         }
-        override fun areContentsTheSame(oldItem: Plan, newItem: Plan): Boolean {
-            return oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
         }
 
         private const val ITEM_VIEW_TYPE_PLAN = 0x00
@@ -56,7 +54,7 @@ class PlanEditAdapter () :
 
         when (holder) {
             is PlanEditViewHolder -> {
-                holder.bind((getItem(position) as Plan))
+                holder.bind((getItem(position) as String))
             }
         }
     }
@@ -64,6 +62,7 @@ class PlanEditAdapter () :
     override fun getItemViewType(position: Int): Int {
         return ITEM_VIEW_TYPE_PLAN
     }
+
 }
 
 

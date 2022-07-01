@@ -36,13 +36,27 @@ class PlanEditFragment: Fragment() {
         binding.isLiveDataDesign = PocketmonApplication.instance.isLiveDataDesign()
         binding.viewModel = viewModel
 
+        val adapter = PlanEditAdapter()
+        binding.planEditRecyclerView.adapter = adapter
+
         // recyclerView
         viewModel.planEdit.observe(viewLifecycleOwner, Observer {
-            (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
-            (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
-//            binding.swipeRefreshLayout.isRefreshing = false
 
-            Logger.i("Justin Livedata plan = $it")
+                it.method.let {
+                    adapter.submitList(it)
+                }
+
+//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
+//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
+
+
+//            binding.swipeRefreshLayout.isRefreshing = false
+            Logger.i("second viewModel.planEdit = $it")
+//            viewModel.getToDoResult(Plan(
+//                id = "fzKBm4kriaxT3qMnCGFW"
+//            ))
+
+            Logger.i("Justin Livedata todo list = $it")
 
         })
 //        binding.swipeRefreshLayout.setOnRefreshListener {

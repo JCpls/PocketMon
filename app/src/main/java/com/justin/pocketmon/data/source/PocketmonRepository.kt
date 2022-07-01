@@ -12,6 +12,8 @@ interface PocketmonRepository {
 
     suspend fun getArticles(): Result<List<Plan>>
 
+    suspend fun getToDoList(plan: Plan): Result<Plan>
+
     fun getLiveArticles(): MutableLiveData<List<Article>>
 
     suspend fun publishPlan (plan: Plan): Result<Boolean>

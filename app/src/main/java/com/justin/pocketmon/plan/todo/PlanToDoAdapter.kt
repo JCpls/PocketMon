@@ -18,13 +18,13 @@ class PlanToDoAdapter(private val onClickListener: OnClickListener): ListAdapter
     class PlanEditViewHolder(private var binding: ItemPlanEditBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(plan: Plan, onClickListener: OnClickListener) {
+        fun bind(plan: String, onClickListener: OnClickListener) {
 
-            binding.planData = plan
-            binding.itemPlanEditTodo.text = plan.method.toString()
+//            binding.planData = plan
+//            binding.itemPlanEditTodo.text = plan.method.toString()
 
 
-            binding.root.setOnClickListener{onClickListener.onClick(plan)}
+//            binding.root.setOnClickListener{onClickListener.onClick(plan)}
 
             binding.executePendingBindings()
         }
@@ -51,7 +51,7 @@ class PlanToDoAdapter(private val onClickListener: OnClickListener): ListAdapter
             is PlanEditViewHolder -> {
                 val plan = getItem(position) as Plan
 
-                holder.bind(plan, onClickListener)
+//                holder.bind(plan, onClickListener)
             }
         }
 
