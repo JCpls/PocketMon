@@ -93,6 +93,43 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
 
+    override suspend fun getCommentList(): Result<List<Articledata>> = suspendCoroutine { continuation ->
+
+//        Logger.i("RemoteDataSource comment list articledata.uid = ${articledata.uid}")
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ARTICLE)
+//          .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+//                    val list = mutableListOf<Plan>()
+//                    for (document in task.result) {
+//                        Logger.d(document.id + " => " + document.data)
+//
+//                        val todo = document.toObject(Plan::class.java)
+//                        list.add(todo)
+//                    }
+
+//                    val item = (task.result.toObject(Articledata::class.java)!!)
+//                    Logger.i("task.result = ${item}")
+//
+//                    continuation.resume(Result.Success(item))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+
 
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
 

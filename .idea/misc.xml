@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_fire.xml" value="0.1005" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1095" />
         <entry key="app/src/main/res/drawable/ic_nav_fire.xml" value="0.2755" />
+        <entry key="app/src/main/res/drawable/ic_nav_intro.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_nav_message.xml" value="0.283" />
         <entry key="app/src/main/res/drawable/ic_nav_plan.xml" value="0.2225" />
         <entry key="app/src/main/res/drawable/ic_nav_profile.xml" value="0.2655" />
@@ -40,14 +41,17 @@
         <entry key="app/src/main/res/layout/fragment_home_pager_adapter.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_home_type_filter.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_home_view_model.xml" value="0.2682291666666667" />
+        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_plan_edit.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_comment.xml" value="0.31302083333333336" />
         <entry key="app/src/main/res/layout/item_detail_circle.xml" value="0.26666666666666666" />
+        <entry key="app/src/main/res/layout/item_detail_comment.xml" value="0.24097442626953128" />
         <entry key="app/src/main/res/layout/item_detail_gallery.xml" value="0.1828125" />
         <entry key="app/src/main/res/layout/item_dream_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_plan.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_plan_edit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_plan_edit.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.296875" />
       </map>

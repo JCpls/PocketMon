@@ -14,7 +14,7 @@ data class Articledata(
 //    val image: List<String> = listOf(""),
     var image: String = "",
     var email: String = "",
-    var id: String = "",
+    var id: String = "Justin",
     var name: String = "",
     var comment: MutableList<String> = mutableListOf(""),
 

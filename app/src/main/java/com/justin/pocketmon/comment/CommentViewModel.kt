@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
@@ -25,13 +26,21 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         get() = _addComment
 
 
+
+    // for recyeclerview observe
+    private val _commentAdded = MutableLiveData<List<Articledata>>()
+
+    val commentAdded: LiveData<List<Articledata>>
+        get() = _commentAdded
+
+
     // Handle navigation to DetailPage
     private val _navigateToDetailPage = MutableLiveData<Articledata?>()
 
     val navigateToDetailPage: LiveData<Articledata?>
         get() = _navigateToDetailPage
 
-    fun navigateToPlanEditPage() {
+    fun navigateToDetailPage() {
         _navigateToDetailPage.value = articledata
     }
 
@@ -50,6 +59,12 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
 
     val status: LiveData<LoadApiStatus>
         get() = _status
+
+    // status for the loading icon of swl
+    private val _refreshStatus = MutableLiveData<Boolean>()
+
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
 
     // error: The internal MutableLiveData that stores the error of the most recent request
     private val _error = MutableLiveData<String?>()
@@ -104,6 +119,48 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
                     _status.value = LoadApiStatus.ERROR
                 }
             }
+        }
+    }
+
+    init {
+        Logger.i("------------------------------------")
+        Logger.i("[${this::class.simpleName}]${this}")
+        Logger.i("------------------------------------")
+
+//        getComment(articledata)
+    }
+
+    fun getComment() {
+
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            val result = repository.getCommentList()
+
+            _commentAdded.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
         }
     }
 

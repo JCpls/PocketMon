@@ -15,6 +15,8 @@ import com.justin.pocketmon.R
 import com.justin.pocketmon.databinding.DialogCommentBinding
 import com.justin.pocketmon.databinding.DialogPlanTodoBinding
 import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.plan.PlanAdapter
+import com.justin.pocketmon.plan.edit.PlanEditAdapter
 import com.justin.pocketmon.plan.todo.PlanToDoDialogArgs
 import com.justin.pocketmon.plan.todo.PlanToDoViewModel
 import com.justin.pocketmon.util.Logger
@@ -40,12 +42,12 @@ class CommentDialog : AppCompatDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+
         // add data from Dialog to PlanEdit page
         val db = FirebaseFirestore.getInstance()
         val document = db.collection("Article").document()
 
         binding.addCommentButton.setOnClickListener{
-
 
             val articledata = viewModel.addComment.value!!
 
@@ -58,9 +60,44 @@ class CommentDialog : AppCompatDialogFragment() {
             viewModel.addComment(articledata)
             Logger.d("再檢查從detailPage帶過來的資料 => $articledata")
 
-            viewModel.navigateToPlanEditPage()
+            viewModel.navigateToDetailPage()
+            viewModel.getComment()
 
         }
+
+       //recyclerView
+        val adapter = CommentAdapter()
+        binding.commentRecyclerview.adapter = adapter
+
+        // recyclerView
+        viewModel.commentAdded.observe(viewLifecycleOwner, Observer {
+
+            (binding.commentRecyclerview.adapter as CommentAdapter).submitList(it)
+            (binding.commentRecyclerview.adapter as CommentAdapter).notifyDataSetChanged()
+            binding.swipeRefreshLayout.isRefreshing = false
+
+//            it.method.let {
+//
+//                adapter.submitList(it)
+//            }
+
+//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
+//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
+
+
+//            binding.swipeRefreshLayout.isRefreshing = false
+            Logger.i("second viewModel.planEdit = $it")
+//            viewModel.getToDoResult(Plan(
+//                id = "fzKBm4kriaxT3qMnCGFW"
+//            ))
+
+            Logger.i("Justin Livedata todo list = $it")
+
+        })
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getComment()
+        }
+
 
         viewModel.navigateToDetailPage.observe(
             viewLifecycleOwner,

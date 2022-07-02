@@ -39,6 +39,10 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getCommentList(): Result<List<Articledata>> {
+        TODO("Not yet implemented")
+    }
+
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
         TODO("Not yet implemented")
     }

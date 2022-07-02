@@ -61,6 +61,13 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNav() {
         binding.bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
+
+                R.id.navigation_intro -> {
+
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToIntroFragment())
+                    return@setOnItemSelectedListener true
+                }
+
                 R.id.navigation_home -> {
 
                     findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToHomeFragment())
