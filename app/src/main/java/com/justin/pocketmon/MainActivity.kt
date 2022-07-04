@@ -111,6 +111,12 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavView.selectedItemId = R.id.navigation_plan
     }
 
+    // to change the bottomNav icon when Intro page navigate to Profile page
+    fun navigateToProfile() {
+        binding.bottomNavView.selectedItemId = R.id.navigation_profile
+    }
+
+
 // badge
 //        val menuView = binding.bottomNavView.getChildAt(0) as BottomNavigationMenuView
 //        val itemView = menuView.getChildAt(2) as BottomNavigationItemView

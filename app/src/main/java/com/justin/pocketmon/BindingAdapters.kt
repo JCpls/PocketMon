@@ -16,8 +16,8 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .load(imgUri)
             .apply(
                 RequestOptions()
-                    .placeholder(R.drawable.ic_fire)
-                    .error(R.drawable.ic_fire)
+                    .placeholder(R.drawable.image_bg_pocketmon)
+                    .error(R.drawable.image_bg_pocketmon)
             )
             .into(imgView)
     }
