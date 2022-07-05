@@ -73,9 +73,9 @@
                     android:layout_height="350dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="100dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_bg_mario"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:listitem="@layout/item_plan" />
 
@@ -85,8 +85,8 @@
 
         <ImageView
             android:id="@+id/image_gameboy_handler"
-            android:layout_width="00dp"
-            android:layout_height="400dp"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
             android:background="@drawable/ic_game_controller"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

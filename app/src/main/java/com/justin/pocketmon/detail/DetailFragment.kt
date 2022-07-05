@@ -65,11 +65,11 @@ class DetailFragment : Fragment() {
 
         }
 
-        binding.buttonDetailMessage.setOnClickListener{
-            viewModel.navigateToChatRoom()
-        }
+//        binding.buttonDetailMessage.setOnClickListener{
+//            viewModel.navigateToChatRoom()
+//        }
 
-        binding.buttonDetailMessage.setOnClickListener{
+        binding.buttonDetailComment.setOnClickListener{
             viewModel.navigateToCommentDialog()
         }
 

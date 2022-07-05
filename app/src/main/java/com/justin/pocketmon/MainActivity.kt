@@ -137,10 +137,14 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavController() {
         findNavController(R.id.myNavHostFragment).addOnDestinationChangedListener { navController: NavController, _: NavDestination, _: Bundle? ->
             viewModel.currentFragmentType.value = when (navController.currentDestination?.id) {
+                R.id.introFragment -> CurrentFragmentType.INTRO
                 R.id.homeFragment -> CurrentFragmentType.HOME
                 R.id.chatFragment -> CurrentFragmentType.CHAT
                 R.id.planFragment -> CurrentFragmentType.PLAN
                 R.id.profileFragment -> CurrentFragmentType.PROFILE
+                R.id.detailFragment -> CurrentFragmentType.DETAIL
+                R.id.planEditFragment -> CurrentFragmentType.PLANEDIT
+
                 else -> viewModel.currentFragmentType.value
             }
         }

@@ -17,7 +17,7 @@
 
     <!-- General -->
     <dimen name="elevation_all">4dp</dimen>
-    <dimen name="height_all_bottom_layout">80dp</dimen>
+    <dimen name="height_all_bottom_layout">50dp</dimen>
 
     <!-- Home -->
     <dimen name="height_home_tab">48dp</dimen>
@@ -35,7 +35,7 @@
     <dimen name="height_detail_gallery">500dp</dimen>
     <dimen name="size_detail_color">24dp</dimen>
     <dimen name="edge_detail_color">1dp</dimen>
-    <dimen name="size_detail_close">40dp</dimen>
+    <dimen name="size_detail_close">30dp</dimen>
     <dimen name="size_detail_circle">6dp</dimen>
     <dimen name="radius_detail_circle">3dp</dimen>
     <dimen name="edge_detail_circle">1px</dimen>
@@ -44,7 +44,7 @@
     <dimen name="height_bottom_layout">50dp</dimen>
 
     <!-- PlanToDo Dialog -->
-    <dimen name="height_ToDo">100dp</dimen>
+    <dimen name="height_ToDo">200dp</dimen>
 
 
 </resources>
