@@ -12,9 +12,10 @@ data class Articledata(
     var title: String = " ",
     var uid: String = " ",
 //    val image: List<String> = listOf(""),
-    val image: String = "",
-    val email: String = "justinyang29@gmail.com",
-    val id: String = "justinyang29",
-    val name: String = "Justin",
+    var image: String = "",
+    var email: String = "",
+    var id: String = "Justin",
+    var name: String = "",
+    var comment: MutableList<String> = mutableListOf(""),
 
 ):Parcelable

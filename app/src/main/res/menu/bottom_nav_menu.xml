@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <item
+        android:id="@+id/navigation_intro"
+        android:icon="@drawable/ic_nav_intro"
+        android:title=""/>
+
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_nav_fire"
+        android:icon="@drawable/ic_nav_home"
         android:title=""/>
 
     <item
         android:id="@+id/navigation_chat"
-        android:icon="@drawable/ic_nav_message"
+        android:icon="@drawable/ic_nav_chat"
         android:title=""/>
 
     <item

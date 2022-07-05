@@ -16,13 +16,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:shadowColor="@color/cardview_shadow_end_color"
-        android:background="@color/ocean_blue">
+        android:background="@drawable/bg_dream_item2"
+        android:shadowColor="@color/cardview_shadow_end_color">
 
         <ImageView
             android:id="@+id/plan_image"
             android:scaleType="centerCrop"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
             app:imageUrl="@{itemPlan.image}"

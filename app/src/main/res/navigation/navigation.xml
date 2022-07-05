@@ -2,7 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@+id/homeFragment">
+    app:startDestination="@+id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.justin.pocketmon.intro.IntroFragment"
+        android:label="IntroFragment"
+        tools:layout="@layout/fragment_intro" >
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
@@ -42,12 +49,16 @@
         android:id="@+id/planEditFragment"
         android:name="com.justin.pocketmon.plan.edit.PlanEditFragment"
         android:label="PlanEditFragment" >
+
+        <argument android:name="planKey"
+            app:argType="com.justin.pocketmon.data.Plan"
+            app:nullable="false"/>
     </fragment>
 
     <fragment
-            android:id="@+id/detailFragment"
-            android:name="com.justin.pocketmon.detail.DetailFragment"
-            android:label="DetailFragment" >
+        android:id="@+id/detailFragment"
+        android:name="com.justin.pocketmon.detail.DetailFragment"
+        android:label="DetailFragment" >
 
         <argument android:name="articleKey"
             app:argType="com.justin.pocketmon.data.Articledata"
@@ -59,9 +70,33 @@
         android:name="com.justin.pocketmon.comment.CommentDialog"
         android:label="CommentDialog"
         tools:layout="@layout/dialog_comment">
+
+        <argument android:name="commentKey"
+            app:argType="com.justin.pocketmon.data.Articledata"
+            app:nullable="false"/>
     </dialog>
 
+    <dialog
+        android:id="@+id/planToDoDialog"
+        android:name="com.justin.pocketmon.plan.todo.PlanToDoDialog"
+        android:label="PlanToDoDialog"
+        tools:layout="@layout/dialog_plan_todo">
 
+        <argument android:name="todoKey"
+            app:argType="com.justin.pocketmon.data.Plan"
+            app:nullable="false"/>
+    </dialog>
+
+    <dialog
+        android:id="@+id/loginDialog"
+        android:name="com.justin.pocketmon.login.LoginDialog"
+        android:label="LoginDialog"
+        tools:layout="@layout/dialog_login">
+    </dialog>
+
+    <action android:id="@+id/navigate_to_intro_fragment" app:destination="@id/introFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
@@ -82,6 +117,8 @@
         app:popUpToInclusive="true" />
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
     <action android:id="@+id/navigate_to_comment_dialog" app:destination="@id/commentDialog"/>
+    <action android:id="@+id/navigate_to_plan_todo_dialog" app:destination="@id/planToDoDialog"/>
+    <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
 
 
 </navigation>

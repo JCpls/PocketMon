@@ -2,10 +2,7 @@ package com.justin.pocketmon.data.source.local
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import com.justin.pocketmon.data.Article
-import com.justin.pocketmon.data.Author
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.Result
+import com.justin.pocketmon.data.*
 import com.justin.pocketmon.data.source.PocketmonDataSource
 
 /*
@@ -38,12 +35,27 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getToDoList(plan: Plan): Result<Plan> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getCommentList(): Result<List<Articledata>> {
+        TODO("Not yet implemented")
+    }
 
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
         TODO("Not yet implemented")
     }
 
     override suspend fun publishPlan(plan: Plan): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addToDo(plan: Plan): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addComment(articledata: Articledata): Result<Boolean> {
         TODO("Not yet implemented")
     }
 

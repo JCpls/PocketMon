@@ -35,11 +35,16 @@
     <dimen name="height_detail_gallery">500dp</dimen>
     <dimen name="size_detail_color">24dp</dimen>
     <dimen name="edge_detail_color">1dp</dimen>
-    <dimen name="size_detail_close">44dp</dimen>
+    <dimen name="size_detail_close">40dp</dimen>
     <dimen name="size_detail_circle">6dp</dimen>
     <dimen name="radius_detail_circle">3dp</dimen>
     <dimen name="edge_detail_circle">1px</dimen>
 
+    <!-- PlanEdit -->
+    <dimen name="height_bottom_layout">50dp</dimen>
+
+    <!-- PlanToDo Dialog -->
+    <dimen name="height_ToDo">100dp</dimen>
 
 
 </resources>

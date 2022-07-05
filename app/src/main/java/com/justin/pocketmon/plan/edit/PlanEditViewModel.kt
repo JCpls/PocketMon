@@ -16,15 +16,54 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PlanEditViewModel(private val repository: PocketmonRepository) : ViewModel() {
+class PlanEditViewModel
 
-    private val _plan = MutableLiveData<Plan>().apply {
-        value = Plan(
-        )
+    (private val plan: Plan, private val repository: PocketmonRepository) : ViewModel() {
+
+    private val _selectedPlan = MutableLiveData<Plan>().apply {
+        value = plan
     }
 
-    val plan: LiveData<Plan>
-        get() = _plan
+    val selectedPlan: LiveData<Plan>
+        get() = _selectedPlan
+
+    // plan for getting liveData from firebase
+//    private val _planEdit = MutableLiveData<List<Plan?>>()
+//
+//    val planEdit: LiveData<List<Plan?>>
+//        get() = _planEdit
+
+    private val _planEdit = MutableLiveData<Plan>()
+
+    val planEdit: LiveData<Plan>
+        get() = _planEdit
+
+
+    // Handle leave planEdit
+    private val _leavePlanEdit = MutableLiveData<Boolean>()
+
+    val leavePlanEdit: LiveData<Boolean>
+        get() = _leavePlanEdit
+
+
+    // Handle navigate to PlanTodo dialog
+    private val _navigateToPlanTodo = MutableLiveData<Plan>()
+
+    val navigateToPlanTodo: LiveData<Plan>
+        get() = _navigateToPlanTodo
+
+    fun navigateToPlanTodo(plan: Plan) {
+        _navigateToPlanTodo.value = plan
+    }
+
+    fun onPlanEditToPlanTodoNavigated() {
+        _navigateToPlanTodo.value = null
+    }
+
+    fun navigateToAddTodo() {
+        _navigateToPlanTodo.value = plan
+    }
+
 
     private val _leave = MutableLiveData<Boolean>()
 
@@ -36,6 +75,12 @@ class PlanEditViewModel(private val repository: PocketmonRepository) : ViewModel
 
     val status: LiveData<LoadApiStatus>
         get() = _status
+
+    // status for the loading icon of swl
+    private val _refreshStatus = MutableLiveData<Boolean>()
+
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
 
     // error: The internal MutableLiveData that stores the error of the most recent request
     private val _error = MutableLiveData<String>()
@@ -62,8 +107,49 @@ class PlanEditViewModel(private val repository: PocketmonRepository) : ViewModel
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
+
+        getToDoResult(plan)
     }
 
+
+
+    fun getToDoResult(plan: Plan) {
+
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            val result = repository.getToDoList(plan)
+
+            _planEdit.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
+        }
+    }
+
+
+
+    //
     fun publishPlan(plan: Plan) {
 
         coroutineScope.launch {
@@ -94,6 +180,10 @@ class PlanEditViewModel(private val repository: PocketmonRepository) : ViewModel
 
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
+    }
+
+    fun leavePlanEdit() {
+        _leavePlanEdit.value = true
     }
 
     fun onLeft() {

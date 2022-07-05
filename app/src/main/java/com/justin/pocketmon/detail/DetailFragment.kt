@@ -12,8 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
+import com.justin.pocketmon.MainActivity
 import com.justin.pocketmon.databinding.FragmentDetailBinding
 import com.justin.pocketmon.NavigationDirections
+import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.ext.getVmFactory
@@ -57,7 +59,9 @@ class DetailFragment : Fragment() {
             viewModel.publishPlan(plan)
             Log.d("justin","再檢查從detail帶過來的資料 => $plan ")
 
-            viewModel.navigateToStartPlan()
+// call out to execute fun: navigateToPlan in MainActivity
+            (activity as MainActivity).navigateToPlan()
+//          viewModel.navigateToStartPlan()
 
         }
 
@@ -75,7 +79,7 @@ class DetailFragment : Fragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let {
-                    findNavController().navigate(NavigationDirections.navigateToPlanFragment())
+                    findNavController().navigate(NavigationDirections.navigateToPlanFragment(  ))
                     viewModel.onDetailtoPlanPageNavigated()
                 }
             }
@@ -95,7 +99,7 @@ class DetailFragment : Fragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let {
-                    findNavController().navigate(NavigationDirections.navigateToCommentDialog())
+                    findNavController().navigate(NavigationDirections.navigateToCommentDialog(it))
                     viewModel.onDetailtoCommentDialogNavigated()
                 }
             }

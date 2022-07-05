@@ -9,9 +9,9 @@ import com.google.firebase.firestore.auth.User
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
-import com.justin.pocketmon.factory.ArticleViewModelFactory
-import com.justin.pocketmon.factory.TypeViewModelFactory
-import com.justin.pocketmon.factory.ViewModelFactory
+import com.justin.pocketmon.data.Plan
+import com.justin.pocketmon.data.ToDo
+import com.justin.pocketmon.factory.*
 
 /* Extension functions for Fragment.
 */
@@ -25,6 +25,15 @@ fun Fragment.getVmFactory(articledata: Articledata): ArticleViewModelFactory {
     return ArticleViewModelFactory(articledata, repository)
 }
 
+fun Fragment.getVmFactory(plan: Plan): PlanViewModelFactory {
+    val repository = (requireContext().applicationContext as PocketmonApplication).repository
+    return PlanViewModelFactory(plan, repository)
+}
+
+//fun Fragment.getVmFactory(todo: ToDo): ToDoViewModelFactory {
+//    val repository = (requireContext().applicationContext as PocketmonApplication).repository
+//    return ToDoViewModelFactory(todo, repository)
+//}
 
 
 //fun Fragment.getVmFactory(user: User?): ProfileViewModelFactory {

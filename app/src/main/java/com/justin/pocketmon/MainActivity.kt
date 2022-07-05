@@ -3,20 +3,25 @@ package com.justin.pocketmon
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.databinding.ActivityMainBinding
+import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.util.CurrentFragmentType
 
 
 class MainActivity : AppCompatActivity() {
 
 // --------------------------
+    val viewModel by viewModels<MainViewModel> { getVmFactory() }
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 //        setupToolbar()
         setupBottomNav()
 //        setupDrawer()
-//        setupNavController()
+        setupNavController()
     }
 
 
@@ -56,6 +61,13 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNav() {
         binding.bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
+
+                R.id.navigation_intro -> {
+
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToIntroFragment())
+                    return@setOnItemSelectedListener true
+                }
+
                 R.id.navigation_home -> {
 
                     findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToHomeFragment())
@@ -92,6 +104,17 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
+    }
+
+    // to change the bottomNav icon when Detail page navigate to Plan page
+    fun navigateToPlan() {
+        binding.bottomNavView.selectedItemId = R.id.navigation_plan
+    }
+
+    // to change the bottomNav icon when Intro page navigate to Profile page
+    fun navigateToProfile() {
+        binding.bottomNavView.selectedItemId = R.id.navigation_profile
+    }
 
 
 // badge
@@ -100,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 //        val bindingBadge = BadgeBottomBinding.inflate(LayoutInflater.from(this), itemView, true)
 //        bindingBadge.lifecycleOwner = this
 //        bindingBadge.viewModel = viewModel
-    }
+
 
 // ----------------- 跳轉 --------------------
 //    binding.button.setOnClicklistener{it
@@ -111,17 +134,19 @@ class MainActivity : AppCompatActivity() {
      * Set up [NavController.addOnDestinationChangedListener] to record the current fragment, it better than another design
      * which is change the [CurrentFragmentType] enum value by [MainViewModel] at [onCreateView]
      */
-//    private fun setupNavController() {
-//        findNavController(R.id.myNavHostFragment).addOnDestinationChangedListener { navController: NavController, _: NavDestination, _: Bundle? ->
-//            viewModel.currentFragmentType.value = when (navController.currentDestination?.id) {
-//                R.id.homeFragment -> CurrentFragmentType.HOME
-//                R.id.chatFragment -> CurrentFragmentType.CHAT
-//                R.id.planFragment -> CurrentFragmentType.PLAN
-//                R.id.profileFragment -> CurrentFragmentType.PROFILE
-//                else -> viewModel.currentFragmentType.value
-//            }
-//        }
-//    }
+    private fun setupNavController() {
+        findNavController(R.id.myNavHostFragment).addOnDestinationChangedListener { navController: NavController, _: NavDestination, _: Bundle? ->
+            viewModel.currentFragmentType.value = when (navController.currentDestination?.id) {
+                R.id.homeFragment -> CurrentFragmentType.HOME
+                R.id.chatFragment -> CurrentFragmentType.CHAT
+                R.id.planFragment -> CurrentFragmentType.PLAN
+                R.id.profileFragment -> CurrentFragmentType.PROFILE
+                else -> viewModel.currentFragmentType.value
+            }
+        }
+    }
+
+
 
 //    private fun setupToolbar() {
 //

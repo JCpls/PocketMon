@@ -43,12 +43,16 @@ class PlanFragment : Fragment() {
 
             Logger.d("click, it=$it")
             viewModel.getArticlesResult()
+//        handle navigation to detail
+            viewModel.navigateToPlanEdit(it)
+            Logger.d("click, it=$it")
 //            viewModel.delete(it)
         })
 
 // --- submistList here ---
         viewModel.plan.observe(viewLifecycleOwner, Observer {
             (binding.recycleviewPlan.adapter as PlanAdapter).submitList(it)
+            (binding.recycleviewPlan.adapter as PlanAdapter).notifyDataSetChanged()
             binding.swipeRefreshLayout.isRefreshing = false
             Logger.i("Justin Livedata plan = $it")
 
@@ -57,6 +61,18 @@ class PlanFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getArticlesResult()
         }
+
+//        handle navigation to detail
+                viewModel.navigateToPlanEdit.observe(
+                    viewLifecycleOwner,
+                    Observer {
+                        it?.let {
+                            findNavController().navigate(NavigationDirections.navigateToPlanEditFragment(it))
+                            viewModel.onPlanNavigated()
+                        }
+                    }
+                )
+
         return binding.root
     }
 }

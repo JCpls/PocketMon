@@ -2,14 +2,13 @@ package com.justin.pocketmon.data.source.remote
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Article
-import com.justin.pocketmon.data.Author
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.Result
+import com.justin.pocketmon.data.*
 import com.justin.pocketmon.data.source.PocketmonDataSource
 import com.justin.pocketmon.util.Logger
 import java.util.*
@@ -22,7 +21,7 @@ import kotlin.coroutines.suspendCoroutine
 object PocketmonRemoteDataSource : PocketmonDataSource {
 
     private const val PATH_PLANS = "Plans"
-    private const val PATH_ARTICLES = "articles"
+    private const val PATH_ARTICLE = "Article"
     private const val KEY_CREATED_TIME = "createdTime"
 
     override suspend fun loginMockData(id: String): Result<Author> {
@@ -57,12 +56,87 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
+
+    override suspend fun getToDoList(plan: Plan): Result<Plan> = suspendCoroutine { continuation ->
+
+        Logger.i("RemoteDataSource todo belongs to plan.id = ${plan.id}")
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_PLANS)
+//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .document(plan.id)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+//                    val list = mutableListOf<Plan>()
+//                    for (document in task.result) {
+//                        Logger.d(document.id + " => " + document.data)
+//
+//                        val todo = document.toObject(Plan::class.java)
+//                        list.add(todo)
+//                    }
+
+                    val item = (task.result.toObject(Plan::class.java)!!)
+                    Logger.i("task.result = ${item}")
+
+                    continuation.resume(Result.Success(item))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+    override suspend fun getCommentList(): Result<List<Articledata>> = suspendCoroutine { continuation ->
+
+//        Logger.i("RemoteDataSource comment list articledata.uid = ${articledata.uid}")
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ARTICLE)
+//          .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+//                    val list = mutableListOf<Plan>()
+//                    for (document in task.result) {
+//                        Logger.d(document.id + " => " + document.data)
+//
+//                        val todo = document.toObject(Plan::class.java)
+//                        list.add(todo)
+//                    }
+
+//                    val item = (task.result.toObject(Articledata::class.java)!!)
+//                    Logger.i("task.result = ${item}")
+//
+//                    continuation.resume(Result.Success(item))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+
+
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
 
         val liveData = MutableLiveData<List<Article>>()
 
         FirebaseFirestore.getInstance()
-            .collection(PATH_ARTICLES)
+            .collection(PATH_ARTICLE)
             .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
 
@@ -116,6 +190,60 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
+
+
+    override suspend fun addToDo (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
+        Logger.i("RemoteDataSource plan = $plan")
+        Logger.i("RemoteDataSource plan.method = ${plan.method}")
+        FirebaseFirestore.getInstance()
+            .collection(PATH_PLANS)
+            .document(plan.id)
+            .update("method", FieldValue.arrayUnion(plan.method.last()))
+//            .update("method", plan.method)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("add ToDo list task.isSuccessful")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+
+    override suspend fun addComment (articledata: Articledata): Result<Boolean> = suspendCoroutine { continuation ->
+        Logger.i("RemoteDataSource articledata = $articledata")
+        Logger.i("RemoteDataSource articledata.comment = ${articledata.comment}")
+        Logger.i("articledata.uid = ${articledata.uid}")
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ARTICLE)
+            .document(articledata.uid)
+            .update("comment", FieldValue.arrayUnion(articledata.comment.last()))
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("add comment task.isSuccessful")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+
     override suspend fun delete(article: Article): Result<Boolean> = suspendCoroutine { continuation ->
 
         when {
@@ -127,7 +255,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
             else -> {
                 FirebaseFirestore.getInstance()
-                    .collection(PATH_ARTICLES)
+                    .collection(PATH_ARTICLE)
                     .document(article.id)
                     .delete()
                     .addOnSuccessListener {

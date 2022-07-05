@@ -3,7 +3,7 @@
 
     <corners android:radius="5dp"/>
     <solid android:color="@color/white" />
-    <stroke android:width="@dimen/cardview_compat_inset_shadow"/>
+    <stroke android:width="3dp"/>
     <stroke android:color="@color/gray_999999"/>
 
 </shape>

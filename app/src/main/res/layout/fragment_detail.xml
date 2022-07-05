@@ -49,43 +49,6 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recycler_detail_gallery"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="@dimen/height_detail_gallery"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    app:imageUrl ="@{viewModel.selectedDream.image}"-->
-<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
-<!--&lt;!&ndash;                app:images="@{viewModel.selectedDream.image}"&ndash;&gt;-->
-
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recycler_detail_circles"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="@dimen/size_detail_circle"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginEnd="16dp"-->
-<!--                    android:layout_marginBottom="16dp"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/recycler_detail_gallery"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent" />-->
-<!--&lt;!&ndash;                 app:count="@{viewModel.selectedDream.image}"&ndash;&gt;-->
-
-    <!--                <ImageView-->
-    <!--                    android:id="@+id/text_image"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="0dp"-->
-    <!--                    android:scaleType="centerCrop"-->
-    <!--                    android:background="@drawable/button_add2plan_black_ripple"-->
-    <!--                    app:imageUrl="@{viewModel.selectedDream.image}"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-    <!--                    app:layout_constraintTop_toTopOf="parent"/>-->
-
                 <TextView
                     android:id="@+id/dream_detail_id"
                     android:layout_width="0dp"
@@ -134,7 +97,7 @@
 
                 <!-- dream title -->
                 <TextView
-                    android:id="@+id/dream_detail_title"
+                    android:id="@+id/planEdit_plan_title"
                     style="@style/DetailTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,9 +114,9 @@
                     android:id="@+id/view_detail_stock_separation"
                     style="@style/DetailSeparation"
                     android:layout_marginStart="13dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/dream_detail_title"
-                    app:layout_constraintStart_toEndOf="@+id/dream_detail_title"
-                    app:layout_constraintTop_toTopOf="@+id/dream_detail_title" />
+                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_title"
+                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_title"
+                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_title" />
 
                 <TextView
                     android:id="@+id/dream_detail_title_text"
@@ -181,7 +144,7 @@
                     android:textColor="@color/mario_red"
                     android:fontFamily="@font/press_start_2p"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_title" />
 
                 <View
                     android:id="@+id/view_detail_texture_separation"
@@ -261,6 +224,21 @@
                     android:layout_marginTop="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/detail_comment_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_degree"
+                    tools:listitem="@layout/item_plan_edit" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewModel" type="com.justin.pocketmon.plan.todo.PlanToDoViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<!--        android:onClick="@{() -> viewModel.leave()}"-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_login"
+            android:layout_width="400dp"
+            android:layout_height="@dimen/height_ToDo"
+            android:background="@drawable/bg_dialog_corner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+            <!--        android:onClick="@{() -> viewModel.nothing()}"-->
+
+            <CheckBox
+                android:id="@+id/plan_todo_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/noto_sans"
+                android:letterSpacing="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/plan_todo_edit"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/noto_sans"
+                android:hint="新增計畫"
+                android:letterSpacing="0.15"
+                android:maxLines="1"
+                android:textAlignment="textStart"
+                android:textColor="@color/black_3f3a3a"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/plan_todo_checkbox"
+                app:layout_constraintStart_toEndOf="@+id/plan_todo_checkbox"
+                app:layout_constraintTop_toTopOf="@+id/plan_todo_checkbox"
+                tools:text="新增計畫" />
+
+            <Button
+                android:id="@+id/plan_todo_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/ic_add_mark2"
+                app:layout_constraintBottom_toBottomOf="@+id/plan_todo_edit"
+                app:layout_constraintStart_toEndOf="@+id/plan_todo_edit"
+                app:layout_constraintTop_toTopOf="@+id/plan_todo_edit"/>
+
+
+            <!--            <View-->
+            <!--                android:id="@+id/view_login_separation"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="1dp"-->
+            <!--                android:layout_marginBottom="16dp"-->
+            <!--                android:background="@color/gray_cccccc"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/button_login_facebook"-->
+            <!--                app:layout_constraintEnd_toEndOf="@+id/button_login_facebook"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/button_login_facebook"/>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -21,4 +21,8 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="LoginDialog">
+        <item name="android:windowBackground">@color/translucent_40</item>
+    </style>
+
 </resources>
