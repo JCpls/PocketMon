@@ -11,7 +11,6 @@
         android:background="@drawable/ic_gameboy3"
         android:layout_height="match_parent">
 
-
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="100dp"

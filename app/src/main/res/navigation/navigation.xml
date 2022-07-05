@@ -87,6 +87,12 @@
             app:nullable="false"/>
     </dialog>
 
+    <dialog
+        android:id="@+id/loginDialog"
+        android:name="com.justin.pocketmon.login.LoginDialog"
+        android:label="LoginDialog"
+        tools:layout="@layout/dialog_login">
+    </dialog>
 
     <action android:id="@+id/navigate_to_intro_fragment" app:destination="@id/introFragment"
         app:popUpTo="@id/navigation"
@@ -112,6 +118,7 @@
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
     <action android:id="@+id/navigate_to_comment_dialog" app:destination="@id/commentDialog"/>
     <action android:id="@+id/navigate_to_plan_todo_dialog" app:destination="@id/planToDoDialog"/>
+    <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
 
 
 </navigation>

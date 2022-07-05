@@ -36,7 +36,7 @@ class IntroFragment : Fragment() {
 
         binding.introRocketIcon.setOnClickListener {
 
-            (activity as MainActivity).navigateToProfile()
+        this.findNavController().navigate(NavigationDirections.navigateToLoginDialog())
 
         }
 
