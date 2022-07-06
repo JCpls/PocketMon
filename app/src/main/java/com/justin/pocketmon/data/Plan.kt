@@ -10,11 +10,12 @@ data class Plan(
     var ownerId: String = "",
     var title: String = "",
     var description: List<String> = listOf(""),
-    var degree: Long = 0L,
+    var degree: Long? = 0L,
     var createdTime: Timestamp = Timestamp.now(),
     var image: String = "",
-    var method: MutableList<String> = mutableListOf("立即點擊底下，新增計畫")
+    var method: MutableList<String> = mutableListOf("")
 //            MutableList<String> = mutableListOf("")
 //             List<String> = listOf("")
+//            MutableList<PlanMethod> = mutableListOf()
 
 ): Parcelable
