@@ -15,7 +15,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SeekBar
+import android.widget.TextView
 import androidx.core.content.FileProvider
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -65,7 +68,7 @@ class HomeEditFragment : Fragment() {
 
     }
 
-    //Bitmap to Uri 為了傳firebase
+        //Bitmap to Uri 為了傳firebase
     fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
@@ -78,7 +81,7 @@ class HomeEditFragment : Fragment() {
         return Uri.parse(path)
     }
 
-    //    取得暫存圖片檔案
+        //取得暫存圖片檔案
     private fun getPhotoFile(fileName: String): File {
         val storageDirectory = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
 
@@ -90,9 +93,13 @@ class HomeEditFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // [START storage_field_initialization]
+    // [START storage_field_initialization]
         //storage = Firebase.storage
         // [END storage_field_initialization]
+
+    }
+
+    private fun setContentView(fragmentHomeEdit: Int) {
 
     }
 
@@ -114,7 +121,7 @@ class HomeEditFragment : Fragment() {
 //            Log.d("justin", "這個是add後的回傳值 -> ${document.id}")
             article.uid = document.id
             article.title = binding.textArticleTitle.text.toString()
-            article.category = binding.textArticleCategory.text.toString()
+            article.category = binding.textArticleDegree.text.toString()
             article.content = binding.textArticleContent.text.toString()
             article.createdTime = time
             article.image = uri.toString()
@@ -142,7 +149,7 @@ class HomeEditFragment : Fragment() {
             startActivityForResult(takePictureIntent,REQUEST_CODE)
         }
 
-//圖片上傳-------------------------------------------------------------------------------------
+        //圖片上傳-------------------------------------------------------------------------
         img1 = binding.textArticleImage01
         img2 = binding.textArticleImage02
 
@@ -197,6 +204,21 @@ class HomeEditFragment : Fragment() {
 
         }
 
+        //輸入完成度的 seekbar
+        binding.seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekbar: SeekBar?, process: Int, fromUser: Boolean) {
+                binding.textArticleDegree.text = process.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+
+        })
 
 
         return binding.root
