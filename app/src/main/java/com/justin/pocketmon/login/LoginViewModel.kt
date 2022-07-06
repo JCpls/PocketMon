@@ -41,10 +41,10 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
         get() = _loginFacebook
 
     // Handle leave login
-    private val _leave = MutableLiveData<Boolean>()
+    private val _leaveLogin = MutableLiveData<Boolean>()
 
-    val leave: LiveData<Boolean>
-        get() = _leave
+    val leaveLogin: LiveData<Boolean>
+        get() = _leaveLogin
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -271,9 +271,9 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
 //        _loginFacebook.value = true
 //    }
 //
-//    fun leave() {
-//        _leave.value = true
-//    }
+    fun leaveLogin() {
+        _leaveLogin.value = true
+    }
 //
 //    fun onLeaveCompleted() {
 //        _leave.value = null

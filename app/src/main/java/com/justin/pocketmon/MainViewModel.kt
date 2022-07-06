@@ -27,8 +27,6 @@ class MainViewModel(private val repository: PocketmonRepository) : ViewModel() {
 //        )
 //    }
 
-
-
     private val _refresh = MutableLiveData<Boolean>()
 
     val refresh: LiveData<Boolean>

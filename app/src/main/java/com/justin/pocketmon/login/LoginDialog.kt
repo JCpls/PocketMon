@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
@@ -64,6 +66,15 @@ class LoginDialog : AppCompatDialogFragment() {
         binding.signInButton.setOnClickListener {
             signInGoogle()
         }
+
+        viewModel.leaveLogin.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    if (it) findNavController().popBackStack()
+                }
+            }
+        )
 
         return binding.root
     }

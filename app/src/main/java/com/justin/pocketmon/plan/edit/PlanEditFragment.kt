@@ -71,7 +71,7 @@ class PlanEditFragment: Fragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let {
-                    if (it) findNavController().popBackStack()
+                   findNavController().navigate(NavigationDirections.navigateToPlanFragment())
                 }
             }
         )
