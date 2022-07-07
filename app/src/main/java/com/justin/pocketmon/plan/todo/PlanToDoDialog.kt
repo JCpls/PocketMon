@@ -15,6 +15,7 @@ import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
+import com.justin.pocketmon.data.PlanMethod
 import com.justin.pocketmon.data.ToDo
 import com.justin.pocketmon.databinding.DialogPlanTodoBinding
 import com.justin.pocketmon.detail.DetailFragmentArgs
@@ -58,7 +59,11 @@ class PlanToDoDialog : AppCompatDialogFragment() {
 
             val plan = viewModel.addedTodo.value!!
 
-            plan.method.add(binding.planTodoEdit.text.toString())
+//          plan.method.add(binding.planTodoEdit.text.toString())
+
+            plan.method.add(PlanMethod(done = false, score = binding.planTodoScore.text.toString(), todo = binding.planTodoEdit.text.toString()))
+
+
             Logger.i("plan.method = ${plan.method}")
 //             plan.method = binding.planTodoEdit.text
 

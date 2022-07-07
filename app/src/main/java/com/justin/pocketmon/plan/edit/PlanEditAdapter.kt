@@ -6,30 +6,32 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.justin.pocketmon.data.Plan
+import com.justin.pocketmon.data.PlanMethod
 import com.justin.pocketmon.databinding.ItemPlanBinding
 import com.justin.pocketmon.databinding.ItemPlanEditBinding
 import com.justin.pocketmon.plan.PlanAdapter
 
 class PlanEditAdapter () :
-    ListAdapter<String, RecyclerView.ViewHolder>(DiffCallback) {
+    ListAdapter<PlanMethod, RecyclerView.ViewHolder>(DiffCallback) {
 
     class PlanEditViewHolder(private var binding: ItemPlanEditBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(plan: String) {
+        fun bind(plan: PlanMethod) {
 
-            binding.planData = plan
-            binding.itemPlanEditTodo.text = plan
+            binding.planData = plan.toString()
+            binding.itemPlanEditTodo.text = plan.todo
+            binding.itemPlanEditScore.text = plan.score
 
             binding.executePendingBindings()
 
         }
     }
-    companion object DiffCallback : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<PlanMethod>() {
+        override fun areItemsTheSame(oldItem: PlanMethod, newItem: PlanMethod): Boolean {
             return oldItem === newItem
         }
-        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+        override fun areContentsTheSame(oldItem: PlanMethod, newItem: PlanMethod): Boolean {
             return oldItem == newItem
         }
 
@@ -54,7 +56,7 @@ class PlanEditAdapter () :
 
         when (holder) {
             is PlanEditViewHolder -> {
-                holder.bind((getItem(position) as String))
+                holder.bind((getItem(position) as PlanMethod))
             }
         }
     }

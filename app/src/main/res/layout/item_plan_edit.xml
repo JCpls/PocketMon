@@ -25,7 +25,7 @@
 
 
         <CheckBox
-            android:id="@+id/item_comment_circle"
+            android:id="@+id/item_todo_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,10 +40,23 @@
             android:textSize="18sp"
             android:fontFamily="@font/noto_sans"
             android:textColor="@color/gray_999999"
-            app:layout_constraintStart_toEndOf="@+id/item_comment_circle"
-            app:layout_constraintTop_toTopOf="@+id/item_comment_circle"
-            app:layout_constraintBottom_toBottomOf="@+id/item_comment_circle"
+            app:layout_constraintStart_toEndOf="@+id/item_todo_checkbox"
+            app:layout_constraintTop_toTopOf="@+id/item_todo_checkbox"
+            app:layout_constraintBottom_toBottomOf="@+id/item_todo_checkbox"
             tools:text = "找十字起子"/>
+
+        <TextView
+            android:id="@+id/item_plan_edit_score"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/noto_sans"
+            android:textColor="@color/gray_999999"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/item_todo_checkbox"
+            app:layout_constraintBottom_toBottomOf="@+id/item_todo_checkbox" />
 
 
 

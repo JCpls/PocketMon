@@ -13,9 +13,10 @@ data class Plan(
     var degree: Long? = 0L,
     var createdTime: Timestamp = Timestamp.now(),
     var image: String = "",
-    var method: MutableList<String> = mutableListOf("點擊底下，規劃夢想計畫")
+    var method: MutableList<PlanMethod> = mutableListOf()
 //            MutableList<String> = mutableListOf("")
 //             List<String> = listOf("")
 //            MutableList<PlanMethod> = mutableListOf()
+//     MutableList<String> = mutableListOf("點擊底下，規劃夢想計畫")
 
 ): Parcelable
