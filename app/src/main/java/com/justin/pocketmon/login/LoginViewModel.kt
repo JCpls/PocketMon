@@ -113,6 +113,9 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
             user.image = googleSignInAccount.photoUrl.toString()
             Logger.i("user.pictureUri = ${user.image}")
 
+            UserManager.user = user
+
+
         } catch (e: ApiException) {
             // Sign in was unsuccessful
             Logger.e("Google log in failed code = ${e.statusCode}")
@@ -150,8 +153,8 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
                     UserManager.userToken = firebaseTokenResult?.token.toString()
                     Logger.i("firebaseTokenResult?.token.toString() = ${firebaseTokenResult?.token.toString()}")
                     Logger.i("UserManager.userToken = ${UserManager.userToken}")
-                    UserManager.user.value = user
-                    Logger.i("UserManager.user.value = ${UserManager.user.value}")
+//                    UserManager.user.value = user
+//                    Logger.i("UserManager.user.value = ${UserManager.user.value}")
 
 
                     if (task.result.additionalUserInfo?.isNewUser == true) {

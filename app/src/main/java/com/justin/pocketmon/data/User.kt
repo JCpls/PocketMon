@@ -8,7 +8,7 @@ data class User(
     var id: String = "",
     var name: String = "",
     var email: String = "",
-    val friend: String = "",
+    var friend: String = "",
     var image: String = "",
     var userToken: String = ""
 

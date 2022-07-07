@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".plan.PlanFragment">
 
+    <data>
+        <variable name="viewModel"
+            type="com.justin.pocketmon.profile.ProfileViewModel"/>
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profile_page"
         android:layout_margin="5dp"
@@ -25,7 +31,7 @@
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Justin Yang"
+            android:text=""
             android:fontFamily="@font/press_start_2p"
             android:textSize="12sp"
             android:layout_marginTop="10dp"

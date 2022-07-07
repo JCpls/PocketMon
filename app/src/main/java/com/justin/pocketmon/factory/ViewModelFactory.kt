@@ -14,6 +14,7 @@ import com.justin.pocketmon.home.HomeViewModel
 import com.justin.pocketmon.login.LoginViewModel
 import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditViewModel
+import com.justin.pocketmon.profile.ProfileViewModel
 
 /* Factory for home item ViewModels.
 */
@@ -36,6 +37,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(LoginViewModel::class.java) ->
                     LoginViewModel(repository)
+
+                isAssignableFrom(ProfileViewModel::class.java) ->
+                    ProfileViewModel(repository)
 
 
                 else ->

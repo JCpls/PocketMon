@@ -19,7 +19,9 @@ object UserManager {
 //    val user: LiveData<User>
 //        get() = _user
 
-    var user = MutableLiveData<User?>()
+//    var user = MutableLiveData<User?>()
+
+    var user = User()
 
     var userToken: String? = null
         get() = PocketmonApplication.instance
@@ -55,7 +57,7 @@ object UserManager {
      */
     fun clear() {
         userToken = null
-        user.value = null
+//        user.value = null
     }
 
     private var lastChallengeTime: Long = 0

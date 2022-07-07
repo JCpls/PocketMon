@@ -107,11 +107,11 @@ class LoginDialog : AppCompatDialogFragment() {
 //                user?.name = account?.displayName
 //                user?.let { viewModel.userSignIn(it) }
 //                viewModel.userManager.value = UserManager
-//                Logger.i(" user.value $user")
-//                Logger.d("UserManager.userToken ${UserManager.userToken}")
+                Logger.i(" user.value $user")
+                Logger.d("UserManager.userToken ${UserManager.userToken}")
 //                Logger.d("UserManager.user ${user?.accountType}")
-//                Logger.d("user?.email ${user?.email}")
-//                Toast.makeText(context, "登入成功", Toast.LENGTH_SHORT).show()
+                Logger.d("user?.email ${user?.email}")
+                Toast.makeText(context, "登入成功", Toast.LENGTH_SHORT).show()
 
             } catch (e: ApiException) {
                 Logger.i("givemepass , signInResult:failed code=" + e.statusCode)
