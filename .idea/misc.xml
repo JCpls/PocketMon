@@ -38,7 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_adapter.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_home_child.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_home_edit.xml" value="0.30684931506849317" />
+        <entry key="app/src/main/res/layout/fragment_home_edit.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_home_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_item_view_model_factory.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/fragment_home_pager_adapter.xml" value="0.28229166666666666" />
@@ -54,7 +54,7 @@
         <entry key="app/src/main/res/layout/item_detail_gallery.xml" value="0.1828125" />
         <entry key="app/src/main/res/layout/item_dream_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_plan.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_plan_edit.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_plan_edit.xml" value="0.1348314606741573" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.296875" />
       </map>

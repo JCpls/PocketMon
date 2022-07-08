@@ -128,22 +128,25 @@
                     app:layout_constraintTop_toTopOf="@+id/planEdit_plan_content"
                     app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_content"/>
 
+                <!--                  android:textColor="@{判斷數字級距給予顏色的判斷式}"-->
+
+
                 <TextView
                     android:id="@+id/planEdit_plan_degree_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_dream_item3"
-                    android:textSize="22sp"
                     android:padding="8dp"
-                    android:text="@{String.valueOf(viewModel.selectedPlan.degree)}"
+                    android:text="100"
                     android:textColor="@color/blue_facebook"
-                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_degree"
-                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_degree"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="@+id/planEdit_plan_degree"
-                    tools:text = "100"/>
-<!--                  android:textColor="@{判斷數字級距給予顏色的判斷式}"-->
-
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_degree"
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_degree"
+                    tools:text="100" />
+<!--                android:text="@{String.valueOf(viewModel.newDegree)}"-->
 
                 <TextView
                     android:id="@+id/planEdit_plan_list"

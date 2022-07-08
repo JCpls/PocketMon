@@ -22,6 +22,8 @@ interface PocketmonDataSource {
 
     suspend fun addToDo(plan: Plan): Result<Boolean>
 
+    suspend fun addCheckboxStatus(plan: Plan): Result<Boolean>
+
     suspend fun addComment(articledata: Articledata): Result<Boolean>
 
     suspend fun delete(article: Article): Result<Boolean>

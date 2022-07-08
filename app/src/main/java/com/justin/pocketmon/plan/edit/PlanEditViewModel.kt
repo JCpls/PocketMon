@@ -1,5 +1,6 @@
 package com.justin.pocketmon.plan.edit
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,7 @@ import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.Plan
+import com.justin.pocketmon.data.PlanMethod
 import com.justin.pocketmon.data.User
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
@@ -27,12 +29,21 @@ class PlanEditViewModel
     val selectedPlan: LiveData<Plan>
         get() = _selectedPlan
 
-    // plan for getting liveData from firebase
-//    private val _planEdit = MutableLiveData<List<Plan?>>()
-//
-//    val planEdit: LiveData<List<Plan?>>
-//        get() = _planEdit
 
+//    val newDegree = selectedPlan.value?.degree?.plus(selectedPlan.value!!.degree)
+    val newDegree = MutableLiveData<Long>()
+
+
+
+
+    // for box checked and change type
+    private val _scoreSelected = MutableLiveData<Boolean>()
+
+    val scoreSelected: LiveData<Boolean>
+        get() = _scoreSelected
+
+
+    //
     private val _planEdit = MutableLiveData<Plan>()
 
     val planEdit: LiveData<Plan>
@@ -83,9 +94,9 @@ class PlanEditViewModel
         get() = _refreshStatus
 
     // error: The internal MutableLiveData that stores the error of the most recent request
-    private val _error = MutableLiveData<String>()
+    private val _error = MutableLiveData<String?>()
 
-    val error: LiveData<String>
+    val error: LiveData<String?>
         get() = _error
 
     // Create a Coroutine scope using a job to be able to cancel when needed
@@ -103,12 +114,20 @@ class PlanEditViewModel
         viewModelJob.cancel()
     }
 
+
     init {
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
         getToDoResult(plan)
+
+
+    }
+
+
+    fun getDegree(){
+        newDegree.value = planEdit.value?.degree
     }
 
 
@@ -121,7 +140,7 @@ class PlanEditViewModel
 
             val result = repository.getToDoList(plan)
 
-            _planEdit.value = when (result) {
+            _planEdit?.value = when (result) {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
@@ -148,15 +167,21 @@ class PlanEditViewModel
     }
 
 
+    // when checkbox is selected and
+//    fun removeProduct(product: Product) {
+//        coroutineScope.launch {
+//            PocketmonRepository.removeProductInCart(product.id, product.selectedVariant.colorCode, product.selectedVariant.size)
+//        }
+//    }
 
     //
-    fun publishPlan(plan: Plan) {
-
+    fun addCheckboxStatus(plan: Plan) {
+        Log.i("justin","檢查ToDo有無收到plan1" )
         coroutineScope.launch {
-
+            Log.i("justin","檢查ToDo有無收到plan2")
             _status.value = LoadApiStatus.LOADING
 
-            when (val result = repository.publishPlan(plan)) {
+            when (val result = repository.addCheckboxStatus(plan)) {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
@@ -178,6 +203,7 @@ class PlanEditViewModel
         }
     }
 
+
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
     }
@@ -189,4 +215,23 @@ class PlanEditViewModel
     fun onLeft() {
         _leave.value = null
     }
+
+    fun add(value:String){
+//        newDegree.value?.toLong()?.plus(value.toLong())
+        val score = value.toLong()
+        newDegree.value = newDegree.value?.plus(score)
+//        newDegree.value = newDegree.value
+        Logger.i("add 有無啟動")
+        Logger.i("newDegree.value?.toLong()?.plus(value.toLong()) = ${newDegree.value}")
+    }
+
+    fun minus(value:String){
+//        newDegree.value?.toLong()?.plus(value.toLong())
+        val score = value.toLong()
+        newDegree.value = newDegree.value?.minus(score)
+//        newDegree.value = newDegree.value
+        Logger.i("add 有無啟動")
+        Logger.i("newDegree.value?.toLong()?.minus(value.toLong()) = ${newDegree.value}")
+    }
+
 }

@@ -10,6 +10,8 @@ import com.justin.pocketmon.R
 import com.justin.pocketmon.databinding.FragmentPlanBinding
 import com.justin.pocketmon.databinding.FragmentProfileBinding
 import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.login.UserManager.user
+import com.justin.pocketmon.util.Logger
 
 class ProfileFragment : Fragment() {
 
@@ -30,6 +32,7 @@ class ProfileFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        Logger.i("username = $user.name")
 
 //        binding.profileImage. =  viewModel.user.image
         viewModel.user.name = binding.profileName.toString()

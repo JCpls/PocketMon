@@ -55,6 +55,10 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun addCheckboxStatus(plan: Plan): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun addComment(articledata: Articledata): Result<Boolean> {
         TODO("Not yet implemented")
     }

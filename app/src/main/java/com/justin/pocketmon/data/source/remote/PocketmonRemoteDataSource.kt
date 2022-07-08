@@ -179,6 +179,32 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
 
+    override suspend fun addCheckboxStatus (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
+        Logger.i("RemoteDataSource plan = $plan")
+        Logger.i("RemoteDataSource plan.method = ${plan.method}")
+        FirebaseFirestore.getInstance()
+            .collection(PATH_PLANS)
+            .document(plan.id)
+            .update("done",true)
+//            .update("method", plan.method)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("add ToDo list task.isSuccessful")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+
     override suspend fun addComment (articledata: Articledata): Result<Boolean> = suspendCoroutine { continuation ->
         Logger.i("RemoteDataSource articledata = $articledata")
         Logger.i("RemoteDataSource articledata.comment = ${articledata.comment}")
