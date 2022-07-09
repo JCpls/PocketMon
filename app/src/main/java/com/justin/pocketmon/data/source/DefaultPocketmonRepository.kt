@@ -38,7 +38,7 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
     }
 
     override suspend fun addCheckboxStatus (plan: Plan): Result<Boolean> {
-        return remoteDataSource.addToDo(plan)
+        return remoteDataSource.addCheckboxStatus(plan)
     }
 
     override suspend fun addComment (articledata: Articledata): Result<Boolean> {

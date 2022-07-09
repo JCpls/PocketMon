@@ -29,21 +29,11 @@ class PlanEditViewModel
     val selectedPlan: LiveData<Plan>
         get() = _selectedPlan
 
-
-//    val newDegree = selectedPlan.value?.degree?.plus(selectedPlan.value!!.degree)
+    //
     val newDegree = MutableLiveData<Long>()
 
 
-
-
-    // for box checked and change type
-    private val _scoreSelected = MutableLiveData<Boolean>()
-
-    val scoreSelected: LiveData<Boolean>
-        get() = _scoreSelected
-
-
-    //
+    // the liveData to get "getToDoResult" data from firebase
     private val _planEdit = MutableLiveData<Plan>()
 
     val planEdit: LiveData<Plan>
@@ -125,7 +115,7 @@ class PlanEditViewModel
 
     }
 
-
+    // 宣告 把前面拿到的degree 轉成 newDegree 才能對它進行加工(+,-)
     fun getDegree(){
         newDegree.value = planEdit.value?.degree
     }
@@ -165,6 +155,7 @@ class PlanEditViewModel
             _refreshStatus.value = false
         }
     }
+
 
 
     // when checkbox is selected and
@@ -216,22 +207,74 @@ class PlanEditViewModel
         _leave.value = null
     }
 
-    fun add(value:String){
-//        newDegree.value?.toLong()?.plus(value.toLong())
-        val score = value.toLong()
-        newDegree.value = newDegree.value?.plus(score)
-//        newDegree.value = newDegree.value
-        Logger.i("add 有無啟動")
-        Logger.i("newDegree.value?.toLong()?.plus(value.toLong()) = ${newDegree.value}")
+    fun DoneIsTrue(value:Boolean, todo: String){
+
+        _planEdit.value?.method
+
+        for (value in _planEdit.value?.method!!) {
+            if (value.todo == todo) {
+
+                Logger.i("進到DoneIsTrue的value? = ${value}")
+                value.done = true
+                Logger.i("進到DoneIsTrue的改變後的value? = ${value}")
+                updateData()
+            }
+        }
+
+        Logger.i("true 有無啟動? = ${newDegree.value}")
     }
 
-    fun minus(value:String){
+    fun DoneIsFalse(value:Boolean, todo:String){
+
+        _planEdit.value?.method
+
+        for (value in _planEdit.value?.method!!) {
+            if (value.todo == todo) {
+                Logger.i("進到DoneIsFalsee的value? = ${value}")
+                value.done = false
+                Logger.i("進到DoneIsFalse改變後的value? = ${value}")
+
+                updateData()
+
+            }
+        }
+
+        Logger.i("false 有無啟動? = ${newDegree.value}")
+    }
+
+
+    // plus score of box checked into Dream degree
+    fun addPoint(value:String){
+//      newDegree.value?.toLong()?.plus(value.toLong())
+        val score = value.toLong()
+        newDegree.value = newDegree.value?.plus(score)
+//      newDegree.value = newDegree.value
+        Logger.i("add 有無啟動?.plus(value.toLong()) = ${newDegree.value}")
+    }
+
+    // minus score of box checked into Dream degree
+    fun minusPoint(value:String){
 //        newDegree.value?.toLong()?.plus(value.toLong())
         val score = value.toLong()
         newDegree.value = newDegree.value?.minus(score)
-//        newDegree.value = newDegree.value
-        Logger.i("add 有無啟動")
-        Logger.i("newDegree.value?.toLong()?.minus(value.toLong()) = ${newDegree.value}")
+//      newDegree.value = newDegree.value
+        Logger.i("minus 有無啟動?.minus(value.toLong()) = ${newDegree.value}")
+    }
+
+    fun updateData(){
+        Logger.i("確認東西到底長怎樣 = ${planEdit.value}")
+
+        planEdit.value?.degree = newDegree.value!!
+
+
+        val plan = planEdit.value!!
+
+        addCheckboxStatus(plan)
+        Logger.i("看一下要傳上去的東西長怎樣 = ${planEdit.value}")
+    }
+
+    fun dreamCompleted(){
+
     }
 
 }

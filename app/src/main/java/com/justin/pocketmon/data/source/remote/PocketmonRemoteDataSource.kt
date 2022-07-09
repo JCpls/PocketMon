@@ -180,13 +180,13 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
     override suspend fun addCheckboxStatus (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
-        Logger.i("RemoteDataSource plan = $plan")
+        Logger.i("RemoteDataSource plan.degree = ${plan.degree}")
         Logger.i("RemoteDataSource plan.method = ${plan.method}")
         FirebaseFirestore.getInstance()
             .collection(PATH_PLANS)
             .document(plan.id)
-            .update("done",true)
-//            .update("method", plan.method)
+            .set(plan)
+//            .update(plan)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Logger.i("add ToDo list task.isSuccessful")

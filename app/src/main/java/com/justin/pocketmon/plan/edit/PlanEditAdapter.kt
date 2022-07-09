@@ -1,14 +1,11 @@
 package com.justin.pocketmon.plan.edit
 
-import android.util.Log
-import android.util.SparseBooleanArray
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.PlanMethod
 import com.justin.pocketmon.databinding.ItemPlanEditBinding
 import com.justin.pocketmon.util.Logger
@@ -16,91 +13,50 @@ import com.justin.pocketmon.util.Logger
 class PlanEditAdapter (var viewModel: PlanEditViewModel) :
     ListAdapter<PlanMethod, RecyclerView.ViewHolder>(DiffCallback) {
 
-
-
-    class OnItemSelectedListener(val isSelectedListener: (planMethod: PlanMethod) -> Unit){
-        fun isSelected(planMethod: PlanMethod) = isSelectedListener(planMethod)
-    }
-
-    var checkedItems = SparseBooleanArray()
-
-//    class OnSelectionChangedListener(val selectListener: (Plan) -> Unit) {
-//        fun isSelected(planMethod: PlanMethod) = selectListener(plan)
-//    }
-
     class PlanEditViewHolder(var binding: ItemPlanEditBinding, var viewModel: PlanEditViewModel):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(plan: PlanMethod) {
+        fun bind(planMethod: PlanMethod) {
 
-            binding.planData = plan.toString()
-            binding.itemPlanEditTodo.text = plan.todo
-            binding.itemPlanEditScore.text = plan.score
-            binding.itemTodoCheckbox.isChecked = plan.done
-
+            binding.planData = planMethod.toString()
+            binding.itemPlanEditTodo.text = planMethod.todo
+            binding.itemPlanEditScore.text = planMethod.score
+            binding.itemTodoCheckbox.isChecked = planMethod.done
 
 
             binding.executePendingBindings()
 
-
+            // binding the check box to call functions(add,minus) in viewModel
             binding.itemTodoCheckbox.setOnClickListener {
-                Logger.i("binding.itemTodoCheckbox.isChecked = ${binding.itemTodoCheckbox.isChecked}")
-                binding.itemTodoCheckbox.isChecked.let{
 
+                Logger.i("binding.itemTodoCheckbox.isChecked = ${binding.itemTodoCheckbox.isChecked}")
+
+                binding.itemTodoCheckbox.isChecked.let{
                     if(it==true){
-                        viewModel.add(plan.score)
+
+                        binding.itemTodoCheckbox.isChecked
+
+
+                        viewModel.addPoint(planMethod.score)
+                        viewModel.DoneIsTrue(value = true, planMethod.todo )
+                        binding.itemPlanEditScore.setTextColor(Color.rgb(255, 153, 18 ))
+//                      binding.itemPlanEditScore.setBackgroundColor(Color.rgb(176,224,230))
+
+//                        viewModel.updateData()
+
                     } else {
-                        viewModel.minus(plan.score)
+
+                        viewModel.minusPoint(planMethod.score)
+                        viewModel.DoneIsFalse(value = false, planMethod.todo)
+                        binding.itemPlanEditScore.setTextColor(Color.rgb(128,138,135))
                     }
+
                 }
 
-
-//                binding.itemTodoCheckbox.isChecked = true
-
-//                if (!checkedItems.get(adapterPosition, false)) {//checkbox checked
-//                    binding.itemTodoCheckbox.isChecked = true
-//                    checkedItems.put(adapterPosition, true)
-//                    Logger.d("checkedItems $checkedItems")
-//                    Logger.d("binding.checkBox.isChecked.toString() ${binding.itemTodoCheckbox.text}")
-//                }
             }
-//            binding.itemTodoCheckbox.setOnClickListener(
-//
-//            )
+
         }
     }
-
-
-//        init {
-//
-//            binding.itemTodoCheckbox.setOnClickListener {
-//                if (!checkedItems.get(adapterPosition, false)) {//checkbox checked
-//                    binding.itemTodoCheckbox.isChecked = true
-//                    checkedItems.put(adapterPosition, true)
-//                    Logger.d("checkedItems $checkedItems")
-//                    Logger.d("binding.checkBox.isChecked.toString() ${binding.itemTodoCheckbox.text}")
-//
-//                    val a = Plan(
-//
-//                        "",
-//                        "",
-//                        "",
-//                        "List(St",
-//                        0L, ,
-//                        "",
-//                        ""
-//                        "true, "
-//                    )
-//
-//                    }
-//
-//                    viewModel.addCheckboxStatus(it)
-//
-//                    Logger.i("binding.checkBox.setOnClickListener a=> ${a}")
-//
-//                }
-//            }
-
 
         companion object DiffCallback : DiffUtil.ItemCallback<PlanMethod>() {
             override fun areItemsTheSame(oldItem: PlanMethod, newItem: PlanMethod): Boolean {
@@ -133,7 +89,7 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
 
             when (holder) {
                 is PlanEditViewHolder -> {
-                    holder.binding.itemTodoCheckbox.isChecked = checkedItems.get(position, false)
+//                    holder.binding.itemTodoCheckbox.isChecked = checkedItems.get(position, false)
                     holder.bind((getItem(position) as PlanMethod))
                 }
             }
@@ -144,23 +100,6 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
         }
 
     }
-
-
-//public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-//            MyViewHolder myViewHolder = (MyViewHolder) holder;
-//            myViewHolder.checkBox.setText(content.get(position));
-//
-//            myViewHolder.checkBox.setOnCheckedChangeListener(null);//先設定一次CheckBox的選中監聽器，傳入引數null
-//            myViewHolder.checkBox.setChecked(flag[position]);//用陣列中的值設定CheckBox的選中狀態
-//
-//            //再設定一次CheckBox的選中監聽器，當CheckBox的選中狀態發生改變時，把改變後的狀態儲存在陣列中
-//            myViewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                    flag[position] = b;
-//                }
-//            });
-//        }
 
 
 

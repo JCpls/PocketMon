@@ -1,6 +1,8 @@
 package com.justin.pocketmon.plan.edit
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.PocketmonApplication
+import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.databinding.FragmentPlanEditBinding
 import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.util.Logger
@@ -30,26 +33,22 @@ class PlanEditFragment: Fragment() {
         binding.viewModel = viewModel
 
 
-
-
         val adapter = PlanEditAdapter(viewModel)
         binding.planEditRecyclerView.adapter = adapter
 
-//        binding.planEditRecyclerView.adapter = PlanEditAdapter(
-//
-//                viewModel.addCheckboxStatus(it)
-////                viewModel.navigateToDetail(it)
-//        )
 
         // recyclerView
         viewModel.planEdit.observe(viewLifecycleOwner, Observer {
 
                 it.method.let {
+
+
                     viewModel.getDegree()
+
+                    adapter.submitList(it)
+
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
-                adapter.submitList(it)
-
                 }
 
 //            binding.swipeRefreshLayout.isRefreshing = false
@@ -62,55 +61,24 @@ class PlanEditFragment: Fragment() {
 
         })
 
+        // observe for checkBox status in recyclerView
         viewModel.newDegree.observe(viewLifecycleOwner, Observer {
             Logger.i("newDegree is -> $it")
 
             binding.planEditPlanDegreeText.text = it.toString()
+
+            if (it >= 100L) {
+                Logger.i("it>= 100L")
+//                viewModel.
+            }
+
             Logger.i("observe有無啟動")
         })
-
-
-
-
 
 
 //        binding.swipeRefreshLayout.setOnRefreshListener {
 //            viewModel.getArticlesResult()
 //        }
-
-        // check checkbox to send change to firebase
-//        viewModel.planEdit.observe(viewLifecycleOwner, Observer {
-//
-//            it.degree = it.degree + it.method[1]
-//
-//                viewModel.addCheckboxStatus()
-//            }
-//        })
-
-
-//        binding..setOnClickListener {
-//            if (!checkedItems.get(adapterPosition, false)) {//checkbox checked
-//                binding.checkBox.isChecked = true
-//                checkedItems.put(adapterPosition, true)
-//                Logger.d("checkedItems $checkedItems")
-//                Logger.d("binding.checkBox.isChecked.toString() ${binding.checkBox.text}")
-//                val a = FishTodayCategory(
-//                    "",
-//                    binding.editTextUnit.text.toString(),
-//                    binding.checkBox.text.toString(),
-//                    binding.editTextPrice.text.toString(),
-//                    binding.spinner2.selectedItem.toString(),
-//                    "",
-//                    "",
-//                    ""
-//                )
-//            }
-//        }
-
-
-//        checkbox.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-//            checkBoxStateArray.put(bindingAdapterPosition, isChecked)
-//        })
 
 
         viewModel.leavePlanEdit.observe(
@@ -132,19 +100,8 @@ class PlanEditFragment: Fragment() {
             }
         )
 
-        viewModel.scoreSelected.observe(
-            viewLifecycleOwner,
-            Observer {
-                it?.let {
 
-                    //呼叫viewModel裡面的計算式
-//                    viewModel.addScoreToDegree()
-
-                }
-            }
-        )
-
-        binding.planEditPlanDegreeText
+//        binding.planEditPlanDegreeText
 
 
         return binding.root
