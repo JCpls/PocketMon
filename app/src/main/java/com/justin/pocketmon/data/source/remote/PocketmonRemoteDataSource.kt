@@ -22,6 +22,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
     private const val PATH_PLANS = "Plans"
     private const val PATH_ARTICLE = "Article"
+    private const val PATH_BROADCAST = "Broadcasts"
     private const val KEY_CREATED_TIME = "createdTime"
 
     override suspend fun loginMockData(id: String): Result<Author> {
@@ -42,6 +43,35 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
                         val plan = document.toObject(Plan::class.java)
                         list.add(plan)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
+    override suspend fun getBroadcasts(): Result<List<Broadcast>> = suspendCoroutine { continuation ->
+        Logger.i("RemoteDataSource Broadcast check ")
+        FirebaseFirestore.getInstance()
+            .collection(PATH_BROADCAST)
+//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Broadcast>()
+                    for (document in task.result!!) {
+                        Logger.d(document.id + " => " + document.data)
+
+                        val broadcast = document.toObject(Broadcast::class.java)
+                        list.add(broadcast)
                     }
                     continuation.resume(Result.Success(list))
                 } else {
@@ -203,6 +233,30 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
+
+    override suspend fun publishBroadcast (broadcast: Broadcast): Result<Boolean> = suspendCoroutine { continuation ->
+        Logger.i("RemoteDataSource broadcast.id = ${broadcast.id}")
+        Logger.i("RemoteDataSource broadcast.title = ${broadcast.title}")
+        FirebaseFirestore.getInstance()
+            .collection(PATH_BROADCAST)
+            .document(broadcast.id)
+            .set(broadcast)
+//            .update(broadcast)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("publish broadcast task.isSuccessful")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
 
 
     override suspend fun addComment (articledata: Articledata): Result<Boolean> = suspendCoroutine { continuation ->

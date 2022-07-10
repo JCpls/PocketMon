@@ -36,7 +36,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="計畫標題"
             android:textColor="#000000"
             android:textSize="20dp"
@@ -49,20 +49,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="完成度: "
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="完 成 度 "
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plan_title" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/plan_degree_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
             android:text="degree"
-            app:layout_constraintStart_toEndOf="@+id/plan_degree"
+            android:textSize="18sp"
+            android:fontFamily="@font/noto_sans"
+            app:layout_constraintEnd_toEndOf="@+id/plan_degree_one_hundred"
             app:layout_constraintTop_toTopOf="@+id/plan_degree"
             app:layout_constraintBottom_toBottomOf="@+id/plan_degree"/>
+
+        <TextView
+            android:id="@+id/plan_degree_one_hundred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:text="%"
+            android:textSize="20sp"
+            android:fontFamily="@font/noto_sans"
+            app:layout_constraintEnd_toStartOf="@+id/plan_image"
+            app:layout_constraintTop_toTopOf="@+id/plan_degree_text"
+            app:layout_constraintBottom_toBottomOf="@+id/plan_degree_text"/>
 
 <!--        <TextView-->
 <!--            android:id="@+id/text_author_name"-->

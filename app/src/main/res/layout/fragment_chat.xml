@@ -1,27 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     tools:context=".chat.ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:textSize="16sp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="chat-room function" />
+    <data>
+        <variable name="viewModel"
+            type="com.justin.pocketmon.chat.ChatViewModel"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="15dp"
-        android:textSize="16sp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="to be continued..." />
+        <variable
+            name="isLiveDataDesign"
+            type="Boolean" />
 
-</FrameLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/broadcast_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="30dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:background="@drawable/ic_mario_mushroom"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_marginStart="50dp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"/>-->
+
+        <TextView
+            android:id="@+id/broadcast_page_intro"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="夢想完成榜 "
+            android:fontFamily="@font/press_start_2p"
+            android:textSize="30sp"
+            android:lineHeight="25dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/broadcast_bg_mario"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_mario_02"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!--原版-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleview_broadcast"
+                    android:layout_width="370dp"
+                    android:layout_height="470dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="80dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/broadcast_bg_mario"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ImageView
+            android:id="@+id/image_gameboy_handler"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:background="@drawable/ic_game_controller"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/broadcast_page" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

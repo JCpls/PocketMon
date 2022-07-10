@@ -31,13 +31,14 @@
 
         <TextView
             android:id="@+id/plan_page_intro"
-            android:layout_width="300dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:text="Select and get closer to your dream now: "
             android:fontFamily="@font/press_start_2p"
             android:textSize="14sp"
             android:lineHeight="25dp"
             android:layout_marginTop="60dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -69,11 +70,11 @@
             <!--原版-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview_plan"
-                    android:layout_width="350dp"
-                    android:layout_height="350dp"
+                    android:layout_width="370dp"
+                    android:layout_height="470dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="80dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail_bg_mario"
                     app:layout_constraintEnd_toEndOf="parent"

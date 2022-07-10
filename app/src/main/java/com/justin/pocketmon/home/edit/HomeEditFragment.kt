@@ -44,6 +44,7 @@ class HomeEditFragment : Fragment() {
     var img2: ImageView? = null
     val FILE_NAME = "photo.jpg"
     var photoFile: File? = null
+    val viewModel = HomeEditViewModel()
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -61,6 +62,7 @@ class HomeEditFragment : Fragment() {
             val takeImage = BitmapFactory.decodeFile(photoFile?.absolutePath)
             Log.d("justin","看一下拍照拿的的takeImage是啥 -> $takeImage")
             img1?.setImageBitmap(takeImage)
+
             uri = context?.let { getImageUri(it,takeImage) }
         }
 
@@ -151,7 +153,7 @@ class HomeEditFragment : Fragment() {
 
         //圖片上傳-------------------------------------------------------------------------
         img1 = binding.textArticleImage01
-        img2 = binding.textArticleImage02
+//        img2 = binding.textArticleImage02
 
         var storageReference = FirebaseStorage.getInstance().getReference()
 
@@ -162,47 +164,53 @@ class HomeEditFragment : Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
+            viewModel.liveData.value = true
             startActivityForResult(intent, PICK_CONTACT_REQUEST)
         }
 
         var unusedFileName = 0L
         //變更照片按鈕
-        binding.buttonProceedImage.setOnClickListener {
 
-            //上傳圖片   應該要改去viewModel用coroutineScope.launch
-            val time = System.currentTimeMillis()
-            val picStorage = storageReference.child("image$time")
-            Log.d("justin", "點擊更換圖片1，看一下picStorage是啥 -> $picStorage")
-
-            uri?.let { it1 ->
-                picStorage.putFile(it1).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d("justin", "上傳成功")
-                        picStorage.downloadUrl.addOnSuccessListener {
-                            Log.d("justin", "看一下uri ->$it ")
-                            Glide.with(this /* context */)
-                                .load(it)
-                                .into(img2!!)
-
-                            Log.d("justin", "成功更換圖片")
-                            if(unusedFileName == 0L){
-                                unusedFileName = time
-                                Log.d("justin", "沒有過去的圖片")
-                            }else{
-                                storageReference.child("image$unusedFileName").delete()
-                                unusedFileName = time
-                                Log.d("justin", "刪除上次張上傳的圖片")
-                            }
-                        }.addOnFailureListener {
-                            // Handle any errors
-                        }
-                    } else {
-                        Log.d("justin", "上傳失敗")
-                    }
-                }
-            }
-
+        viewModel.liveData.observe(viewLifecycleOwner){
+            uploadImageToStorage()
         }
+
+//        binding.buttonProceedImage.setOnClickListener {
+//
+//            //上傳圖片   應該要改去viewModel用coroutineScope.launch
+//            val time = System.currentTimeMillis()
+//            val picStorage = storageReference.child("image$time")
+//            Log.d("justin", "點擊更換圖片1，看一下picStorage是啥 -> $picStorage")
+//
+//            uri?.let { it1 ->
+//                picStorage.putFile(it1).addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        Log.d("justin", "上傳成功")
+//                        picStorage.downloadUrl.addOnSuccessListener {
+//                            Log.d("justin", "看一下uri ->$it ")
+//                            Glide.with(this /* context */)
+//                                .load(it)
+//                                .into(img2!!)
+//
+//                            Log.d("justin", "成功更換圖片")
+//                            if(unusedFileName == 0L){
+//                                unusedFileName = time
+//                                Log.d("justin", "沒有過去的圖片")
+//                            }else{
+//                                storageReference.child("image$unusedFileName").delete()
+//                                unusedFileName = time
+//                                Log.d("justin", "刪除上次張上傳的圖片")
+//                            }
+//                        }.addOnFailureListener {
+//                            // Handle any errors
+//                        }
+//                    } else {
+//                        Log.d("justin", "上傳失敗")
+//                    }
+//                }
+//            }
+//
+//        }
 
         //輸入完成度的 seekbar
         binding.seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -222,6 +230,45 @@ class HomeEditFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun uploadImageToStorage() {
+
+        var unusedFileName = 0L
+        var storageReference = FirebaseStorage.getInstance().getReference()
+        //上傳圖片   應該要改去viewModel用coroutineScope.launch
+        val time = System.currentTimeMillis()
+        val picStorage = storageReference.child("image$time")
+        Log.d("justin", "點擊更換圖片1，看一下picStorage是啥 -> $picStorage")
+
+        uri?.let { it1 ->
+            picStorage.putFile(it1).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("justin", "上傳成功")
+                    picStorage.downloadUrl.addOnSuccessListener {
+                        Log.d("justin", "看一下uri ->$it ")
+                        Glide.with(this /* context */)
+                            .load(it)
+                            .into(img1!!)
+
+                        Log.d("justin", "成功更換圖片")
+                        if(unusedFileName == 0L){
+                            unusedFileName = time
+                            Log.d("justin", "沒有過去的圖片")
+                        }else{
+                            storageReference.child("image$unusedFileName").delete()
+                            unusedFileName = time
+                            Log.d("justin", "刪除上次張上傳的圖片")
+                        }
+                    }.addOnFailureListener {
+                        // Handle any errors
+                    }
+                } else {
+                    Log.d("justin", "上傳失敗")
+                }
+            }
+        }
+
     }
 
 

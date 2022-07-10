@@ -1,15 +1,16 @@
 package com.justin.pocketmon.plan.edit
 
+import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.findNavController
+import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Result
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.PlanMethod
-import com.justin.pocketmon.data.User
+import com.justin.pocketmon.data.*
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
 import com.justin.pocketmon.util.Logger
@@ -29,7 +30,7 @@ class PlanEditViewModel
     val selectedPlan: LiveData<Plan>
         get() = _selectedPlan
 
-    //
+    // for editting the degree from Plans
     val newDegree = MutableLiveData<Long>()
 
 
@@ -121,7 +122,6 @@ class PlanEditViewModel
     }
 
 
-
     fun getToDoResult(plan: Plan) {
 
         coroutineScope.launch {
@@ -195,6 +195,35 @@ class PlanEditViewModel
     }
 
 
+    fun publishToBroadcast(broadcast: Broadcast) {
+        Log.i("justin","檢查ToDo有無收到plan1" )
+        coroutineScope.launch {
+            Log.i("justin","檢查ToDo有無收到plan2")
+            _status.value = LoadApiStatus.LOADING
+
+            when (val result = repository.publishBroadcast(broadcast)) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    leave(true)
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
+    }
+
+
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
     }
@@ -215,8 +244,11 @@ class PlanEditViewModel
             if (value.todo == todo) {
 
                 Logger.i("進到DoneIsTrue的value? = ${value}")
+
                 value.done = true
+
                 Logger.i("進到DoneIsTrue的改變後的value? = ${value}")
+
                 updateData()
             }
         }
@@ -230,8 +262,11 @@ class PlanEditViewModel
 
         for (value in _planEdit.value?.method!!) {
             if (value.todo == todo) {
+
                 Logger.i("進到DoneIsFalsee的value? = ${value}")
+
                 value.done = false
+
                 Logger.i("進到DoneIsFalse改變後的value? = ${value}")
 
                 updateData()
@@ -270,10 +305,11 @@ class PlanEditViewModel
         val plan = planEdit.value!!
 
         addCheckboxStatus(plan)
+
         Logger.i("看一下要傳上去的東西長怎樣 = ${planEdit.value}")
     }
 
-    fun dreamCompleted(){
+    fun newDegreeColorChanged(){
 
     }
 

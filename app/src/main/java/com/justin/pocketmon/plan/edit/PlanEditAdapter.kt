@@ -39,15 +39,17 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
 
                         viewModel.addPoint(planMethod.score)
                         viewModel.DoneIsTrue(value = true, planMethod.todo )
+
                         binding.itemPlanEditScore.setTextColor(Color.rgb(255, 153, 18 ))
 //                      binding.itemPlanEditScore.setBackgroundColor(Color.rgb(176,224,230))
 
-//                        viewModel.updateData()
+
 
                     } else {
 
                         viewModel.minusPoint(planMethod.score)
                         viewModel.DoneIsFalse(value = false, planMethod.todo)
+
                         binding.itemPlanEditScore.setTextColor(Color.rgb(128,138,135))
                     }
 

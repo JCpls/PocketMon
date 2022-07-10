@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type = "android.view.View"/>
         <variable
             name="viewModel"
             type="com.justin.pocketmon.plan.edit.PlanEditViewModel"/>
@@ -65,7 +66,7 @@
                     android:layout_marginTop="24dp"
                     android:text="@{viewModel.selectedPlan.title}"
                     android:textColor="@color/mario_red"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:lineHeight="30dp"
                     android:maxLines="2"
                     android:fontFamily="@font/press_start_2p"
@@ -81,7 +82,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="14dp"
                     android:text="夢想描述"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textColor="@color/gray_999999"
                     android:fontFamily="@font/noto_sans"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,13 +102,14 @@
                 <TextView
                     android:id="@+id/planEdit_plan_content_text"
                     style="@style/DetailContent"
-                    android:layout_width="200dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="16dp"
                     android:maxLines="4"
                     android:padding="8dp"
+                    android:textSize="20sp"
                     android:background="@drawable/bg_dream_item3"
                     android:text="@{viewModel.selectedPlan.description[0]}"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,9 +121,9 @@
                     style="@style/DetailTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="50dp"
-                    android:text="完成程度"
-                    android:textSize="14sp"
+                    android:layout_marginEnd="20dp"
+                    android:text="完成度"
+                    android:textSize="18sp"
                     android:textColor="@color/gray_999999"
                     android:fontFamily="@font/noto_sans"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -137,16 +139,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_dream_item3"
+                    android:visibility="@{viewModel.newDegree >= 100L? View.GONE : View.VISIBLE  }"
                     android:padding="8dp"
                     android:text="100"
                     android:textColor="@color/blue_facebook"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@+id/planEdit_plan_degree"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/planEdit_plan_degree"
                     app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_degree"
                     tools:text="100" />
 <!--                android:text="@{String.valueOf(viewModel.newDegree)}"-->
+
+                <TextView
+                    android:id="@+id/planEdit_plan_degree_imageOfFinish"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ic_trophy_gold"
+                    android:visibility="@{viewModel.newDegree >= 100L? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_degree"
+                    app:layout_constraintEnd_toEndOf="@+id/planEdit_plan_degree"
+                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_degree"/>
 
                 <TextView
                     android:id="@+id/planEdit_plan_list"
@@ -156,7 +170,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="14dp"
                     android:text="執行計畫"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textColor="@color/gray_999999"
                     android:fontFamily="@font/noto_sans"
                     app:layout_constraintStart_toStartOf="parent"

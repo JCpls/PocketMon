@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Plan(
     var id: String = "",
-    var ownerId: String = "",
+    var ownerId: String = "Justin Yang",
     var title: String = "",
     var description: List<String> = listOf(""),
     var degree: Long = 0L,

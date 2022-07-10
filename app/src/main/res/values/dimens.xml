@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -13,7 +13,8 @@
 
     <!-- Bottom Navigation -->
     <dimen name="height_bottom_nav_view_main">56dp</dimen>
-    <dimen name="size_bottom_nav_icon">30dp</dimen>
+    <dimen name="size_bottom_nav_icon">25dp</dimen>
+    <dimen name="design_bottom_navigation_margin" tools:ignore="PrivateResource">10dp</dimen>
 
     <!-- General -->
     <dimen name="elevation_all">4dp</dimen>

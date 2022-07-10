@@ -101,10 +101,14 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
             Logger.i("Google Profile Pic URL = $googleProfilePicURL")
             val googleIdToken = googleSignInAccount.idToken ?: ""
             Logger.i("Google ID Token = $googleIdToken")
+            user.userToken = googleIdToken
+            UserManager.userToken = googleIdToken
+            Logger.i("UserManager.userToken = ${UserManager.userToken}")
             val googleIsExpired = googleSignInAccount.isExpired
             Logger.i("Google isExpired = $googleIsExpired")
 
-            googleSignInAccount.idToken?.let { firebaseAuthWithGoogle(it) }
+//            googleSignInAccount.idToken?.let {
+//                firebaseAuthWithGoogle(it) }
 
             user.name = googleSignInAccount.givenName + "  " + googleSignInAccount.familyName
             Logger.i("user.name = ${user.name}")
@@ -120,25 +124,27 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
             // Sign in was unsuccessful
             Logger.e("Google log in failed code = ${e.statusCode}")
         }
+
+        _leaveLogin.value = true
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-
-        firebaseAuth = Firebase.auth
-
-        firebaseAuth.signInWithCredential(credential)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Logger.i("signInWithCredential:success")
-
-                    val firebaseCurrentUser = firebaseAuth.currentUser
-                    val firebaseTokenResult = firebaseCurrentUser?.getIdToken(false)?.result
-
-                    user.id = firebaseCurrentUser?.uid.toString()
-                    user.userToken = firebaseTokenResult?.token.toString()
-                    Logger.i("~~~~~~開始~~~~~~firebaseTokenResult?.token.toString() = ${firebaseTokenResult?.token.toString()}")
+//    private fun firebaseAuthWithGoogle(idToken: String) {
+//        val credential = GoogleAuthProvider.getCredential(idToken, null)
 //
+//        firebaseAuth = Firebase.auth
+//
+//        firebaseAuth.signInWithCredential(credential)
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    Logger.i("signInWithCredential:success")
+//
+//                    val firebaseCurrentUser = firebaseAuth.currentUser
+//                    val firebaseTokenResult = firebaseCurrentUser?.getIdToken(false)?.result
+//
+//                    user.id = firebaseCurrentUser?.uid.toString()
+//                    user.userToken = firebaseTokenResult?.token.toString()
+//                    Logger.i("~~~~~~開始~~~~~~firebaseTokenResult?.token.toString() = ${firebaseTokenResult?.token.toString()}")
+////
 //                    val firebaseDate = firebaseTokenResult?.expirationTimestamp?.let { Date(it) }
 //                    Logger.i("firebaseDate = $firebaseDate")
 //
@@ -148,27 +154,27 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
 //                    }
 //
 //                    user.signInProvider = firebaseTokenResult?.signInProvider.toString()
-//                    Logger.i("firebaseDate = $firebaseDate")
-
-                    UserManager.userToken = firebaseTokenResult?.token.toString()
-                    Logger.i("firebaseTokenResult?.token.toString() = ${firebaseTokenResult?.token.toString()}")
-                    Logger.i("UserManager.userToken = ${UserManager.userToken}")
-//                    UserManager.user.value = user
-//                    Logger.i("UserManager.user.value = ${UserManager.user.value}")
-
-
-                    if (task.result.additionalUserInfo?.isNewUser == true) {
-
-//                        userSignIn(user)
-                    } else {
-                        Logger.i("task.result.additionalUserInfo?.isNewUser == false")
-                    }
-
-                } else {
-                    Logger.w("signInWithCredential:failure e = ${task.exception}")
-                }
-            }
-    }
+////                    Logger.i("firebaseDate = $firebaseDate")
+//
+//                    UserManager.userToken = firebaseTokenResult?.token.toString()
+//                    Logger.i("firebaseTokenResult?.token.toString() = ${firebaseTokenResult?.token.toString()}")
+//                    Logger.i("UserManager.userToken = ${UserManager.userToken}")
+////                    UserManager.user.value = user
+////                    Logger.i("UserManager.user.value = ${UserManager.user.value}")
+//
+//
+//                    if (task.result.additionalUserInfo?.isNewUser == true) {
+//
+////                        userSignIn(user)
+//                    } else {
+//                        Logger.i("task.result.additionalUserInfo?.isNewUser == false")
+//                    }
+//
+//                } else {
+//                    Logger.w("signInWithCredential:failure e = ${task.exception}")
+//                }
+//            }
+//    }
 
 //    fun userSignIn(user: User) {
 //        coroutineScope.launch {
@@ -275,6 +281,7 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
 //    }
 //
     fun leaveLogin() {
+        Logger.i("leave check2 ")
         _leaveLogin.value = true
     }
 //

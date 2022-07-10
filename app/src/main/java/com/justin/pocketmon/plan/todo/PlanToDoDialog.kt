@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -85,6 +86,22 @@ class PlanToDoDialog : AppCompatDialogFragment() {
                 }
             }
         )
+
+        //輸入完成度的 seekbar
+        binding.seekbarPlanTodo.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekbar: SeekBar?, process: Int, fromUser: Boolean) {
+                binding.planTodoScore.text = process.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+
+        })
 
 
         return binding.root

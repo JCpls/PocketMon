@@ -70,8 +70,10 @@ class LoginDialog : AppCompatDialogFragment() {
         viewModel.leaveLogin.observe(
             viewLifecycleOwner,
             Observer {
+                Logger.i("leave的值變化 -> $it")
                 it?.let {
                     if (it) findNavController().popBackStack()
+
                 }
             }
         )
@@ -132,5 +134,7 @@ class LoginDialog : AppCompatDialogFragment() {
     private fun signInGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         launcher.launch(signInIntent)
+//        dismiss()
     }
+
 }

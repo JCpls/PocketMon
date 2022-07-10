@@ -15,6 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.databinding.ActivityMainBinding
 import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.login.UserManager
+import com.justin.pocketmon.login.UserManager.clear
 import com.justin.pocketmon.util.CurrentFragmentType
 
 
@@ -53,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         setupBottomNav()
 //        setupDrawer()
         setupNavController()
+        UserManager.clear()
     }
 
 
@@ -87,20 +90,17 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_profile -> {
 
-//                    when (viewModel.isLoggedIn) {
-//                        true -> {
-//                            findNavController(R.id.myNavHostFragment).navigate(
-//                                NavigationDirections.navigateToProfileFragment(
-//                                    viewModel.user.value
-//                                )
-//                            )
-//                        }
-//                        false -> {
-//                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToLoginDialog())
-//                            return@setOnItemSelectedListener false
-//                        }
-//                    }
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToProfileFragment())
+                    when (viewModel.isLoggedIn) {
+                        true -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToProfileFragment()
+                            )
+                            return@setOnItemSelectedListener true
+                        }
+                        false -> {
+                            findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToLoginDialog())
+                            return@setOnItemSelectedListener false
+                        }
+                    }
                     return@setOnItemSelectedListener true
                 }
             }

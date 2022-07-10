@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.justin.pocketmon.MainViewModel
 import com.justin.pocketmon.R
+import com.justin.pocketmon.chat.ChatViewModel
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.home.HomeViewModel
 import com.justin.pocketmon.login.LoginViewModel
@@ -41,6 +42,8 @@ class ViewModelFactory constructor(
                 isAssignableFrom(ProfileViewModel::class.java) ->
                     ProfileViewModel(repository)
 
+                isAssignableFrom(ChatViewModel::class.java) ->
+                    ChatViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
