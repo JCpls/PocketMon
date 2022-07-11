@@ -32,12 +32,12 @@
         <entry key="app/src/main/res/layout/dialog_plan_todo.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_provider.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/fileprovider.xml" value="0.28425925925925927" />
-        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_chat_room.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_convert.xml" value="0.3182291666666667" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_ext.xml" value="0.22239583333333332" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home_adapter.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_home_child.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_edit.xml" value="0.335" />
@@ -46,11 +46,11 @@
         <entry key="app/src/main/res/layout/fragment_home_pager_adapter.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_home_type_filter.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_home_view_model.xml" value="0.2682291666666667" />
-        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.27873183619550856" />
         <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plan_edit.xml" value="0.3190664672851563" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_broadcast.xml" value="0.2942708333333333" />
+        <entry key="app/src/main/res/layout/item_broadcast.xml" value="0.3121301775147929" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.31302083333333336" />
         <entry key="app/src/main/res/layout/item_detail_circle.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/layout/item_detail_comment.xml" value="0.24097442626953128" />

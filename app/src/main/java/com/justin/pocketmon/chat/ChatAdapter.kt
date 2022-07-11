@@ -27,8 +27,10 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
             binding.itemBroadcast = broadcast
             binding.broadcastTitle.text = broadcast.title
             binding.broadcastFromWho.text = broadcast.from
-            binding.broadcastTimeStart.text = broadcast.timeStart
-            binding.broadcastTimeFinish.text = broadcast.timeFinish.toString()
+//            binding.broadcastTimeStart.text =
+
+//            binding.broadcastTimeStart.text = broadcast.timeStart
+//            binding.broadcastTimeFinish.text = broadcast.timeFinish.toString()
 
 
 //            val time = java.sql.Timestamp(System.currentTimeMillis())

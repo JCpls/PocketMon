@@ -33,10 +33,11 @@
             android:id="@+id/broadcast_page_intro"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:text="夢想完成榜 "
+            android:text="Dream Completed "
             android:fontFamily="@font/press_start_2p"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:lineHeight="25dp"
+
             android:layout_marginTop="60dp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"

@@ -19,7 +19,7 @@ class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<A
         fun bind(articledata: Articledata, onClickListener: OnClickListener) {
 
             binding.articledData = articledata
-            binding.textAuthorName.text = articledata.name
+//            binding.textAuthorName.text = articledata.name
             binding.textTitle.text = articledata.title
 //            binding.textContent.text = articledata.content
 //            binding.textCategory.text = articledata.category

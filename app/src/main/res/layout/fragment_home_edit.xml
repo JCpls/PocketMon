@@ -16,7 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
             android:background="#ffffff"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +39,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/ic_photo_on"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="132dp"
                 android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +83,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/text_article_title"
                 tools:src="@drawable/ic_question" />
             <!--             app:imageUrl="@{product.mainImage}"-->
 
@@ -98,27 +99,40 @@
 <!--                tools:src="@drawable/image_bg_pocketmon" />-->
 
 
-            <EditText
-                android:id="@+id/text_article_title"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="30dp"
-                android:text="輸入你的夢想"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/noto_sans"
+                android:text="您的夢想"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_article_image01" />
+
+
+            <EditText
+                android:id="@+id/text_article_title"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:hint=""
+                android:background="@null"
+                app:layout_constraintStart_toEndOf="@+id/text_title"
+                app:layout_constraintTop_toTopOf="@+id/text_title"
+                app:layout_constraintBottom_toBottomOf="@+id/text_title" />
 
             <TextView
                 android:id="@+id/text_article_drgree_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
                 android:text="完成度"
+                android:fontFamily="@font/noto_sans"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_article_title" />
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
             <LinearLayout
                 android:id="@+id/text_article_seekbar"
@@ -153,18 +167,27 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="夢想內容"
+                android:fontFamily="@font/noto_sans"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_article_drgree_title" />
 
             <EditText
                 android:id="@+id/text_article_content"
-                android:layout_width="match_parent"
+                android:layout_width="310dp"
                 android:layout_height="100dp"
-                android:layout_margin="4dp"
                 android:background="@null"
                 android:gravity="top"
-                android:hint=" 輸入夢想內容"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_article_seekbar" />
+                android:hint=""
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/content" />
 
             <Button
                 android:id="@+id/button_article_add"
