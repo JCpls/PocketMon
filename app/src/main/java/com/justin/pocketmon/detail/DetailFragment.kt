@@ -15,7 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.MainActivity
 import com.justin.pocketmon.databinding.FragmentDetailBinding
 import com.justin.pocketmon.NavigationDirections
-import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.ext.getVmFactory
@@ -65,11 +64,11 @@ class DetailFragment : Fragment() {
 
         }
 
-        binding.buttonDetailMessage.setOnClickListener{
-            viewModel.navigateToChatRoom()
-        }
+//        binding.buttonDetailMessage.setOnClickListener{
+//            viewModel.navigateToChatRoom()
+//        }
 
-        binding.buttonDetailMessage.setOnClickListener{
+        binding.buttonDetailComment.setOnClickListener{
             viewModel.navigateToCommentDialog()
         }
 

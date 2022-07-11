@@ -35,6 +35,10 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getBroadcasts(): Result<List<Broadcast>> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getToDoList(plan: Plan): Result<Plan> {
         TODO("Not yet implemented")
     }
@@ -51,7 +55,15 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun publishBroadcast (broadcast: Broadcast): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun addToDo(plan: Plan): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addCheckboxStatus(plan: Plan): Result<Boolean> {
         TODO("Not yet implemented")
     }
 

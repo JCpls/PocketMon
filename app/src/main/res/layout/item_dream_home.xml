@@ -11,26 +11,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 <!--         android:background="@drawable/bg_dream_item2"-->
 
 
         <ImageView
             android:id="@+id/dream_image"
             android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="5:7"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             app:imageUrl="@{articledData.image}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/image_bg_pocketmon"/>
@@ -42,28 +36,40 @@
 
         <TextView
             android:id="@+id/text_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans"
+            android:letterSpacing="0.15"
+            android:maxLines="2"
             android:text="夢想主題"
-            android:textColor="#000000"
-            android:textSize="15sp"
+            android:textColor="@color/black_3f3a3a"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dream_image" />
 
-        <TextView
-            android:id="@+id/text_author_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/gray_999999"
-            android:textSize="12sp"
-            android:text="作者姓名"
-            app:layout_constraintStart_toStartOf="@+id/text_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_title" />
+<!--        <TextView-->
+<!--            android:id="@+id/text_author_name"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:textColor="@color/gray_999999"-->
+<!--            android:fontFamily="@font/noto_sans"-->
+<!--            android:letterSpacing="0.15"-->
+<!--            android:lines="1"-->
+<!--            android:textSize="12sp"-->
+<!--            android:text="作者姓名"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/text_title"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/text_title" />-->
 
 <!--        <TextView-->
 <!--            android:id="@+id/text_degree"-->

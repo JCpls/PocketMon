@@ -16,62 +16,198 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
             android:background="#ffffff"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
+<!--            <Button-->
+<!--                android:id="@+id/button_download_image"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:text="載入圖片"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/text_article_image01" />-->
+
+            <Button
+                android:id="@+id/button_upload_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_photo_on"
+                android:layout_marginTop="132dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_camera_open"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_camera_on"
+                app:layout_constraintStart_toStartOf="@+id/button_upload_image"
+                app:layout_constraintTop_toBottomOf="@+id/button_upload_image" />
+
+<!--            <Button-->
+<!--                android:id="@+id/button_proceed_image"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/ic_photo_confirm"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/button_camera_open"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/button_camera_open" />-->
+
+
+<!--            <Button-->
+<!--                android:id="@+id/button_delete_image"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="刪除"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/button_proceed_image"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
             <ImageView
-                android:id="@+id/text_article_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/ic_add_mark"
+                android:id="@+id/text_article_image01"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/ic_question"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_add_mark" />
+                tools:src="@drawable/ic_question" />
             <!--             app:imageUrl="@{product.mainImage}"-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/text_article_image02"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@drawable/ic_add_mark"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/text_article_image01"-->
+<!--                tools:src="@drawable/image_bg_pocketmon" />-->
+
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/noto_sans"
+                android:text="您的夢想"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_article_image01" />
+
 
             <EditText
                 android:id="@+id/text_article_title"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:hint="輸入你的夢想"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_article_image" />
+                android:layout_marginStart="20dp"
+                android:hint=""
+                android:background="@null"
+                app:layout_constraintStart_toEndOf="@+id/text_title"
+                app:layout_constraintTop_toTopOf="@+id/text_title"
+                app:layout_constraintBottom_toBottomOf="@+id/text_title" />
 
-            <EditText
-                android:id="@+id/text_article_category"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/text_article_drgree_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:hint="輸入完成程度 (0-100)"
+                android:layout_marginTop="10dp"
+                android:text="完成度"
+                android:fontFamily="@font/noto_sans"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+            <LinearLayout
+                android:id="@+id/text_article_seekbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_article_title" />
+                app:layout_constraintTop_toTopOf="@+id/text_article_drgree_title"
+                app:layout_constraintBottom_toBottomOf="@+id/text_article_drgree_title">
+
+                <SeekBar
+                    android:id="@+id/seekbar"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:min="0"
+                    android:max="100"
+                    android:progress="0"/>
+
+                <TextView
+                    android:id="@+id/text_article_degree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20dp"
+                    android:padding="2dp"
+                    app:layout_constraintStart_toEndOf="@+id/seekbar"
+                    app:layout_constraintBottom_toBottomOf="@+id/seekbar"
+                    app:layout_constraintTop_toTopOf="@+id/seekbar" />
+
+                <TextView
+                    android:id="@+id/text_article_degree_oneHundred"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" /100"
+                    android:textSize="20dp"
+                    android:padding="2dp"
+                    app:layout_constraintStart_toEndOf="@+id/seekbar"
+                    app:layout_constraintBottom_toBottomOf="@+id/seekbar"
+                    app:layout_constraintTop_toTopOf="@+id/seekbar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="夢想內容"
+                android:fontFamily="@font/noto_sans"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_article_drgree_title" />
 
             <EditText
                 android:id="@+id/text_article_content"
-                android:layout_width="match_parent"
+                android:layout_width="310dp"
                 android:layout_height="100dp"
-                android:layout_margin="4dp"
                 android:background="@null"
                 android:gravity="top"
-                android:hint=" 輸入夢想內容"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_article_category" />
+                android:hint=""
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/content" />
 
             <Button
                 android:id="@+id/button_article_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="送出"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="10sp"
+                android:text="send your dream"
                 app:layout_constraintBaseline_toBaselineOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

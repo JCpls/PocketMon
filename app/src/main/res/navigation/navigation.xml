@@ -109,12 +109,8 @@
     <action android:id="@+id/navigate_to_profile_fragment" app:destination="@id/profileFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
-    <action android:id="@+id/navigate_to_home_edit_fragment" app:destination="@id/homeEditFragment"
-        app:popUpTo="@id/navigation"
-        app:popUpToInclusive="true" />
-    <action android:id="@+id/navigate_to_plan_edit_fragment" app:destination="@id/planEditFragment"
-        app:popUpTo="@id/navigation"
-        app:popUpToInclusive="true" />
+    <action android:id="@+id/navigate_to_home_edit_fragment" app:destination="@id/homeEditFragment"/>
+    <action android:id="@+id/navigate_to_plan_edit_fragment" app:destination="@id/planEditFragment"/>
     <action android:id="@+id/navigate_to_detail_fragment" app:destination="@id/detailFragment"/>
     <action android:id="@+id/navigate_to_comment_dialog" app:destination="@id/commentDialog"/>
     <action android:id="@+id/navigate_to_plan_todo_dialog" app:destination="@id/planToDoDialog"/>

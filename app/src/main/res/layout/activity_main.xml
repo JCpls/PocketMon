@@ -5,10 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.justin.pocketmon.util.CurrentFragmentType"/>
         <import type = "android.view.View"/>
         <variable
             name="viewModel"
-            type="com.justin.pocketmon.MainActivity" />
+            type="com.justin.pocketmon.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,14 +76,15 @@
             android:layout_height="@dimen/height_bottom_nav_view_main"
             android:background="@color/white"
             android:elevation="@dimen/elevation_all"
-            app:labelVisibilityMode="unlabeled"
+            app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:itemIconSize="@dimen/size_bottom_nav_icon"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PLANEDIT? View.GONE : View.VISIBLE}"
             app:menu="@menu/bottom_nav_menu"/>
 <!--         android:backgroundTint="@drawable/bottom_nav_item_selector"-->
-<!--         android:visibility="@{(viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PAYMENT) || viewModel.currentFragmentType == CurrentFragmentType.CHECKOUT_SUCCESS ? View.GONE : View.VISIBLE}"-->
+<!--            android:visibility="@{(viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PLANEDIT)|| viewModel.currentFragmentType == CurrentFragmentType.INTRO ? View.GONE : View.VISIBLE}"-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

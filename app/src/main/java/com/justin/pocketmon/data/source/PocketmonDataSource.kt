@@ -12,6 +12,8 @@ interface PocketmonDataSource {
 
     suspend fun getArticles(): Result<List<Plan>>
 
+    suspend fun getBroadcasts(): Result<List<Broadcast>>
+
     suspend fun getToDoList(plan: Plan): Result<Plan>
 
     suspend fun getCommentList(): Result<List<Articledata>>
@@ -20,7 +22,11 @@ interface PocketmonDataSource {
 
     suspend fun publishPlan(plan: Plan): Result<Boolean>
 
+    suspend fun publishBroadcast (broadcast: Broadcast): Result<Boolean>
+
     suspend fun addToDo(plan: Plan): Result<Boolean>
+
+    suspend fun addCheckboxStatus(plan: Plan): Result<Boolean>
 
     suspend fun addComment(articledata: Articledata): Result<Boolean>
 

@@ -17,6 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketMon">
 
+        <provider
+            android:authorities="com.justin.pocketmon.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported ="false"
+            android:grantUriPermissions = "true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+
+        </provider>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

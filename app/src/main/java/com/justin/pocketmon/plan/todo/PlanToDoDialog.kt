@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
+import com.justin.pocketmon.data.PlanMethod
 import com.justin.pocketmon.data.ToDo
 import com.justin.pocketmon.databinding.DialogPlanTodoBinding
 import com.justin.pocketmon.detail.DetailFragmentArgs
@@ -58,7 +60,11 @@ class PlanToDoDialog : AppCompatDialogFragment() {
 
             val plan = viewModel.addedTodo.value!!
 
-            plan.method.add(binding.planTodoEdit.text.toString())
+//          plan.method.add(binding.planTodoEdit.text.toString())
+
+            plan.method.add(PlanMethod(done = false, score = binding.planTodoScore.text.toString(), todo = binding.planTodoEdit.text.toString()))
+
+
             Logger.i("plan.method = ${plan.method}")
 //             plan.method = binding.planTodoEdit.text
 
@@ -80,6 +86,22 @@ class PlanToDoDialog : AppCompatDialogFragment() {
                 }
             }
         )
+
+        //輸入完成度的 seekbar
+        binding.seekbarPlanTodo.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekbar: SeekBar?, process: Int, fromUser: Boolean) {
+                binding.planTodoScore.text = process.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+
+        })
 
 
         return binding.root

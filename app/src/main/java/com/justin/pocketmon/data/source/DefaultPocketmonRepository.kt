@@ -17,6 +17,10 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.getArticles()
     }
 
+    override suspend fun getBroadcasts(): Result<List<Broadcast>> {
+        return remoteDataSource.getBroadcasts()
+    }
+
     override suspend fun getToDoList(plan:Plan): Result<Plan> {
         return remoteDataSource.getToDoList(plan)
     }
@@ -33,8 +37,16 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.publishPlan(plan)
     }
 
+    override suspend fun publishBroadcast (broadcast: Broadcast): Result<Boolean> {
+        return remoteDataSource.publishBroadcast(broadcast)
+    }
+
     override suspend fun addToDo (plan: Plan): Result<Boolean> {
         return remoteDataSource.addToDo(plan)
+    }
+
+    override suspend fun addCheckboxStatus (plan: Plan): Result<Boolean> {
+        return remoteDataSource.addCheckboxStatus(plan)
     }
 
     override suspend fun addComment (articledata: Articledata): Result<Boolean> {

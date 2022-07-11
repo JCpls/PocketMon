@@ -2,9 +2,11 @@ package com.justin.pocketmon
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.source.PocketmonRepository
+import com.justin.pocketmon.login.UserManager
 import com.justin.pocketmon.util.CurrentFragmentType
 import com.justin.pocketmon.util.Logger
 import kotlinx.coroutines.CoroutineScope
@@ -39,6 +41,18 @@ class MainViewModel(private val repository: PocketmonRepository) : ViewModel() {
 
     // Record current fragment to support data binding
     val currentFragmentType = MutableLiveData<CurrentFragmentType>()
+
+    // check user login status
+    val isLoggedIn
+        get() = UserManager.isLoggedIn
+
+//    // According to current fragment to change different drawer toggle
+//    val currentDrawerToggleType: LiveData<DrawerToggleType> = Transformations.map(currentFragmentType) {
+//        when (it) {
+//            CurrentFragmentType.PAYMENT -> DrawerToggleType.BACK
+//            else -> DrawerToggleType.NORMAL
+//        }
+//    }
 
     /**
      * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the

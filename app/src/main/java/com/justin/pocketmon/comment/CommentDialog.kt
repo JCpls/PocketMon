@@ -65,16 +65,16 @@ class CommentDialog : AppCompatDialogFragment() {
 
         }
 
-       //recyclerView
-        val adapter = CommentAdapter()
-        binding.commentRecyclerview.adapter = adapter
-
-        // recyclerView
-        viewModel.commentAdded.observe(viewLifecycleOwner, Observer {
-
-            (binding.commentRecyclerview.adapter as CommentAdapter).submitList(it)
-            (binding.commentRecyclerview.adapter as CommentAdapter).notifyDataSetChanged()
-            binding.swipeRefreshLayout.isRefreshing = false
+//       //recyclerView
+//        val adapter = CommentAdapter()
+//        binding.commentRecyclerview.adapter = adapter
+//
+//        // recyclerView
+//        viewModel.commentAdded.observe(viewLifecycleOwner, Observer {
+//
+//            (binding.commentRecyclerview.adapter as CommentAdapter).submitList(it)
+//            (binding.commentRecyclerview.adapter as CommentAdapter).notifyDataSetChanged()
+//            binding.swipeRefreshLayout.isRefreshing = false
 
 //            it.method.let {
 //
@@ -86,17 +86,17 @@ class CommentDialog : AppCompatDialogFragment() {
 
 
 //            binding.swipeRefreshLayout.isRefreshing = false
-            Logger.i("second viewModel.planEdit = $it")
+//            Logger.i("second viewModel.planEdit = $it")
 //            viewModel.getToDoResult(Plan(
 //                id = "fzKBm4kriaxT3qMnCGFW"
 //            ))
 
-            Logger.i("Justin Livedata todo list = $it")
+//            Logger.i("Justin Livedata todo list = $it")
 
-        })
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getComment()
-        }
+//        })
+//        binding.swipeRefreshLayout.setOnRefreshListener {
+//            viewModel.getComment()
+//        }
 
 
         viewModel.navigateToDetailPage.observe(

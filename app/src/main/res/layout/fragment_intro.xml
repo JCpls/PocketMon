@@ -38,7 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="您目前尚未分享夢想以及邀請好友"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +49,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/ic_smile_intro"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/ic_smile_profile_selected"
             app:layout_constraintEnd_toStartOf="@+id/intro_dream_icon"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -62,6 +62,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/ic_sword_pixel"
             app:layout_constraintBottom_toBottomOf="@+id/intro_friend_icon"
             app:layout_constraintEnd_toStartOf="@+id/intro_done_icon"
@@ -75,7 +76,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/ic_target_intro"
+            android:background="@drawable/ic_trophy_gold"
             app:layout_constraintBottom_toBottomOf="@+id/intro_dream_icon"
             app:layout_constraintEnd_toEndOf="@+id/intro_intro"
             app:layout_constraintHorizontal_bias="0.5"
@@ -173,29 +174,68 @@
             app:layout_constraintTop_toBottomOf="@+id/intro_friend_number" />
 
 
-        <TextView
-            android:id="@+id/intro_rocket_text"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="120dp"
-            android:fontFamily="@font/press_start_2p"
-            android:lineHeight="20dp"
-            android:text="請點擊前往登入 立即開始逐夢..."
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/intro_rocket_icon"
-            app:layout_constraintTop_toTopOf="@+id/intro_rocket_icon" />
-        <!--         android:text="This way to log-in and start new chapters now"-->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="0dp">
 
-        <ImageButton
-            android:id="@+id/intro_rocket_icon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/ic_rocket_intro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/detail_bg_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!--原版-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleview_intro"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="230dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_bg_intro"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/intro_rocket_text"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginBottom="120dp"-->
+<!--            android:fontFamily="@font/press_start_2p"-->
+<!--            android:lineHeight="20dp"-->
+<!--            android:text="請點擊前往登入 立即開始逐夢..."-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/intro_rocket_icon"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/intro_rocket_icon" />-->
+<!--        &lt;!&ndash;         android:text="This way to log-in and start new chapters now"&ndash;&gt;-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/intro_rocket_icon"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginBottom="40dp"-->
+<!--            android:background="@drawable/ic_rocket_intro"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

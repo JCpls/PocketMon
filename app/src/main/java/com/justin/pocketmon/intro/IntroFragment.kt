@@ -34,11 +34,11 @@ class IntroFragment : Fragment() {
         val db = FirebaseFirestore.getInstance()
         val document = db.collection("Article").document()
 
-        binding.introRocketIcon.setOnClickListener {
-
-        this.findNavController().navigate(NavigationDirections.navigateToLoginDialog())
-
-        }
+//        binding.introRocketIcon.setOnClickListener {
+//
+//        this.findNavController().navigate(NavigationDirections.navigateToLoginDialog())
+//
+//        }
 
         return binding.root
     }

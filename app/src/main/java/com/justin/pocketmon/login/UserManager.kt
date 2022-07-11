@@ -13,18 +13,46 @@ object UserManager {
 
     private const val USER_DATA = "user_data"
     private const val USER_TOKEN = "user_token"
+    private const val USER_ID = "user_Id"
 
 //    private val _user = MutableLiveData<User>()
 //
 //    val user: LiveData<User>
 //        get() = _user
 
-    var user = MutableLiveData<User?>()
+//    var user = MutableLiveData<User?>()
+
+    var user = User()
+
+    var userId: String? = null
+        get() = PocketmonApplication.instance
+            .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE)
+            .getString(USER_ID, null)
+
+        set(value) {
+            field = when (value) {
+                null -> {
+                    PocketmonApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .remove(USER_ID)
+                        .apply()
+                    null
+                }
+                else -> {
+                    PocketmonApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .putString(USER_ID, value)
+                        .apply()
+                    value
+                }
+            }
+        }
 
     var userToken: String? = null
         get() = PocketmonApplication.instance
             .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE)
             .getString(USER_TOKEN, null)
+
         set(value) {
             field = when (value) {
                 null -> {
@@ -55,7 +83,7 @@ object UserManager {
      */
     fun clear() {
         userToken = null
-        user.value = null
+//        user.value = null
     }
 
     private var lastChallengeTime: Long = 0

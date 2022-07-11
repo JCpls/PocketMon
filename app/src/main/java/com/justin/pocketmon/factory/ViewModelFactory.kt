@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.justin.pocketmon.MainViewModel
 import com.justin.pocketmon.R
+import com.justin.pocketmon.chat.ChatViewModel
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.home.HomeViewModel
 import com.justin.pocketmon.login.LoginViewModel
 import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditViewModel
+import com.justin.pocketmon.profile.ProfileViewModel
 
 /* Factory for home item ViewModels.
 */
@@ -37,6 +39,11 @@ class ViewModelFactory constructor(
                 isAssignableFrom(LoginViewModel::class.java) ->
                     LoginViewModel(repository)
 
+                isAssignableFrom(ProfileViewModel::class.java) ->
+                    ProfileViewModel(repository)
+
+                isAssignableFrom(ChatViewModel::class.java) ->
+                    ChatViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
