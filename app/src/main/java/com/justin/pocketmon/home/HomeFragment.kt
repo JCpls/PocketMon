@@ -87,6 +87,7 @@ class HomeFragment: Fragment() {
 
 
         binding.buttonAdd.setOnClickListener {
+//            throw RuntimeException("Test Crash") // Force a crash
             this.findNavController().navigate(NavigationDirections.navigateToHomeEditFragment())
         }
 

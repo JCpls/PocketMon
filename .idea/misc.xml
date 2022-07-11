@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/ic_border.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_fire.xml" value="0.1005" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1095" />
+        <entry key="app/src/main/res/drawable/ic_launcher_pocketmon_background.xml" value="0.235" />
         <entry key="app/src/main/res/drawable/ic_nav_chat.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_nav_fire.xml" value="0.2755" />
         <entry key="app/src/main/res/drawable/ic_nav_home.xml" value="0.1195" />
@@ -28,7 +29,7 @@
         <entry key="app/src/main/res/font/noto_sans.xml" value="0.26564102564102565" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_comment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialog_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_login.xml" value="0.48507385253906266" />
         <entry key="app/src/main/res/layout/dialog_plan_todo.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_provider.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/fileprovider.xml" value="0.28425925925925927" />
@@ -46,7 +47,7 @@
         <entry key="app/src/main/res/layout/fragment_home_pager_adapter.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_home_type_filter.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_home_view_model.xml" value="0.2682291666666667" />
-        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.27873183619550856" />
+        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plan_edit.xml" value="0.3190664672851563" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
@@ -60,6 +61,10 @@
         <entry key="app/src/main/res/layout/item_plan_edit.xml" value="0.1348314606741573" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.296875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.128" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_pocketmon.xml" value="0.2105" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_pocketmon_round.xml" value="0.2015" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.128" />
       </map>
     </option>
   </component>
