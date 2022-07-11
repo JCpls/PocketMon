@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
+    // Apply the Crashlytics Gradle plugin
+    id 'com.google.firebase.crashlytics'
 
 }
 
@@ -85,6 +87,18 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$version_glide"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-    
+    // Lottie
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
 }
+
+def lottieVersion = "5.2.0"
