@@ -49,16 +49,16 @@ class PlanEditFragment: Fragment() {
 
                     adapter.submitList(it)
 
+//                    viewModel.getToDoResult()
+
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
                 }
 
 //            binding.swipeRefreshLayout.isRefreshing = false
             Logger.i("second viewModel.planEdit = $it")
-//            viewModel.getToDoResult(Plan(
 //                id = "fzKBm4kriaxT3qMnCGFW"
 //            ))
-
             Logger.i("Justin Livedata todo list = $it")
 
         })

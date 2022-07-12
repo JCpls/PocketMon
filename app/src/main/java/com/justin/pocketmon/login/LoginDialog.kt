@@ -64,7 +64,8 @@ class LoginDialog : AppCompatDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.signInButton.setOnClickListener {
-            signInGoogle()
+//            signInGoogle()
+            signIn()
         }
 
         viewModel.leaveLogin.observe(
@@ -81,15 +82,18 @@ class LoginDialog : AppCompatDialogFragment() {
         return binding.root
     }
 
+
     private fun signIn() {
-        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("44039700708-qg19e235nofihjbsjkrv3efsklst64o8.apps.googleusercontent.com")
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken( "")
             .requestEmail()
             .build()
 
-//        googleSignInClient = context?.let { GoogleSignIn.getClient(it, gso) }
-//        val signInIntent = mGoogleSignInClient?.signInIntent
-//        startActivityForResult(signInIntent, RC_SIGN_IN)
+//        .requestIdToken("44039700708-qg19e235nofihjbsjkrv3efsklst64o8.apps.googleusercontent.com")
+
+            googleSignInClient = context?.let { GoogleSignIn.getClient(it, gso) }!!
+            val signInIntent = googleSignInClient?.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
         //...
     }
 
@@ -106,6 +110,10 @@ class LoginDialog : AppCompatDialogFragment() {
 
                 UserManager.userToken = token
                 UserManager.userId = id.toString()
+                UserManager.user.name = account?.displayName.toString()
+                UserManager.user.image = account?.photoUrl.toString()
+                Logger.d ("google profie is ${user.image}")
+                Logger.d ("my name is ${user.name}")
 
 //                user?.email = email
 //                user?.name = account?.displayName

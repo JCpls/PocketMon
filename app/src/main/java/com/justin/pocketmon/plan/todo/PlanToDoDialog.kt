@@ -73,7 +73,8 @@ class PlanToDoDialog : AppCompatDialogFragment() {
             viewModel.addToDo(plan)
             Logger.d("再檢查從planEdit帶過來的資料 => $plan")
 
-            viewModel.navigateToPlanEditPage()
+            findNavController().popBackStack()
+///         viewModel.navigateToPlanEditPage()
 
         }
 

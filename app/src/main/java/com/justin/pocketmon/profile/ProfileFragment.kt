@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.justin.pocketmon.R
+import com.justin.pocketmon.data.User
 import com.justin.pocketmon.databinding.FragmentPlanBinding
 import com.justin.pocketmon.databinding.FragmentProfileBinding
 import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.login.UserManager
 import com.justin.pocketmon.login.UserManager.user
 import com.justin.pocketmon.util.Logger
+import java.nio.file.attribute.UserDefinedFileAttributeView
 
 class ProfileFragment : Fragment() {
 
@@ -27,18 +30,24 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Logger.i("onCreate 來看看 ")
+
 
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.profileData = UserManager
 
-        Logger.i("username = $user.name")
+        binding.profileName.text = UserManager.user.name
 
-//        binding.profileImage. =  viewModel.user.image
-        viewModel.user.name = binding.profileName.toString()
+        Logger.i("binding.profileName.text = ${binding.profileName.text}")
+        Logger.i("username profile = ${user.name}")
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+//      binding.profileImage. =  viewModel.user.image
+//      viewModel.user.name = binding.profileName.text.toString()
+
+
+        return binding.root
     }
     
 }
