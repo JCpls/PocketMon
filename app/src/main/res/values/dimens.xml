@@ -46,6 +46,7 @@
 
     <!-- PlanToDo Dialog -->
     <dimen name="height_ToDo">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 
 </resources>

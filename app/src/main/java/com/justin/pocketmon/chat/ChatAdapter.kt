@@ -24,10 +24,11 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
 
         fun bind(broadcast: Broadcast, onClickListener: OnClickListener) {
 
+//            val timeNew = SimpleDateFormat("E, d MMM yyyy HH:mm").format(broadcast.timeStart)
             binding.itemBroadcast = broadcast
             binding.broadcastTitle.text = broadcast.title
             binding.broadcastFromWho.text = broadcast.from
-//            binding.broadcastTimeStart.text =
+//            binding.broadcastTimeStart.text = timeNew
 
 //            binding.broadcastTimeStart.text = broadcast.timeStart
 //            binding.broadcastTimeFinish.text = broadcast.timeFinish.toString()

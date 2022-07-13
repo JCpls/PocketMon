@@ -49,7 +49,7 @@ class PlanEditFragment: Fragment() {
 
                     adapter.submitList(it)
 
-//                    viewModel.getToDoResult()
+//                    viewModel.getToDoResult(plan)
 
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
@@ -87,7 +87,7 @@ class PlanEditFragment: Fragment() {
 
                 viewModel.publishToBroadcast(broadcast)
 //                findNavController().navigate(NavigationDirections.navigateToIntroFragment())
-//                viewModel.
+//
             }
 
             Logger.i("observe有無啟動")
