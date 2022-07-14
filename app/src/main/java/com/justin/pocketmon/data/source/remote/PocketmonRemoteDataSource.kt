@@ -22,6 +22,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
     private const val PATH_PLANS = "Plans"
     private const val PATH_ARTICLE = "Article"
+    private const val PATH_COMMENTS = "Comments"
     private const val PATH_BROADCAST = "Broadcasts"
     private const val KEY_CREATED_TIME = "createdTime"
 
@@ -62,7 +63,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
         Logger.i("RemoteDataSource Broadcast check ")
         FirebaseFirestore.getInstance()
             .collection(PATH_BROADCAST)
-//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .orderBy("timeFinish", Query.Direction.DESCENDING)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -121,6 +122,77 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                 }
             }
     }
+
+    override fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan> {
+        val liveData = MutableLiveData<Plan>()
+        Logger.i("getLiveToDoList userId = $userId")
+        FirebaseFirestore.getInstance()
+            .collection("Plans")
+            .document(planId)
+//            .whereEqualTo("ownerId", userId)
+//            .orderBy("createdTime", Query.Direction.ASCENDING)
+            .addSnapshotListener { snapshot, exception ->
+                Logger.i("getLiveToDoList addSnapshotListener detect")
+
+                exception?.let {
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                }
+
+                if (snapshot != null) {
+//                            Logger.d(document.id + " => " + document.data)
+//                            val plan = document.toObject(Plan::class.java)
+                    Logger.i("snapshot.data = ${snapshot.data}")
+                    val plan = snapshot.toObject(Plan::class.java)
+                    Logger.i("snapshot plan = $plan")
+
+                    plan?.let {
+                        liveData.value = it
+                    }
+
+                } else {
+                    Logger.w("[${this::class.simpleName}] getLiveToDoList snapshot == null")
+                }
+            }
+        return liveData
+    }
+
+
+
+
+    override fun getLiveComments(imdbID: String): MutableLiveData<List<Comment>> {
+        val liveData = MutableLiveData<List<Comment>>()
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_COMMENTS)
+            .whereEqualTo(FIELD_IMDB_ID, imdbID)
+            .orderBy(FIELD_CREATED_TIME, Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, exception ->
+                Logger.i("getLiveComments addSnapshotListener detect")
+
+                exception?.let {
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                }
+
+                if (snapshot != null) {
+                    if (snapshot.size() >=1 ) {
+                        val list = mutableListOf<Comment>()
+                        snapshot.forEach { document ->
+                            Logger.d(document.id + " => " + document.data)
+                            val comment = document.toObject(Comment::class.java)
+                            list.add(comment)
+                        }
+                        liveData.value = list
+                    } else {
+                        Logger.w("[${this::class.simpleName}] getLiveComments task.result.size < 1")
+                    }
+                } else {
+                    Logger.w("[${this::class.simpleName}] getLiveComments snapshot == null")
+                }
+            }
+        return liveData
+    }
+
+
 
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
 

@@ -13,6 +13,7 @@ data class Plan(
     var degree: Long = 0L,
     var createdTime: Timestamp = Timestamp.now(),
     var image: String = "",
+    var name: String = "",
     var method: MutableList<PlanMethod> = mutableListOf()
 //            MutableList<String> = mutableListOf("")
 //             List<String> = listOf("")

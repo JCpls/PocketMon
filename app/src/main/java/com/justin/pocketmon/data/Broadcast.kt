@@ -7,7 +7,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Broadcast(
     var id: String = "",
-    var from: String = "",
+    var fromName: String = "",
+    var fromId: String = "",
     var title: String = "",
     var timeFinish: Timestamp = Timestamp.now(),
     var timeStart: String = ""

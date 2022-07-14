@@ -45,13 +45,16 @@ class HomeViewModel: ViewModel() {
                 for (document in result) {
                     Log.d("justin", "全部的data是 => ${document.data}")
 
-                    val id = document.data["name"]
+                    val name = document.data["name"]
                     val category = document.data["category"]
                     val content = document.data["content"]
                     val createdTime = document.data["createdTime"]
                     val uid = document.data["uid"]
                     val title = document.data["title"]
                     val image = document.data["image"]
+                    val id = document.data["id"]
+                    val email = document.data["email"]
+                    val comment = document.data["comment"]
 
                     itemData.add(
                         Articledata(
@@ -60,7 +63,11 @@ class HomeViewModel: ViewModel() {
                             createdTime as Timestamp,
                             title as String,
                             uid as String,
-                            image as String
+                            image as String,
+                            email as String,
+                            id as String,
+                            name as String,
+
                         )
                     )
 // for---------------------------

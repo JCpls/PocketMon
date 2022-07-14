@@ -11,6 +11,7 @@ import com.justin.pocketmon.databinding.ItemBroadcastBinding
 import com.justin.pocketmon.util.Logger
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ChatAdapter(private val onClickListener: OnClickListener ) :
@@ -34,12 +35,16 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
 
             binding.itemBroadcast = broadcast
             binding.broadcastTitle.text = broadcast.title
-            binding.broadcastFromWho.text = broadcast.from
-//            binding.broadcastTimeFinish.text = SimpleDateFormat("MM/dd EE").format(broadcast.timeFinish)
-//            binding.broadcastTimeFinish.text = SimpleDateFormat("E, d MMM yyyy HH:mm").format(Timestamp.now())
+            binding.broadcastFromWho.text = broadcast.fromName
+            binding.broadcastTimeFinish.text = SimpleDateFormat("MM/dd, yyyy", Locale.CHINESE).format(broadcast.timeFinish.toDate())
 
 
-//            binding.broadcastTimeFinish.text = broadcast.timeFinish.
+//            fun dateToday(): String {
+//                val today = SimpleDateFormat("EEEE, MMMM dd, yyyy", Locale.ENGLISH).format(Timestamp.now().toDate())
+//                Logger.i("today = $today")
+//                return today
+//            }
+
 
 //            if (plan.degree.toString() == "0") {
 //                binding.planDegreeText.setTextColor(Color.rgb(0, 0, 200))

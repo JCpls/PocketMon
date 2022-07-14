@@ -17,11 +17,16 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(planMethod: PlanMethod) {
-
+            Logger.i("adapter bind()")
             binding.planData = planMethod.toString()
             binding.itemPlanEditTodo.text = planMethod.todo
             binding.itemPlanEditScore.text = planMethod.score
             binding.itemTodoCheckbox.isChecked = planMethod.done
+
+            Logger.i("binding.planData = ${planMethod}")
+            Logger.i("adapter planMethod.todo = ${planMethod.todo}")
+            Logger.i("adapter planMethod.score = ${planMethod.score}")
+            Logger.i("adapter planMethod.done = ${planMethod.done}")
 
 
             binding.executePendingBindings()
@@ -36,21 +41,18 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
 
                         binding.itemTodoCheckbox.isChecked
 
-
                         viewModel.addPoint(planMethod.score)
                         viewModel.DoneIsTrue(value = true, planMethod.todo )
 
-                        binding.itemPlanEditScore.setTextColor(Color.rgb(255, 153, 18 ))
+//                        binding.itemPlanEditScore.setTextColor(Color.rgb(255, 153, 18 ))
 //                      binding.itemPlanEditScore.setBackgroundColor(Color.rgb(176,224,230))
-
-
 
                     } else {
 
                         viewModel.minusPoint(planMethod.score)
                         viewModel.DoneIsFalse(value = false, planMethod.todo)
 
-                        binding.itemPlanEditScore.setTextColor(Color.rgb(128,138,135))
+//                        binding.itemPlanEditScore.setTextColor(Color.rgb(128,138,135))
                     }
 
                 }
@@ -62,7 +64,7 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
 
         companion object DiffCallback : DiffUtil.ItemCallback<PlanMethod>() {
             override fun areItemsTheSame(oldItem: PlanMethod, newItem: PlanMethod): Boolean {
-                return oldItem === newItem
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(oldItem: PlanMethod, newItem: PlanMethod): Boolean {

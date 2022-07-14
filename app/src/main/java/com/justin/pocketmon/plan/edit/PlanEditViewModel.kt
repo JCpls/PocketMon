@@ -34,6 +34,13 @@ class PlanEditViewModel
     val newDegree = MutableLiveData<Long>()
 
 
+    // for livedata observe
+    private val _isLiveToDoListReady = MutableLiveData<Boolean>()
+
+    val isLiveToDoListReady: LiveData<Boolean>
+        get() = _isLiveToDoListReady
+
+
     // the liveData to get "getToDoResult" data from firebase
     private val _planEdit = MutableLiveData<Plan>()
 
@@ -111,14 +118,17 @@ class PlanEditViewModel
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
-        getToDoResult(plan)
+
+//      getToDoResult(plan)
+
+        getLiveToDoList(plan.ownerId, plan.id )
 
 
     }
 
     // 宣告 把前面拿到的degree 轉成 newDegree 才能對它進行加工(+,-)
     fun getDegree(){
-        newDegree.value = planEdit.value?.degree
+        newDegree.value = liveToDoList.value?.degree
     }
 
 
@@ -156,6 +166,17 @@ class PlanEditViewModel
         }
     }
 
+    // the liveData to get "getLiveToDoList" data from firebase
+    var liveToDoList = MutableLiveData<Plan>()
+
+    private fun getLiveToDoList(userId: String, planId: String) {
+        coroutineScope.launch {
+            liveToDoList = repository.getLiveToDoList(userId, planId)
+            Logger.i("getLiveTodoResult() liveToDo = $liveToDoList")
+            Logger.i("getLiveTodoResult() liveToDo.value = ${liveToDoList.value}")
+            _isLiveToDoListReady.value = true
+        }
+    }
 
 
     // when checkbox is selected and
@@ -238,9 +259,9 @@ class PlanEditViewModel
 
     fun DoneIsTrue(value:Boolean, todo: String){
 
-        _planEdit.value?.method
+        liveToDoList.value?.method
 
-        for (value in _planEdit.value?.method!!) {
+        for (value in liveToDoList.value?.method!!) {
             if (value.todo == todo) {
 
                 Logger.i("進到DoneIsTrue的value? = ${value}")
@@ -258,9 +279,9 @@ class PlanEditViewModel
 
     fun DoneIsFalse(value:Boolean, todo:String){
 
-        _planEdit.value?.method
+        liveToDoList.value?.method
 
-        for (value in _planEdit.value?.method!!) {
+        for (value in liveToDoList.value?.method!!) {
             if (value.todo == todo) {
 
                 Logger.i("進到DoneIsFalsee的value? = ${value}")
@@ -297,20 +318,17 @@ class PlanEditViewModel
     }
 
     fun updateData(){
-        Logger.i("確認東西到底長怎樣 = ${planEdit.value}")
+        Logger.i("確認東西到底長怎樣 = ${liveToDoList.value}")
 
-        planEdit.value?.degree = newDegree.value!!
+        liveToDoList.value?.degree = newDegree.value!!
 
 
-        val plan = planEdit.value!!
+        val plan = liveToDoList.value!!
 
         addCheckboxStatus(plan)
 
-        Logger.i("看一下要傳上去的東西長怎樣 = ${planEdit.value}")
+        Logger.i("看一下要傳上去的東西長怎樣 = ${liveToDoList.value}")
     }
 
-    fun newDegreeColorChanged(){
-
-    }
 
 }

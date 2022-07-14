@@ -1,6 +1,7 @@
 package com.justin.pocketmon.comment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.R
+import com.justin.pocketmon.data.Broadcast
 import com.justin.pocketmon.databinding.DialogCommentBinding
 import com.justin.pocketmon.databinding.DialogPlanTodoBinding
 import com.justin.pocketmon.ext.getVmFactory
@@ -62,6 +64,33 @@ class CommentDialog : AppCompatDialogFragment() {
 
             viewModel.navigateToDetailPage()
             viewModel.getComment()
+
+
+//            binding.planEditPlanDegreeText.text = it.toString()
+//
+//            if (it >= 100L) {
+//
+//                val db = FirebaseFirestore.getInstance()
+//                val document = db.collection("Broadcasts").document()
+//
+//                val broadcast = Broadcast()
+//                broadcast.id = document.id
+//                // livedata 必須要 .value 才能夠賦值
+//                viewModel.planEdit.value?.let {
+//                    broadcast.title = it.title
+//                    broadcast.from = it.ownerId
+//                    broadcast.timeFinish = com.google.firebase.Timestamp.now()
+//                    broadcast.timeStart = it.createdTime.toString()
+//                    Log.d("justin","檢查 -上傳前- broadcast 長這樣 => $broadcast ")
+//                }
+//
+//                viewModel.publishToBroadcast(broadcast)
+////                findNavController().navigate(NavigationDirections.navigateToIntroFragment())
+////
+//            }
+
+
+
 
         }
 

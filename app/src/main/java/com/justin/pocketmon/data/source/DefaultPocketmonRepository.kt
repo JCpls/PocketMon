@@ -21,6 +21,10 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.getBroadcasts()
     }
 
+    override fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan>{
+        return remoteDataSource.getLiveToDoList(userId, planId)
+    }
+
     override suspend fun getToDoList(plan:Plan): Result<Plan> {
         return remoteDataSource.getToDoList(plan)
     }

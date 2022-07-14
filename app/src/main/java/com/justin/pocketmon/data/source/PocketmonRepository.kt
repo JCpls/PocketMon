@@ -18,6 +18,8 @@ interface PocketmonRepository {
 
     suspend fun getCommentList(): Result<List<Articledata>>
 
+    fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan>
+
     fun getLiveArticles(): MutableLiveData<List<Article>>
 
     suspend fun publishPlan (plan: Plan): Result<Boolean>

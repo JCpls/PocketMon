@@ -61,7 +61,7 @@
                     android:fontFamily="@font/noto_sans"
                     android:letterSpacing="0.15"
                     android:lines="1"
-                    android:text="@{String.valueOf(viewModel.selectedDream.id)}"
+                    android:text="@{String.valueOf(viewModel.selectedDream.name)}"
                     android:textColor="@color/gray_888888"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"

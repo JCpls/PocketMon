@@ -50,7 +50,8 @@ class DetailFragment : Fragment() {
                 Log.d("justin","初檢查從detail帶過來的資料 => $plan ")
                 plan.title = it.title
                 plan.image = it.image
-                plan.ownerId = it.name
+                plan.ownerId = it.uid
+                plan.name = it.name
                 plan.description = listOf(it.content)
                 plan.degree = it.category.toLong()
                 plan.createdTime = com.google.firebase.Timestamp.now()
@@ -95,15 +96,15 @@ class DetailFragment : Fragment() {
         )
 
 
-//        viewModel.navigateToComment.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//                it?.let {
-//                    findNavController().navigate(NavigationDirections.navigateToCommentDialog(it))
-//                    viewModel.onDetailtoCommentDialogNavigated()
-//                }
-//            }
-//        )
+        viewModel.navigateToComment.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    findNavController().navigate(NavigationDirections.navigateToCommentDialog(it))
+                    viewModel.onDetailtoCommentDialogNavigated()
+                }
+            }
+        )
 
         viewModel.leaveDetail.observe(
             viewLifecycleOwner,

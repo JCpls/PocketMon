@@ -141,7 +141,7 @@ class HomeEditFragment : Fragment() {
             article.image = uri.toString()
 
             Logger.d("HomeEditFragment UserManager.user.name = ${UserManager.user.name}")
-            Logger.d("HomeEditFragment UserManager.user.name = ${UserManager.user.id}")
+            Logger.d("HomeEditFragment UserManager.user.id = ${UserManager.user.id}")
 
 
 

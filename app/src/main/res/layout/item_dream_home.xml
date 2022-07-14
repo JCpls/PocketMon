@@ -9,126 +9,133 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-<!--         android:background="@drawable/bg_dream_item2"-->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:elevation="12dp"
+        android:background="@drawable/bg_dream_item2"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+    <!--         android:background="@drawable/bg_dream_item2"-->
 
 
-        <ImageView
-            android:id="@+id/dream_image"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="5:7"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            app:imageUrl="@{articledData.image}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/image_bg_pocketmon"/>
-<!--        可以直接用反引號把網址包起來locke-in-->
-<!-- app:imageUrl="@{`https://img.kenalice.tw/2019/03/1551657543-00266a21b76f114bd8b5f508af2b0ed6.jpg`}"-->
-<!--         android:padding="2dp"
-             app:circularflow_defaultRadius="12dp"
-             android:adjustViewBounds="true"-->
+            <ImageView
+                android:id="@+id/dream_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="5:7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:imageUrl="@{articledData.image}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/image_bg_pocketmon"/>
+    <!--        可以直接用反引號把網址包起來locke-in-->
+    <!-- app:imageUrl="@{`https://img.kenalice.tw/2019/03/1551657543-00266a21b76f114bd8b5f508af2b0ed6.jpg`}"-->
+    <!--         android:padding="2dp"
+                 app:circularflow_defaultRadius="12dp"
+                 android:adjustViewBounds="true"-->
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/noto_sans"
-            android:letterSpacing="0.15"
-            android:maxLines="2"
-            android:text="夢想主題"
-            android:textColor="@color/black_3f3a3a"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dream_image" />
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/noto_sans"
+                android:letterSpacing="0.15"
+                android:maxLines="2"
+                android:text="夢想主題"
+                android:textColor="@color/black_3f3a3a"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dream_image" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_author_name"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginBottom="8dp"-->
-<!--            android:textColor="@color/gray_999999"-->
-<!--            android:fontFamily="@font/noto_sans"-->
-<!--            android:letterSpacing="0.15"-->
-<!--            android:lines="1"-->
-<!--            android:textSize="12sp"-->
-<!--            android:text="作者姓名"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/text_title"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/text_title" />-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/text_author_name"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="8dp"-->
+    <!--            android:layout_marginBottom="8dp"-->
+    <!--            android:textColor="@color/gray_999999"-->
+    <!--            android:fontFamily="@font/noto_sans"-->
+    <!--            android:letterSpacing="0.15"-->
+    <!--            android:lines="1"-->
+    <!--            android:textSize="12sp"-->
+    <!--            android:text="作者姓名"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/text_title"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/text_title" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_degree"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:text="完成度"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/text_title" />-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/text_degree"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:layout_marginTop="30dp"-->
+    <!--            android:text="完成度"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="@+id/text_title" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_category"-->
-<!--            android:paddingRight="20dp"-->
-<!--            android:paddingLeft="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:background="@drawable/ic_border"-->
-<!--            android:text="類別"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/text_degree" />-->
-        <!--        android:textColor="@{articledData.category == `Beauty` ? @color/purple_700 : @color/black }"-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/text_category"-->
+    <!--            android:paddingRight="20dp"-->
+    <!--            android:paddingLeft="20dp"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="8dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:background="@drawable/ic_border"-->
+    <!--            android:text="類別"-->
+    <!--            android:textStyle="bold"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/text_degree" />-->
+            <!--        android:textColor="@{articledData.category == `Beauty` ? @color/purple_700 : @color/black }"-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_time"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:text="發文時間"-->
-<!--            android:textColor="#000000"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/text_author_name" />-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/text_time"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="8dp"-->
+    <!--            android:text="發文時間"-->
+    <!--            android:textColor="#000000"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/text_author_name" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_content"-->
-<!--            android:layout_width="200dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_marginBottom="16dp"-->
-<!--            android:text="文章內容"-->
-<!--            android:textColor="#000000"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/text_time" />-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/text_content"-->
+    <!--            android:layout_width="200dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="8dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:layout_marginBottom="16dp"-->
+    <!--            android:text="文章內容"-->
+    <!--            android:textColor="#000000"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/text_time" />-->
 
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:background="#aaaaaa"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
+    <!--        <View-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="1dp"-->
+    <!--            android:background="#aaaaaa"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
