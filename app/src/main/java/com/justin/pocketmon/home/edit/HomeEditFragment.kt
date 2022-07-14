@@ -23,6 +23,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.Timestamp
+import com.justin.pocketmon.login.UserManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -31,7 +32,9 @@ import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.NavigationDirections.Companion.navigateToHomeFragment
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.data.User
 import com.justin.pocketmon.databinding.FragmentHomeEditBinding
+import com.justin.pocketmon.util.Logger
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -113,6 +116,10 @@ class HomeEditFragment : Fragment() {
         val viewModel = HomeEditViewModel()
 
         val binding = FragmentHomeEditBinding.inflate(inflater)
+
+        //UserManager
+        binding.homeEditData =  UserManager
+
         val db = FirebaseFirestore.getInstance()
         val document = db.collection("Article").document()
 
@@ -121,12 +128,22 @@ class HomeEditFragment : Fragment() {
             val time = Timestamp.now()
 
 //            Log.d("justin", "這個是add後的回傳值 -> ${document.id}")
-            article.uid = document.id
+
+            article.id = UserManager.user.name
+
+            article.id = document.id
+            article.uid = UserManager.user.id
+            article.name = UserManager.user.name
             article.title = binding.textArticleTitle.text.toString()
             article.category = binding.textArticleDegree.text.toString()
             article.content = binding.textArticleContent.text.toString()
             article.createdTime = time
             article.image = uri.toString()
+
+            Logger.d("HomeEditFragment UserManager.user.name = ${UserManager.user.name}")
+            Logger.d("HomeEditFragment UserManager.user.name = ${UserManager.user.id}")
+
+
 
 //          viewModel.checkAuthor(article)
             viewModel.addData(article)

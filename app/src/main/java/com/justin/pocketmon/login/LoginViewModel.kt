@@ -87,6 +87,7 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
 
 
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        Logger.i("handleSignInResult()")
         try {
             googleSignInAccount = completedTask.getResult(ApiException::class.java)
             val googleId = googleSignInAccount.id ?: ""
@@ -102,6 +103,8 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
             val googleIdToken = googleSignInAccount.idToken ?: ""
             Logger.i("Google ID Token = $googleIdToken")
             user.userToken = googleIdToken
+
+            //  ***** UserManager.userToken got value
             UserManager.userToken = googleIdToken
             Logger.i("UserManager.userToken = ${UserManager.userToken}")
             val googleIsExpired = googleSignInAccount.isExpired
@@ -110,13 +113,18 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
 //            googleSignInAccount.idToken?.let {
 //                firebaseAuthWithGoogle(it) }
 
+
             user.name = googleSignInAccount.givenName + "  " + googleSignInAccount.familyName
             Logger.i("user.name = ${user.name}")
             user.email = googleSignInAccount.email.toString()
             Logger.i("user.email = ${user.email}")
             user.image = googleSignInAccount.photoUrl.toString()
             Logger.i("user.pictureUri = ${user.image}")
+            user.id = googleSignInAccount.id.toString()
+            Logger.i("user.id = ${user.id}")
 
+
+            //  ***** UserManager.user got value 右邊給左邊
             UserManager.user = user
 
 

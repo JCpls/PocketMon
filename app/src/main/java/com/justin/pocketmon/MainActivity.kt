@@ -13,11 +13,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.justin.pocketmon.data.Broadcast
+import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.databinding.ActivityMainBinding
 import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.login.UserManager
 import com.justin.pocketmon.login.UserManager.clear
 import com.justin.pocketmon.util.CurrentFragmentType
+import com.justin.pocketmon.util.Logger
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +31,35 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        // a quicker way to delete data in Firebase
+//        FirebaseFirestore.getInstance()
+//            .collectionGroup("Broadcasts")
+//            .get()
+//            .addOnCompleteListener { SellerInfo ->
+//                Logger.d("SellerInfo.documents ${SellerInfo.result.documents} ")
+//                for (oldDocument in SellerInfo.result) {
+//                    Logger.i("oldDocument $oldDocument")
+//                    Logger.i("SellerInfo.result ${SellerInfo.result}")
+//                    val oldUsers = oldDocument.toObject(Broadcast::class.java)
+//                    oldUsers.id?.let {
+//                        FirebaseFirestore.getInstance()
+//                            .collection("Broadcasts")
+//                            .document(it)
+//                            .delete()
+//                            .addOnCompleteListener { result ->
+////                                Logger.i(" oldUsers.email => ${oldUsers.email}")
+//                                if (result.isSuccessful) {
+//                                    Logger.i("result.result => ${result.result}")
+//                                }
+//                            }
+//
+//                    }
+//
+//                }
+//            }
+
+
 //        setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this

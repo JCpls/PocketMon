@@ -36,9 +36,9 @@ class ProfileFragment : Fragment() {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.profileData = UserManager
+        binding.user = UserManager.user
 
-        binding.profileName.text = UserManager.user.name
+//        binding.profileName.text = UserManager.user.name
 
         Logger.i("binding.profileName.text = ${binding.profileName.text}")
         Logger.i("username profile = ${user.name}")

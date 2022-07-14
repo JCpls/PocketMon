@@ -9,8 +9,8 @@
             type="com.justin.pocketmon.profile.ProfileViewModel"/>
 
         <variable
-            name="profileData"
-            type="com.justin.pocketmon.login.UserManager" />
+            name="user"
+            type="com.justin.pocketmon.data.User" />
 
     </data>
 
@@ -26,8 +26,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="90dp"
-            app:imageUrl="@{profileData.user.image}"
-            android:background="@drawable/bg_profile_image"
+            app:imageUrlWithCircleCrop="@{user.image}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -39,6 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:textSize="12sp"
+            android:text="@{user.name}"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/profile_image"
             app:layout_constraintStart_toStartOf="parent"

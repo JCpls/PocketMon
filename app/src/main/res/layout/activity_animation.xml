@@ -19,6 +19,31 @@
         tools:context=".MainActivity">
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pocketmon"
+            android:fontFamily="@font/press_start_2p"
+            android:textSize="16sp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading.."
+            android:fontFamily="@font/press_start_2p"
+            android:textSize="16sp"
+            android:layout_marginTop="110dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
         <!--Animation formula-->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"

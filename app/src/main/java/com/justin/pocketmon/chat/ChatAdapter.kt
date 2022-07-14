@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.justin.pocketmon.data.Broadcast
 import com.justin.pocketmon.databinding.ItemBroadcastBinding
 import com.justin.pocketmon.util.Logger
+import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 
 
@@ -24,19 +25,18 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
 
         fun bind(broadcast: Broadcast, onClickListener: OnClickListener) {
 
-//            val timeNew = SimpleDateFormat("E, d MMM yyyy HH:mm").format(broadcast.timeStart)
-            binding.itemBroadcast = broadcast
-            binding.broadcastTitle.text = broadcast.title
-            binding.broadcastFromWho.text = broadcast.from
-//            binding.broadcastTimeStart.text = timeNew
-
-//            binding.broadcastTimeStart.text = broadcast.timeStart
-//            binding.broadcastTimeFinish.text = broadcast.timeFinish.toString()
-
+//            val time = System.currentTimeMillis().toString()
+//            val timeNew = SimpleDateFormat("E, d MMM yyyy HH:mm").format(time)
 
 //            val time = java.sql.Timestamp(System.currentTimeMillis())
 //            val timeNew = SimpleDateFormat("E, d MMM yyyy HH:mm").format(broadcast.timeStart)
 //            Logger.i("timeNew = $timeNew")
+
+            binding.itemBroadcast = broadcast
+            binding.broadcastTitle.text = broadcast.title
+            binding.broadcastFromWho.text = broadcast.from
+//            binding.broadcastTimeFinish.text = SimpleDateFormat("MM/dd EE").format(broadcast.timeFinish)
+//            binding.broadcastTimeFinish.text = SimpleDateFormat("E, d MMM yyyy HH:mm").format(Timestamp.now())
 
 
 //            binding.broadcastTimeFinish.text = broadcast.timeFinish.

@@ -52,8 +52,6 @@ class ChatFragment : Fragment() {
 
 // --- submistList here ---
 
-
-
         viewModel.broadcast.observe(viewLifecycleOwner, Observer {
             (binding.recycleviewBroadcast.adapter as ChatAdapter).submitList(it)
             (binding.recycleviewBroadcast.adapter as ChatAdapter).notifyDataSetChanged()

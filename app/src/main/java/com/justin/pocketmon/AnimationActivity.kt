@@ -22,7 +22,7 @@ class AnimationActivity : AppCompatActivity() {
 //            throw RuntimeException("Test Crash") // Force a crash
             startActivity(intent)
             finish()
-        },3000)
+        },5000)
 
     }
 }

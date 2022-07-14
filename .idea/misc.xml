@@ -25,16 +25,17 @@
         <entry key="app/src/main/res/drawable/ic_nav_plan.xml" value="0.2225" />
         <entry key="app/src/main/res/drawable/ic_nav_profile.xml" value="0.2655" />
         <entry key="app/src/main/res/drawable/item_background.xml" value="0.143" />
+        <entry key="app/src/main/res/drawable/seekbar_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/selected_item_backtground.xml" value="0.143" />
         <entry key="app/src/main/res/font/font_certs.xml" value="0.1" />
         <entry key="app/src/main/res/font/noto_sans.xml" value="0.26564102564102565" />
-        <entry key="app/src/main/res/layout/activity_animation.xml" value="0.303125" />
+        <entry key="app/src/main/res/layout/activity_animation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_opening.xml" value="0.2564814814814815" />
         <entry key="app/src/main/res/layout/content_opening.xml" value="0.2564814814814815" />
         <entry key="app/src/main/res/layout/dialog_comment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialog_login.xml" value="0.48507385253906266" />
-        <entry key="app/src/main/res/layout/dialog_plan_todo.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_login.xml" value="0.45579567779960706" />
+        <entry key="app/src/main/res/layout/dialog_plan_todo.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_provider.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/fileprovider.xml" value="0.28425925925925927" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.22" />
@@ -46,7 +47,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home_adapter.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_home_child.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_home_edit.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_home_edit.xml" value="0.2077562326869806" />
         <entry key="app/src/main/res/layout/fragment_home_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_item_view_model_factory.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/fragment_home_pager_adapter.xml" value="0.28229166666666666" />
@@ -55,12 +56,12 @@
         <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plan_edit.xml" value="0.3190664672851563" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.4211074829101563" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2564814814814815" />
         <entry key="app/src/main/res/layout/item_broadcast.xml" value="0.3121301775147929" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.31302083333333336" />
         <entry key="app/src/main/res/layout/item_detail_circle.xml" value="0.26666666666666666" />
-        <entry key="app/src/main/res/layout/item_detail_comment.xml" value="0.24097442626953128" />
+        <entry key="app/src/main/res/layout/item_detail_comment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_detail_gallery.xml" value="0.1828125" />
         <entry key="app/src/main/res/layout/item_dream_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_plan.xml" value="0.375" />

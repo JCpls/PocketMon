@@ -49,6 +49,7 @@ class PlanEditFragment: Fragment() {
 
                     adapter.submitList(it)
 
+                    // - dead circle of observe and upload -- paralyze firebase
 //                    viewModel.getToDoResult(plan)
 
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
