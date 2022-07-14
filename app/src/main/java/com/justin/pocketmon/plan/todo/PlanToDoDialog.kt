@@ -9,6 +9,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +26,7 @@ import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.home.edit.HomeEditViewModel
 import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditFragmentArgs
+import com.justin.pocketmon.plan.edit.PlanEditViewModel
 import com.justin.pocketmon.util.Logger
 import com.justin.pocketmon.util.Logger.i
 import com.justin.pocketmon.util.ServiceLocator.repository
@@ -73,9 +75,14 @@ class PlanToDoDialog : AppCompatDialogFragment() {
             viewModel.addToDo(plan)
             Logger.d("再檢查從planEdit帶過來的資料 => $plan")
 
-            viewModel.navigateToPlanEditPage()
+//            ViewModelProvider(requireActivity()).get(PlanEditViewModel::class.java).getToDoResult(plan)
+
+//          findNavController().popBackStack()
+            dismiss()
+///         viewModel.navigateToPlanEditPage()
 
         }
+
 
         viewModel.navigateToPlanEditPage.observe(
             viewLifecycleOwner,

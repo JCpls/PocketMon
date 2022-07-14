@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="homeEditData"
+            type="com.justin.pocketmon.login.UserManager" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +24,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="20dp"
             android:background="#ffffff"
-            android:padding="16dp"
+            android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +82,7 @@
                 android:id="@+id/text_article_image01"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/ic_question"
                 android:scaleType="centerCrop"
@@ -98,7 +104,6 @@
 <!--                app:layout_constraintTop_toBottomOf="@id/text_article_image01"-->
 <!--                tools:src="@drawable/image_bg_pocketmon" />-->
 
-
             <TextView
                 android:id="@+id/text_title"
                 android:layout_width="wrap_content"
@@ -118,10 +123,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:hint=""
-                android:background="@null"
+                android:maxLines="3"
                 app:layout_constraintStart_toEndOf="@+id/text_title"
                 app:layout_constraintTop_toTopOf="@+id/text_title"
                 app:layout_constraintBottom_toBottomOf="@+id/text_title" />
+<!--            android:background="@null"-->
 
             <TextView
                 android:id="@+id/text_article_drgree_title"
@@ -131,8 +137,8 @@
                 android:text="完成度"
                 android:fontFamily="@font/noto_sans"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/text_title"
-                app:layout_constraintTop_toBottomOf="@+id/text_title" />
+                app:layout_constraintStart_toStartOf="@+id/content"
+                app:layout_constraintTop_toBottomOf="@+id/text_article_content" />
 
             <LinearLayout
                 android:id="@+id/text_article_seekbar"
@@ -149,7 +155,7 @@
                     android:id="@+id/seekbar"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:min="0"
                     android:max="100"
                     android:progress="0"/>
@@ -158,18 +164,19 @@
                     android:id="@+id/text_article_degree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:padding="2dp"
                     android:text="0"
                     android:textSize="20dp"
-                    android:padding="2dp"
-                    app:layout_constraintStart_toEndOf="@+id/seekbar"
                     app:layout_constraintBottom_toBottomOf="@+id/seekbar"
+                    app:layout_constraintStart_toEndOf="@+id/seekbar"
                     app:layout_constraintTop_toTopOf="@+id/seekbar" />
 
                 <TextView
                     android:id="@+id/text_article_degree_oneHundred"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" /100"
+                    android:text=" %"
                     android:textSize="20dp"
                     android:padding="2dp"
                     app:layout_constraintStart_toEndOf="@+id/seekbar"
@@ -182,36 +189,36 @@
                 android:id="@+id/content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="夢想內容"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans"
+                android:text="夢想內容"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/text_title"
-                app:layout_constraintTop_toBottomOf="@+id/text_article_drgree_title" />
+                app:layout_constraintTop_toBottomOf="@+id/text_article_title" />
 
             <EditText
                 android:id="@+id/text_article_content"
-                android:layout_width="310dp"
-                android:layout_height="100dp"
-                android:background="@null"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
                 android:gravity="top"
-                android:hint=""
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="@+id/text_title"
-                app:layout_constraintTop_toBottomOf="@+id/content" />
+                android:maxLines="3"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@+id/content"
+                app:layout_constraintTop_toTopOf="@+id/content"
+                app:layout_constraintBottom_toBottomOf="@+id/content"/>
+<!--            android:background="@null"-->
 
             <Button
                 android:id="@+id/button_article_add"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/press_start_2p"
                 android:textSize="10sp"
                 android:text="send your dream"
-                app:layout_constraintBaseline_toBaselineOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_article_content" />
+                app:layout_constraintTop_toBottomOf="@+id/text_article_drgree_title" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,7 @@ class LoginDialog : AppCompatDialogFragment() {
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
+            Logger.d("有沒有進到googleSignIn ")
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             viewModel.handleSignInResult(task)
         }
@@ -64,7 +65,8 @@ class LoginDialog : AppCompatDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.signInButton.setOnClickListener {
-            signInGoogle()
+//            signInGoogle()
+            signIn()
         }
 
         viewModel.leaveLogin.observe(
@@ -81,15 +83,19 @@ class LoginDialog : AppCompatDialogFragment() {
         return binding.root
     }
 
+
     private fun signIn() {
-        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("44039700708-qg19e235nofihjbsjkrv3efsklst64o8.apps.googleusercontent.com")
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken( "")
             .requestEmail()
             .build()
 
-//        googleSignInClient = context?.let { GoogleSignIn.getClient(it, gso) }
-//        val signInIntent = mGoogleSignInClient?.signInIntent
-//        startActivityForResult(signInIntent, RC_SIGN_IN)
+//        .requestIdToken("44039700708-qg19e235nofihjbsjkrv3efsklst64o8.apps.googleusercontent.com")
+
+            googleSignInClient = context?.let { GoogleSignIn.getClient(it, gso) }!!
+            signInGoogle()
+//            val signInIntent = googleSignInClient?.signInIntent
+//            startActivityForResult(signInIntent, RC_SIGN_IN)
         //...
     }
 
@@ -98,6 +104,7 @@ class LoginDialog : AppCompatDialogFragment() {
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
+                Logger.i("try task.getResult Google sign in")
                 val account = task.getResult(ApiException::class.java)
                 val email = account?.email
                 val token = account?.idToken
@@ -106,6 +113,10 @@ class LoginDialog : AppCompatDialogFragment() {
 
                 UserManager.userToken = token
                 UserManager.userId = id.toString()
+                UserManager.user.name = account?.displayName.toString()
+                UserManager.user.image = account?.photoUrl.toString()
+                Logger.d ("google profie is ${user.image}")
+                Logger.d ("my name is ${user.name}")
 
 //                user?.email = email
 //                user?.name = account?.displayName

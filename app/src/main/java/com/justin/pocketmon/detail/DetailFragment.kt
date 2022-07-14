@@ -94,15 +94,16 @@ class DetailFragment : Fragment() {
             }
         )
 
-        viewModel.navigateToComment.observe(
-            viewLifecycleOwner,
-            Observer {
-                it?.let {
-                    findNavController().navigate(NavigationDirections.navigateToCommentDialog(it))
-                    viewModel.onDetailtoCommentDialogNavigated()
-                }
-            }
-        )
+
+//        viewModel.navigateToComment.observe(
+//            viewLifecycleOwner,
+//            Observer {
+//                it?.let {
+//                    findNavController().navigate(NavigationDirections.navigateToCommentDialog(it))
+//                    viewModel.onDetailtoCommentDialogNavigated()
+//                }
+//            }
+//        )
 
         viewModel.leaveDetail.observe(
             viewLifecycleOwner,

@@ -23,6 +23,22 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
+@BindingAdapter("imageUrlWithCircleCrop")
+fun bindImageWithCircleCrop(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = it.toUri().buildUpon().build()
+        GlideApp.with(imgView.context)
+            .load(imgUri)
+            .circleCrop()
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.image_bg_pocketmon)
+                    .error(R.drawable.image_bg_pocketmon)
+            )
+            .into(imgView)
+    }
+}
+
 //@BindingAdapter("images")
 //fun bindRecyclerViewWithImages(recyclerView: RecyclerView, images: List<String>?) {
 //    images?.let {

@@ -49,16 +49,17 @@ class PlanEditFragment: Fragment() {
 
                     adapter.submitList(it)
 
+                    // - dead circle of observe and upload -- paralyze firebase
+//                    viewModel.getToDoResult(plan)
+
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
 //              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
                 }
 
 //            binding.swipeRefreshLayout.isRefreshing = false
             Logger.i("second viewModel.planEdit = $it")
-//            viewModel.getToDoResult(Plan(
 //                id = "fzKBm4kriaxT3qMnCGFW"
 //            ))
-
             Logger.i("Justin Livedata todo list = $it")
 
         })
@@ -87,7 +88,7 @@ class PlanEditFragment: Fragment() {
 
                 viewModel.publishToBroadcast(broadcast)
 //                findNavController().navigate(NavigationDirections.navigateToIntroFragment())
-//                viewModel.
+//
             }
 
             Logger.i("observe有無啟動")
