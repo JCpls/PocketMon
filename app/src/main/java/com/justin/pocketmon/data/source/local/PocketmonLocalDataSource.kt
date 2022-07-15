@@ -66,6 +66,10 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun addUser(user: User): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun publishPlan(plan: Plan): Result<Boolean> {
         TODO("Not yet implemented")
     }

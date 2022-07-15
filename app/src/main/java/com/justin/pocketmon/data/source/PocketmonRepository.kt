@@ -26,6 +26,8 @@ interface PocketmonRepository {
 
     fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>>
 
+    suspend fun addUser(user: User): Result<Boolean>
+
     suspend fun publishPlan (plan: Plan): Result<Boolean>
 
     suspend fun publishBroadcast (broadcast: Broadcast): Result<Boolean>

@@ -20,7 +20,7 @@ class ChatroomFragment : Fragment() {
         getVmFactory(
             ChatroomFragmentArgs.fromBundle(
                 requireArguments()
-            ).chatroomKey
+            ).broadcastKey
         )
     }
 
@@ -52,8 +52,8 @@ class ChatroomFragment : Fragment() {
         binding.imageChatSend.setOnClickListener {
             if (binding.editTextChatInputMessage.text.toString() != "") {
                 val content = binding.editTextChatInputMessage.text.toString()
-//                viewModel.sendMessageResult(content)
-//                viewModel.addChatroomMessageAndTimeResult()
+                viewModel.sendMessageResult(content)
+                viewModel.addChatroomMessageAndTimeResult()
                 Logger.d("binding.imageGroupChatSend.setOnClickListener")
             }
             binding.editTextChatInputMessage.text.clear()
@@ -65,13 +65,13 @@ class ChatroomFragment : Fragment() {
 
         viewModel.checkChatroom.observe(viewLifecycleOwner) {
             if (it == null) {
-//                viewModel.addChatroomResult()
-//                viewModel.getGroupChatroomResult()
+                viewModel.addChatroomResult()
+                viewModel.getGroupChatroomResult()
             }else{
                 if (PocketmonApplication.instance.isLiveDataDesign()) {
                     viewModel.getLiveChatsResult()
                 } else {
-//                    viewModel.getChatsResult()
+                    viewModel.getChatsResult()
                 }
             }
         }

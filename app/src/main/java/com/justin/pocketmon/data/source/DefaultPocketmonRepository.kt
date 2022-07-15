@@ -66,6 +66,10 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.delete(article)
     }
 
+    override suspend fun addUser(user: User): Result<Boolean> {
+        return remoteDataSource.addUser(user)
+    }
+
     override suspend fun getGroupChatroom(groupId: String): Result<Chatroom>{
         return remoteDataSource.getGroupChatroom(groupId)
     }

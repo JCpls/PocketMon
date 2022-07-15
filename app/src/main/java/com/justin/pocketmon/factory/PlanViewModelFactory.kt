@@ -28,9 +28,6 @@ class PlanViewModelFactory constructor(
                 isAssignableFrom(PlanToDoViewModel::class.java) ->
                     PlanToDoViewModel(plan, repository)
 
-//                isAssignableFrom(ChatRoomViewModel::class.java) ->
-//                    ChatRoomViewModel(plan, repository)
-
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

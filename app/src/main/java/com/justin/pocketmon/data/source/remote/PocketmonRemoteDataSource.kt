@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.SetOptions
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.*
@@ -28,6 +27,9 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     private const val PATH_BROADCAST = "Broadcasts"
     private const val KEY_CREATED_TIME = "createdTime"
     private const val PATH_CHATS = "chats"
+    private const val  PATH_USERS = "Users"
+
+
 
     override suspend fun loginMockData(id: String): Result<Author> {
         TODO("Not yet implemented")
@@ -424,21 +426,48 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
     }
 
+    override suspend fun addUser(user: User): Result<Boolean> = suspendCoroutine { continuation ->
+        val groups = FirebaseFirestore.getInstance().collection(PATH_USERS)
+        val document = groups.document(user.id)
+
+        document
+            .set(user)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.d("Add user=$user")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+                        Logger.e("Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
 
 
 
-
-    override suspend fun getGroupChatroom(groupId: String): Result<Chatroom> =
+    override suspend fun getGroupChatroom(ownerId: String): Result<Chatroom> =
         suspendCoroutine { continuation ->
-            UserManager.userId?.let { id ->
-                Logger.d("UserManager.userId=$id")
-                Logger.d("groupId=$groupId")
+            Logger.d("getGroupChatroom start 2")
+            Logger.d("UserManager.user.id= ${UserManager.user.id}")
+            UserManager.user.id.let { id ->
+                Logger.d("UserManager.user.id=$id")
+                Logger.d("ownerId=$ownerId")
                 FirebaseFirestore.getInstance()
                     .collection(PATH_CHATROOM)
 //                    .whereEqualTo(KEY_GROUP_ID, groupId)
 //                    .wherein(plan.id, senderId)
-//                    .whereArrayContains(KEY_MEMBER, id)
+                    .whereArrayContainsAny("member", listOf(ownerId, id))
                     .get()
+                    .addOnSuccessListener {
+                        Logger.d("addOnSuccessListener")
+                    }
+                    .addOnFailureListener {
+                        Logger.d("addOnFailureListener")
+                    }
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             if (task.result.isEmpty) {
@@ -447,9 +476,9 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                             } else {
                                 for (document in task.result) {
                                     Logger.d("document=${document}")
-                                    val user = document.toObject(Chatroom::class.java)
-                                    Logger.d("user=${user}")
-                                    continuation.resume(Result.Success(user))
+                                    val chatroom = document.toObject(Chatroom::class.java)
+                                    Logger.d("user=${chatroom}")
+                                    continuation.resume(Result.Success(chatroom))
                                 }
                             }
                         } else {
@@ -614,8 +643,8 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                 .document(chatroomId)
                 .update(
                     mapOf(
-//                        KEY_LAST_TALK_MESSAGE to message,
-//                        KEY_LAST_TALK_TIME to Date(System.currentTimeMillis())
+                        "lastTalkMessage" to message,
+                        "lastTalkTime" to Date(System.currentTimeMillis())
                     )
                 )
                 .addOnCompleteListener { task ->

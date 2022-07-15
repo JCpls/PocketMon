@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
 //        // a quicker way to delete data in Firebase
 //        FirebaseFirestore.getInstance()
-//            .collectionGroup("Broadcasts")
+//            .collectionGroup("ChatRooms")
 //            .get()
 //            .addOnCompleteListener { SellerInfo ->
 //                Logger.d("SellerInfo.documents ${SellerInfo.result.documents} ")
@@ -69,25 +69,26 @@ class MainActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
 
         // Create a new user with a first and last name
-        val user: MutableMap<String, Any> = HashMap()
-        user["first"] = "Ada"
-        user["last"] = "Lovelace"
-        user["born"] = 1815
+//        val user: MutableMap<String, Any> = HashMap()
+//        user["first"] = "Ada"
+//        user["last"] = "Lovelace"
+//        user["born"] = 1815
 
 // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.id
-                )
-            }
-            .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
+//        db.collection("users")
+//            .add(user)
+//            .addOnSuccessListener { documentReference ->
+//                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.id
+//                )
+//            }
+//            .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
 
 
 //        setupToolbar()
         setupBottomNav()
 //        setupDrawer()
         setupNavController()
+        // will make it automatically log out
         UserManager.clear()
     }
 
@@ -113,9 +114,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_chat -> {
 
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToChatroomFragment(
-                        Chatroom()
-                    ))
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToChatFragment())
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_plan -> {
@@ -177,6 +176,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.introFragment -> CurrentFragmentType.INTRO
                 R.id.homeFragment -> CurrentFragmentType.HOME
                 R.id.chatFragment -> CurrentFragmentType.CHAT
+                R.id.chatroomFragment -> CurrentFragmentType.CHATROOM
                 R.id.planFragment -> CurrentFragmentType.PLAN
                 R.id.profileFragment -> CurrentFragmentType.PROFILE
                 R.id.detailFragment -> CurrentFragmentType.DETAIL

@@ -28,15 +28,14 @@ fun Fragment.getVmFactory(plan: Plan): PlanViewModelFactory {
     return PlanViewModelFactory(plan, repository)
 }
 
-fun Fragment.getVmFactory(chatroom: Chatroom): ChatroomViewModelFactory {
+fun Fragment.getVmFactory(broadcast: Broadcast): BroadcastViewModelFactory {
     val repository = (requireContext().applicationContext as PocketmonApplication).repository
-    return ChatroomViewModelFactory(chatroom, repository)
+    return BroadcastViewModelFactory(broadcast, repository)
 }
 
-
-//fun Fragment.getVmFactory(broadcast: Broadcast): BroadcastViewModelFactory {
+//fun Fragment.getVmFactory(chatroom: Chatroom): ChatroomViewModelFactory {
 //    val repository = (requireContext().applicationContext as PocketmonApplication).repository
-//    return BroadcastViewModelFactory(repository)
+//    return ChatroomViewModelFactory(chatroom, repository)
 //}
 
 //fun Fragment.getVmFactory(todo: ToDo): ToDoViewModelFactory {

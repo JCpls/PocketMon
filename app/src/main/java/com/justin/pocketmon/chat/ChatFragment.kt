@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
+import com.justin.pocketmon.data.Chatroom
 import com.justin.pocketmon.databinding.FragmentChatBinding
 import com.justin.pocketmon.databinding.FragmentPlanBinding
 import com.justin.pocketmon.ext.getVmFactory
@@ -44,6 +45,9 @@ class ChatFragment : Fragment() {
 
 //            Logger.d("click, it=$it")
             viewModel.getBroadcastsResult()
+
+            this.findNavController().navigate(NavigationDirections.navigateToChatroomFragment(it))
+
 //        handle navigation to detail
 //            viewModel.navigateToPlanEdit(it)
 //            Logger.d("click, it=$it")

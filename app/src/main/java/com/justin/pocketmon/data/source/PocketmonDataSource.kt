@@ -26,6 +26,8 @@ interface PocketmonDataSource {
 
     fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>>
 
+    suspend fun addUser(user: User): Result<Boolean>
+
     suspend fun publishPlan(plan: Plan): Result<Boolean>
 
     suspend fun publishBroadcast (broadcast: Broadcast): Result<Boolean>
@@ -38,7 +40,7 @@ interface PocketmonDataSource {
 
     suspend fun delete(article: Article): Result<Boolean>
 
-    suspend fun getGroupChatroom(groupId: String): Result<Chatroom>
+    suspend fun getGroupChatroom(ownerId: String): Result<Chatroom>
 
     suspend fun addChatroom(chatroom: Chatroom): Result<Boolean>
 

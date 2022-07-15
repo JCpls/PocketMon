@@ -10,7 +10,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.justin.pocketmon.PocketmonApplication
+import com.justin.pocketmon.R
 import com.justin.pocketmon.data.User
+import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
 import com.justin.pocketmon.util.Logger
@@ -19,7 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewModel() {
+class LoginViewModel(private val repository: PocketmonRepository) : ViewModel() {
 
 //    private val _user = MutableLiveData<User>()
 //
@@ -114,7 +117,7 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
 //                firebaseAuthWithGoogle(it) }
 
 
-            user.name = googleSignInAccount.givenName + "  " + googleSignInAccount.familyName
+            user.name = googleSignInAccount.givenName + " " + googleSignInAccount.familyName
             Logger.i("user.name = ${user.name}")
             user.email = googleSignInAccount.email.toString()
             Logger.i("user.email = ${user.email}")
@@ -127,13 +130,15 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
             //  ***** UserManager.user got value 右邊給左邊
             UserManager.user = user
 
+            addUserResult()
+
 
         } catch (e: ApiException) {
             // Sign in was unsuccessful
             Logger.e("Google log in failed code = ${e.statusCode}")
         }
 
-        _leaveLogin.value = true
+
     }
 
 //    private fun firebaseAuthWithGoogle(idToken: String) {
@@ -209,7 +214,6 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
 //            }
 //        }
 //    }
-
 
 
     /**
@@ -292,6 +296,37 @@ class LoginViewModel(private val stylishRepository: PocketmonRepository) : ViewM
         Logger.i("leave check2 ")
         _leaveLogin.value = true
     }
+
+
+    fun addUserResult() {
+        coroutineScope.launch {
+            _status.value = LoadApiStatus.LOADING
+            Logger.i("check for User data 01")
+            when (val addUserResult = repository.addUser(user)) {
+                is Result.Success -> {
+                    Logger.i("check for User data 02")
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+//                    leave()
+                    _leaveLogin.value = true
+                }
+                is Result.Fail -> {
+                    _error.value = addUserResult.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = addUserResult.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value =
+                        PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
+    }
+
 //
 //    fun onLeaveCompleted() {
 //        _leave.value = null

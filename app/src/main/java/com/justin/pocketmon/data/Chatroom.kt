@@ -14,4 +14,5 @@ data class Chatroom (
     val lastTalkTime: Date? = null,
     val name: String = "",
     val member: List<String> = listOf(""),
+    var chat: List<Chat> = emptyList()
 ) : Parcelable

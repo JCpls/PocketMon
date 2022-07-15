@@ -71,8 +71,8 @@
         android:name="com.justin.pocketmon.chat.ChatroomFragment"
         android:label="ChatroomFragment" >
 
-        <argument android:name="chatroomKey"
-            app:argType="com.justin.pocketmon.data.Chatroom"
+        <argument android:name="broadcastKey"
+            app:argType="com.justin.pocketmon.data.Broadcast"
             app:nullable="false"/>
     </fragment>
 

@@ -12,5 +12,6 @@ enum class CurrentFragmentType(val value: String) {
     PLAN(getString(R.string.plan)),
     PROFILE(getString(R.string.profile)),
     DETAIL(""),
-    PLANEDIT("")
+    PLANEDIT(""),
+    CHATROOM("")
 }
