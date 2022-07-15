@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import com.google.firebase.firestore.auth.User
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
-import com.justin.pocketmon.data.Broadcast
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.ToDo
+import com.justin.pocketmon.data.*
 import com.justin.pocketmon.factory.*
 
 /* Extension functions for Fragment.
@@ -30,6 +27,12 @@ fun Fragment.getVmFactory(plan: Plan): PlanViewModelFactory {
     val repository = (requireContext().applicationContext as PocketmonApplication).repository
     return PlanViewModelFactory(plan, repository)
 }
+
+fun Fragment.getVmFactory(chatroom: Chatroom): ChatroomViewModelFactory {
+    val repository = (requireContext().applicationContext as PocketmonApplication).repository
+    return ChatroomViewModelFactory(chatroom, repository)
+}
+
 
 //fun Fragment.getVmFactory(broadcast: Broadcast): BroadcastViewModelFactory {
 //    val repository = (requireContext().applicationContext as PocketmonApplication).repository

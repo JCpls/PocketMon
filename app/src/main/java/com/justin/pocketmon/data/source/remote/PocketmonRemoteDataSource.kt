@@ -10,6 +10,7 @@ import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.*
 import com.justin.pocketmon.data.source.PocketmonDataSource
+import com.justin.pocketmon.login.UserManager
 import com.justin.pocketmon.util.Logger
 import java.util.*
 
@@ -22,9 +23,11 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
     private const val PATH_PLANS = "Plans"
     private const val PATH_ARTICLE = "Article"
+    private const val PATH_CHATROOM = "ChatRooms"
     private const val PATH_COMMENTS = "Comments"
     private const val PATH_BROADCAST = "Broadcasts"
     private const val KEY_CREATED_TIME = "createdTime"
+    private const val PATH_CHATS = "chats"
 
     override suspend fun loginMockData(id: String): Result<Author> {
         TODO("Not yet implemented")
@@ -159,13 +162,14 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
 
-    override fun getLiveComments(imdbID: String): MutableLiveData<List<Comment>> {
-        val liveData = MutableLiveData<List<Comment>>()
+    override fun getLiveComments(articleId: String, commentId: String): MutableLiveData<Comment> {
+        val liveData = MutableLiveData<Comment>()
 
         FirebaseFirestore.getInstance()
             .collection(PATH_COMMENTS)
-            .whereEqualTo(FIELD_IMDB_ID, imdbID)
-            .orderBy(FIELD_CREATED_TIME, Query.Direction.DESCENDING)
+            .document(articleId)
+//            .whereEqualTo(FIELD_IMDB_ID, imdbID)
+//            .orderBy(FIELD_CREATED_TIME, Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
                 Logger.i("getLiveComments addSnapshotListener detect")
 
@@ -174,23 +178,24 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                 }
 
                 if (snapshot != null) {
-                    if (snapshot.size() >=1 ) {
-                        val list = mutableListOf<Comment>()
-                        snapshot.forEach { document ->
-                            Logger.d(document.id + " => " + document.data)
-                            val comment = document.toObject(Comment::class.java)
-                            list.add(comment)
-                        }
-                        liveData.value = list
-                    } else {
-                        Logger.w("[${this::class.simpleName}] getLiveComments task.result.size < 1")
+//                    if (snapshot.size() >=1 ) {
+//                        val list = mutableListOf<Comment>()
+//                        snapshot.forEach { document ->
+//                            Logger.d(document.id + " => " + document.data)
+                    val comment = snapshot.toObject(Comment::class.java)
+                    Logger.i("snapshot plan = $comment")
+
+                    comment?.let {
+                        liveData.value = it
                     }
+
                 } else {
-                    Logger.w("[${this::class.simpleName}] getLiveComments snapshot == null")
+                    Logger.w("[${this::class.simpleName}] getLiveComment snapshot == null")
                 }
             }
         return liveData
     }
+
 
 
 
@@ -417,6 +422,244 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
         }
 
+    }
+
+
+
+
+
+    override suspend fun getGroupChatroom(groupId: String): Result<Chatroom> =
+        suspendCoroutine { continuation ->
+            UserManager.userId?.let { id ->
+                Logger.d("UserManager.userId=$id")
+                Logger.d("groupId=$groupId")
+                FirebaseFirestore.getInstance()
+                    .collection(PATH_CHATROOM)
+//                    .whereEqualTo(KEY_GROUP_ID, groupId)
+//                    .wherein(plan.id, senderId)
+//                    .whereArrayContains(KEY_MEMBER, id)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            if (task.result.isEmpty) {
+                                Logger.d("getGroupChatroom task.result.documents =${task.result.documents}")
+                                continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                            } else {
+                                for (document in task.result) {
+                                    Logger.d("document=${document}")
+                                    val user = document.toObject(Chatroom::class.java)
+                                    Logger.d("user=${user}")
+                                    continuation.resume(Result.Success(user))
+                                }
+                            }
+                        } else {
+                            task.exception?.let {
+                                Logger.e("Error getting documents. ${it.message}")
+                                continuation.resume(Result.Error(it))
+                                return@addOnCompleteListener
+                            }
+                            continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                        }
+                    }
+            }
+        }
+//
+    override suspend fun addChatroom(chatroom: Chatroom): Result<Boolean> =
+        suspendCoroutine { continuation ->
+            val chatroomCollection = FirebaseFirestore.getInstance().collection(PATH_CHATROOM)
+            val document = chatroomCollection.document()
+
+            chatroom.id = document.id
+
+            document
+                .set(chatroom)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Logger.d("Add chatroom=$chatroom")
+                        continuation.resume(Result.Success(true))
+                    } else {
+                        task.exception?.let {
+                            Logger.e("Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    }
+                }
+        }
+//
+//
+    override suspend fun getAllChatroom(): Result<List<Chatroom>> =
+        suspendCoroutine { continuation ->
+            FirebaseFirestore.getInstance()
+                .collection(PATH_CHATROOM)
+//            .orderBy(KEY_LAST_TALK_TIME,Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Chatroom>()
+                        for (document in task.result) {
+                            Logger.d(document.id + " => " + document.data)
+
+                            val chatroom = document.toObject(Chatroom::class.java)
+                            list.add(chatroom)
+                        }
+                        continuation.resume(Result.Success(list))
+                    } else {
+                        task.exception?.let {
+                            Logger.e("Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    }
+                }
+        }
+
+
+    //--------- 不用使用 ----------
+//    override suspend fun getTypeChatroom(type: String): Result<List<Chatroom>> =
+//        suspendCoroutine { continuation ->
+//            FirebaseFirestore.getInstance()
+//                .collection(PATH_CHATROOM)
+//                .whereEqualTo(KEY_TYPE, type)
+////            .orderBy(KEY_LAST_TALK_TIME,Query.Direction.ASCENDING)
+//                .get()
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        val list = mutableListOf<Chatroom>()
+//                        for (document in task.result) {
+//                            Timber.d(document.id + " => " + document.data)
+//
+//                            val chatroom = document.toObject(Chatroom::class.java)
+//                            list.add(chatroom)
+//                        }
+//                        continuation.resume(Result.Success(list))
+//                    } else {
+//                        task.exception?.let {
+//                            Timber.e("Error getting documents. ${it.message}")
+//                            continuation.resume(Result.Error(it))
+//                            return@addOnCompleteListener
+//                        }
+//                        continuation.resume(Result.Fail(MainApplication.instance.getString(R.string.you_know_nothing)))
+//                    }
+//                }
+//        }
+//
+    override suspend fun getChats(chatroomId: String): Result<List<Chat>> =
+        suspendCoroutine { continuation ->
+            FirebaseFirestore.getInstance()
+                .collection(PATH_CHATROOM)
+                .document(chatroomId)
+                .collection(PATH_CHATS)
+                .orderBy(KEY_CREATED_TIME, Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener { task ->
+                    Logger.d("getChats addOnCompleteListener")
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Chat>()
+                        for (document in task.result) {
+                            Logger.d(document.id + " => " + document.data)
+
+                            val chat = document.toObject(Chat::class.java)
+                            list.add(chat)
+                        }
+                        continuation.resume(Result.Success(list))
+                    } else {
+                        task.exception?.let {
+                            Logger.e("Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    }
+                }
+        }
+//
+    override suspend fun sendChat(chatroomId: String, chat: Chat): Result<Boolean> =
+        suspendCoroutine { continuation ->
+            val chatroomCollection = FirebaseFirestore.getInstance().collection(PATH_CHATROOM)
+            val chatroomDocument = chatroomCollection.document(chatroomId)
+            val chatCollection = chatroomDocument.collection(PATH_CHATS)
+            val chatDocument = chatCollection.document()
+
+            chat.id = chatDocument.id
+            chat.createdTime = Date(System.currentTimeMillis())
+
+            chatDocument
+                .set(chat)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Logger.d("Add chat=$chat")
+                        continuation.resume(Result.Success(true))
+                    } else {
+                        task.exception?.let {
+                            Logger.e("Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    }
+                }
+        }
+//
+    override suspend fun addChatroomMessageAndTime(
+        chatroomId: String,
+        message: String
+    ): Result<Boolean> =
+        suspendCoroutine { continuation ->
+
+            FirebaseFirestore.getInstance()
+                .collection(PATH_CHATROOM)
+                .document(chatroomId)
+                .update(
+                    mapOf(
+//                        KEY_LAST_TALK_MESSAGE to message,
+//                        KEY_LAST_TALK_TIME to Date(System.currentTimeMillis())
+                    )
+                )
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Logger.d("Add chatroom message and time complete")
+                        continuation.resume(Result.Success(true))
+                    } else {
+                        task.exception?.let {
+                            Logger.e("Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    }
+                }
+        }
+//
+    override fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>> {
+        val liveData = MutableLiveData<List<Chat>>()
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_CHATROOM)
+            .document(chatroomId)
+            .collection(PATH_CHATS)
+            .orderBy(KEY_CREATED_TIME, Query.Direction.ASCENDING)
+            .addSnapshotListener { snapsot, exception ->
+                Logger.i("addSnapshotListener detect")
+
+                exception?.let {
+                    Logger.w("Error getting documents. ${it.message}")
+                }
+
+                val list = mutableListOf<Chat>()
+                for (document in snapsot!!) {
+                    Logger.d(document.id + " => " + document.data)
+
+                    val chat = document.toObject(Chat::class.java)
+                    list.add(chat)
+                }
+
+                liveData.value = list
+                Logger.d("liveData.value = ${liveData.value}")
+            }
+        return liveData
     }
 
 }

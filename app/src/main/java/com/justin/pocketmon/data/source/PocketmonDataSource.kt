@@ -18,9 +18,13 @@ interface PocketmonDataSource {
 
     suspend fun getCommentList(): Result<List<Articledata>>
 
+    fun getLiveComments(articleId: String, commentId: String): MutableLiveData<Comment>
+
     fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan>
 
     fun getLiveArticles(): MutableLiveData<List<Article>>
+
+    fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>>
 
     suspend fun publishPlan(plan: Plan): Result<Boolean>
 
@@ -33,4 +37,16 @@ interface PocketmonDataSource {
     suspend fun addComment(articledata: Articledata): Result<Boolean>
 
     suspend fun delete(article: Article): Result<Boolean>
+
+    suspend fun getGroupChatroom(groupId: String): Result<Chatroom>
+
+    suspend fun addChatroom(chatroom: Chatroom): Result<Boolean>
+
+    suspend fun getAllChatroom(): Result<List<Chatroom>>
+
+    suspend fun getChats(chatroomId: String): Result<List<Chat>>
+
+    suspend fun sendChat(chatroomId: String, chat: Chat): Result<Boolean>
+
+    suspend fun addChatroomMessageAndTime(chatroomId: String, message: String): Result<Boolean>
 }

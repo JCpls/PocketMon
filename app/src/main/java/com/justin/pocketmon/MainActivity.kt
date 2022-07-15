@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.data.Broadcast
+import com.justin.pocketmon.data.Chatroom
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.databinding.ActivityMainBinding
 import com.justin.pocketmon.ext.getVmFactory
@@ -112,7 +113,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_chat -> {
 
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToChatFragment())
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToChatroomFragment(
+                        Chatroom()
+                    ))
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_plan -> {

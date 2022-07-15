@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.data.Comment
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
@@ -87,11 +88,11 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         viewModelJob.cancel()
     }
 
-    init {
-        Logger.i("------------------------------------")
-        Logger.i("[${this::class.simpleName}]${this}")
-        Logger.i("------------------------------------")
-    }
+//    init {
+//        Logger.i("------------------------------------")
+//        Logger.i("[${this::class.simpleName}]${this}")
+//        Logger.i("------------------------------------")
+//    }
 
 
     fun addComment(articledata: Articledata) {
@@ -128,6 +129,7 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         Logger.i("------------------------------------")
 
 //        getComment(articledata)
+          getLiveComments(articledata.id, addComment.toString())
     }
 
     fun getComment() {
@@ -167,5 +169,19 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
     }
+
+
+    // the liveData to get "getLiveComments" data from firebase
+    var liveComment = MutableLiveData<Comment>()
+
+    private fun getLiveComments(articleId: String, commentId: String) {
+        coroutineScope.launch {
+            liveComment = repository.getLiveComments(articleId, commentId)
+            Logger.i("getLiveTodoResult() liveToDo = $liveComment")
+            Logger.i("getLiveTodoResult() liveToDo.value = ${liveComment.value}")
+//            _isLiveToDoListReady.value = true
+        }
+    }
+
 
 }

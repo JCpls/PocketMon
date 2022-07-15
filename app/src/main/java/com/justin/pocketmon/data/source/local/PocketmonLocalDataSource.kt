@@ -47,11 +47,22 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
+    override fun getLiveComments(
+        articleId: String,
+        commentId: String
+    ): MutableLiveData<Comment> {
+        TODO("Not yet implemented")
+    }
+
     override fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan> {
         TODO("Not yet implemented")
     }
 
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>> {
         TODO("Not yet implemented")
     }
 
@@ -76,6 +87,33 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
     }
 
     override suspend fun delete(article: Article): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getGroupChatroom(groupId: String): Result<Chatroom> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addChatroom(chatroom: Chatroom): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getAllChatroom(): Result<List<Chatroom>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getChats(chatroomId: String): Result<List<Chat>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun sendChat(chatroomId: String, chat: Chat): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addChatroomMessageAndTime(
+        chatroomId: String,
+        message: String
+    ): Result<Boolean> {
         TODO("Not yet implemented")
     }
 

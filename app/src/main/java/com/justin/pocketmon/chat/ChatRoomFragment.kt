@@ -1,60 +1,96 @@
 package com.justin.pocketmon.chat
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.justin.pocketmon.databinding.FragmentChatRoomBinding
+
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.justin.pocketmon.R
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.justin.pocketmon.PocketmonApplication
+import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.util.Logger
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+//
+class ChatroomFragment : Fragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ChatRoomFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ChatRoomFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val viewModel by viewModels<ChatRoomViewModel> {
+        getVmFactory(
+            ChatroomFragmentArgs.fromBundle(
+                requireArguments()
+            ).chatroomKey
+        )
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    lateinit var binding: FragmentChatRoomBinding
+
+    companion object {
+        fun newInstance() = ChatroomFragment()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat_room, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ChatRoomFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ChatRoomFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        binding = FragmentChatRoomBinding.inflate(inflater)
+
+        binding.lifecycleOwner = this
+
+        binding.viewModel = viewModel
+
+        val adapter = ChatroomAdapter()
+
+        binding.recyclerViewChat.adapter = adapter
+
+        viewModel.chatItem.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+        binding.imageChatSend.setOnClickListener {
+            if (binding.editTextChatInputMessage.text.toString() != "") {
+                val content = binding.editTextChatInputMessage.text.toString()
+//                viewModel.sendMessageResult(content)
+//                viewModel.addChatroomMessageAndTimeResult()
+                Logger.d("binding.imageGroupChatSend.setOnClickListener")
+            }
+            binding.editTextChatInputMessage.text.clear()
+        }
+
+        binding.imageChatBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        viewModel.checkChatroom.observe(viewLifecycleOwner) {
+            if (it == null) {
+//                viewModel.addChatroomResult()
+//                viewModel.getGroupChatroomResult()
+            }else{
+                if (PocketmonApplication.instance.isLiveDataDesign()) {
+                    viewModel.getLiveChatsResult()
+                } else {
+//                    viewModel.getChatsResult()
                 }
             }
+        }
+
+        viewModel.observeChatItem.observe(viewLifecycleOwner) {
+            Logger.i("viewModel.liveChats.observe, it=$it")
+            if (it) {
+
+                viewModel.liveChatItem.observe(viewLifecycleOwner) { ListChat ->
+                    val chats = viewModel.chatToChatItem(ListChat)
+                    adapter.submitList(chats)
+                    binding.recyclerViewChat.smoothScrollToPosition(chats.size)
+                }
+
+
+            }
+        }
+
+        return binding.root
     }
+
 }

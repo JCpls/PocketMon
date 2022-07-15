@@ -2,6 +2,7 @@ package com.justin.pocketmon.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.justin.pocketmon.chat.ChatRoomViewModel
 import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.User
@@ -26,6 +27,9 @@ class PlanViewModelFactory constructor(
 
                 isAssignableFrom(PlanToDoViewModel::class.java) ->
                     PlanToDoViewModel(plan, repository)
+
+//                isAssignableFrom(ChatRoomViewModel::class.java) ->
+//                    ChatRoomViewModel(plan, repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

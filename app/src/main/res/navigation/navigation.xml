@@ -65,6 +65,18 @@
             app:nullable="false"/>
     </fragment>
 
+
+    <fragment
+        android:id="@+id/chatroomFragment"
+        android:name="com.justin.pocketmon.chat.ChatroomFragment"
+        android:label="ChatroomFragment" >
+
+        <argument android:name="chatroomKey"
+            app:argType="com.justin.pocketmon.data.Chatroom"
+            app:nullable="false"/>
+    </fragment>
+
+
     <dialog
         android:id="@+id/commentDialog"
         android:name="com.justin.pocketmon.comment.CommentDialog"
@@ -101,6 +113,9 @@
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
     <action android:id="@+id/navigate_to_chat_fragment" app:destination="@id/chatFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
+    <action android:id="@+id/navigate_to_chatroom_fragment" app:destination="@id/chatroomFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
     <action android:id="@+id/navigate_to_plan_fragment" app:destination="@id/planFragment"

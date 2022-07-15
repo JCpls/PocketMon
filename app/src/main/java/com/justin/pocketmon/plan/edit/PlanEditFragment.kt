@@ -48,6 +48,13 @@ class PlanEditFragment: Fragment() {
                 adapter.submitList(it.method)
             }
         }
+
+        binding.layoutPlanEditBottom.setOnClickListener{
+
+            viewModel.navigateToAddTodo()
+        }
+
+
 //        viewModel.liveToDoList.observe(viewLifecycleOwner, Observer {
 //            Logger.i("liveToDoList = $it")
 //                it.let {

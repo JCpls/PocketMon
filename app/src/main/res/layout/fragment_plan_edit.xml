@@ -69,7 +69,7 @@
                     <TextView
                         android:id="@+id/planEdit_plan_title"
                         style="@style/DetailTitle"
-                        android:layout_width="300dp"
+                        android:layout_width="370dp"
                         android:maxWidth="350dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -82,6 +82,7 @@
                         android:maxLines="2"
                         android:fontFamily="@font/press_start_2p"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/button_planEdit_close"
                         tools:text ="夢想名稱" />
 
@@ -146,7 +147,7 @@
 
                     <TextView
                         android:id="@+id/planEdit_plan_degree_text"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:background="@drawable/bg_dream_item3"
@@ -155,8 +156,8 @@
                         android:text="100"
                         android:textColor="@color/blue_facebook"
                         android:textSize="20sp"
+                        android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="@+id/planEdit_plan_degree"
-                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/planEdit_plan_degree"
                         app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_degree"
                         tools:text="100" />
@@ -258,21 +259,15 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <Button
+                <TextView
                     android:id="@+id/button_plan_add"
-                    style="@style/Base.Widget.AppCompat.Button.Borderless"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/press_start_2p"
-                    android:letterSpacing="0.15"
                     android:text="To-Do plan"
                     android:textColor="@color/white"
-                    android:textSize="10dp"
-                    android:onClick="@{() -> viewModel.navigateToAddTodo()}"
+                    android:gravity="center"
+                    android:textSize="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"

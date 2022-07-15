@@ -36,7 +36,7 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
             binding.itemBroadcast = broadcast
             binding.broadcastTitle.text = broadcast.title
             binding.broadcastFromWho.text = broadcast.fromName
-            binding.broadcastTimeFinish.text = SimpleDateFormat("MM/dd, yyyy", Locale.CHINESE).format(broadcast.timeFinish.toDate())
+            binding.broadcastTimeFinish.text = SimpleDateFormat("MM/dd, yyyy", Locale.CHINESE).format(Timestamp.now().toDate())
 
 
 //            fun dateToday(): String {

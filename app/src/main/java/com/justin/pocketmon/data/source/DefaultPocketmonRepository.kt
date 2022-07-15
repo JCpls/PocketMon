@@ -25,6 +25,10 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.getLiveToDoList(userId, planId)
     }
 
+    override fun getLiveComments(articleId: String, commentId: String): MutableLiveData<Comment>{
+        return remoteDataSource.getLiveComments(articleId, commentId)
+    }
+
     override suspend fun getToDoList(plan:Plan): Result<Plan> {
         return remoteDataSource.getToDoList(plan)
     }
@@ -60,5 +64,33 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
 
     override suspend fun delete(article: Article): Result<Boolean> {
         return remoteDataSource.delete(article)
+    }
+
+    override suspend fun getGroupChatroom(groupId: String): Result<Chatroom>{
+        return remoteDataSource.getGroupChatroom(groupId)
+    }
+
+    override suspend fun addChatroom(chatroom: Chatroom): Result<Boolean>{
+        return remoteDataSource.addChatroom(chatroom)
+    }
+
+    override suspend fun getAllChatroom(): Result<List<Chatroom>>{
+        return remoteDataSource.getAllChatroom()
+    }
+
+    override suspend fun getChats(chatroomId: String): Result<List<Chat>>{
+        return remoteDataSource.getChats(chatroomId)
+    }
+
+    override suspend fun sendChat(chatroomId: String, chat: Chat): Result<Boolean> {
+       return remoteDataSource.sendChat(chatroomId, chat)
+    }
+
+    override suspend fun addChatroomMessageAndTime(chatroomId: String, message: String): Result<Boolean>{
+        return remoteDataSource.addChatroomMessageAndTime(chatroomId, message)
+    }
+
+    override fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>>{
+        return remoteDataSource.getLiveChats(chatroomId)
     }
 }

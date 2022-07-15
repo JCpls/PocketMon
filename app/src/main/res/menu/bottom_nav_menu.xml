@@ -5,26 +5,26 @@
     <item
         android:id="@+id/navigation_intro"
         android:icon="@drawable/ic_nav_intro"
-        android:title="intro"/>
+        android:title="Intro"/>
 
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_nav_home"
-        android:title="dream"/>
+        android:title="Dream"/>
 
     <item
         android:id="@+id/navigation_chat"
         android:icon="@drawable/ic_nav_chat"
-        android:title="friend"/>
+        android:title="Friend"/>
 
     <item
         android:id="@+id/navigation_plan"
         android:icon="@drawable/ic_nav_plan"
-        android:title="plan"/>
+        android:title="Plan"/>
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_nav_profile"
-        android:title="profile"/>
+        android:title="Profile"/>
 
 </menu>
