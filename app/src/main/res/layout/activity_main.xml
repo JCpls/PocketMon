@@ -26,8 +26,8 @@
             android:elevation="@dimen/elevation_all"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-<!--             android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.CHECKOUT_SUCCESS ? View.GONE : View.VISIBLE}"-->
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL? View.GONE : View.VISIBLE}">
 <!--             app:navigationIcon="@drawable/toolbar_menu"-->
 
             <TextView
@@ -37,9 +37,10 @@
                 android:layout_gravity="center"
                 android:letterSpacing="0.15"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="PocketMon  "
+                android:text="PocketMon"
                 tools:layout_editor_absoluteX="177dp"
                 tools:layout_editor_absoluteY="30dp"
                 tools:text="PocketMon"
@@ -47,13 +48,13 @@
 <!--                android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.HOME ? View.GONE : View.VISIBLE}"-->
 <!--  android:text="@{viewModel.currentFragmentType.value}"-->
 
-            <ImageView
-                android:id="@+id/image_toolbar_logo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_toolbar_ball"
-                tools:visibility="gone"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/image_toolbar_logo"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:background="@drawable/ic_toolbar_ball"-->
+<!--                tools:visibility="gone"/>-->
 <!--  android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.HOME ? View.VISIBLE : View.GONE}"-->
 
         </androidx.appcompat.widget.Toolbar>

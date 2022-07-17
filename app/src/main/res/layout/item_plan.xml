@@ -15,23 +15,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        app:strokeColor="@color/gray_999999"
+        app:strokeWidth="3dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_dream_item2"
             android:shadowColor="@color/cardview_shadow_end_color">
 
             <ImageView
                 android:id="@+id/plan_image"
                 android:scaleType="centerCrop"
-                android:layout_width="110dp"
-                android:layout_height="94dp"
-                android:layout_marginEnd="3dp"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
                 app:imageUrl="@{itemPlan.image}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +79,7 @@
                 android:id="@+id/plan_degree_one_hundred"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="50dp"
+                android:layout_marginEnd="40dp"
                 android:text="%"
                 android:textSize="20sp"
                 android:fontFamily="@font/noto_sans"

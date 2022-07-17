@@ -36,7 +36,7 @@
     <dimen name="height_detail_gallery">500dp</dimen>
     <dimen name="size_detail_color">24dp</dimen>
     <dimen name="edge_detail_color">1dp</dimen>
-    <dimen name="size_detail_close">30dp</dimen>
+    <dimen name="size_detail_close">45dp</dimen>
     <dimen name="size_detail_circle">6dp</dimen>
     <dimen name="radius_detail_circle">3dp</dimen>
     <dimen name="edge_detail_circle">1px</dimen>

@@ -20,7 +20,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/layout_detail_bottom"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
@@ -30,32 +30,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <View
                     android:id="@+id/detail_bg_mario"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_mario_02"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/button_detail_close"
+                    android:layout_width="@dimen/size_detail_close"
+                    android:layout_height="@dimen/size_detail_close"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_close"
+                    android:onClick="@{() -> viewModel.leaveDetail()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/detail_bg_mario"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:background="@drawable/bg_mario_03"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
                 <ImageView
                     android:id="@+id/recycler_detail_image"
-                    android:layout_width="400dp"
-                    android:layout_height="400dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="450dp"
+                    android:layout_marginTop="0dp"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.selectedDream.image}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail_bg_mario" />
-<!--                 app:layout_constraintHorizontal_bias="0.0"-->
+                <!--                 app:layout_constraintHorizontal_bias="0.0"-->
 
                 <TextView
                     android:id="@+id/dream_detail_id"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/noto_sans"
@@ -75,34 +94,23 @@
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/ic_detail_comment"
                     android:onClick="@{() -> viewModel.navigateToComment()}"
+                    app:layout_constraintBottom_toBottomOf="@+id/dream_detail_id"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/dream_detail_id"
-                    app:layout_constraintBottom_toBottomOf="@+id/dream_detail_id" />
-
-                <ImageButton
-                    android:id="@+id/button_detail_close"
-                    android:layout_width="@dimen/size_detail_close"
-                    android:layout_height="@dimen/size_detail_close"
-                    android:layout_marginEnd="66dp"
-                    android:layout_marginTop="0dp"
-                    android:background="@drawable/ic_close"
-                    android:onClick="@{() -> viewModel.leaveDetail()}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/dream_detail_id"
-                    app:layout_constraintBottom_toBottomOf="@+id/dream_detail_id"/>
+                    app:layout_constraintTop_toTopOf="@+id/dream_detail_id" />
 
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/button_detail_message"-->
-<!--                    android:layout_width="@dimen/size_detail_close"-->
-<!--                    android:layout_height="@dimen/size_detail_close"-->
-<!--                    android:background="@drawable/ic_detail_message"-->
-<!--                    android:onClick="@{() -> viewModel.navigateToChat()}"-->
-<!--                    android:layout_marginEnd="16dp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="@+id/button_detail_comment"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/button_detail_comment"  />-->
 
+
+                <!--                <ImageButton-->
+                <!--                    android:id="@+id/button_detail_message"-->
+                <!--                    android:layout_width="@dimen/size_detail_close"-->
+                <!--                    android:layout_height="@dimen/size_detail_close"-->
+                <!--                    android:background="@drawable/ic_detail_message"-->
+                <!--                    android:onClick="@{() -> viewModel.navigateToChat()}"-->
+                <!--                    android:layout_marginEnd="16dp"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/button_detail_comment"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@+id/button_detail_comment"  />-->
 
 
                 <TextView
@@ -130,12 +138,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/press_start_2p"
                     android:text="夢想名稱"
                     android:textColor="@color/mario_red"
-                    android:fontFamily="@font/press_start_2p"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail_dream_createdTime"
-                    tools:text ="夢想名稱" />
+                    tools:text="夢想名稱" />
 
                 <View
                     android:id="@+id/view_detail_stock_separation"
@@ -145,6 +153,8 @@
                     app:layout_constraintStart_toEndOf="@+id/planEdit_plan_title"
                     app:layout_constraintTop_toTopOf="@+id/planEdit_plan_title" />
 
+
+                <!-- dream content -->
                 <TextView
                     android:id="@+id/dream_detail_title_text"
                     style="@style/DetailContent"
@@ -153,25 +163,23 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="16dp"
                     android:text="@{viewModel.selectedDream.title}"
-                    app:layout_constraintBottom_toBottomOf="@+id/view_detail_stock_separation"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/view_detail_stock_separation"
-                    app:layout_constraintTop_toTopOf="@+id/view_detail_stock_separation" />
+                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_title" />
 
-
-                <!-- dream content -->
                 <TextView
                     android:id="@+id/dream_detail_content"
                     style="@style/DetailTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/press_start_2p"
                     android:text="夢想描述"
                     android:textColor="@color/mario_red"
-                    android:fontFamily="@font/press_start_2p"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_title_text" />
 
                 <View
                     android:id="@+id/view_detail_separation"
@@ -190,9 +198,8 @@
                     android:layout_marginEnd="16dp"
                     android:text="@{viewModel.selectedDream.content}"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@+id/view_detail_separation"
                     app:layout_constraintStart_toEndOf="@+id/view_detail_separation"
-                    app:layout_constraintTop_toTopOf="@+id/view_detail_separation" />
+                    app:layout_constraintTop_toTopOf="@+id/dream_detail_content" />
 
                 <!-- degree of completion -->
                 <TextView
@@ -201,13 +208,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="34dp"
+                    android:fontFamily="@font/press_start_2p"
                     android:text="完成程度"
                     android:textColor="@color/mario_red"
-                    android:fontFamily="@font/press_start_2p"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_content" />
+                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_content_text" />
 
                 <View
                     android:id="@+id/view_detail_wash_separation"
@@ -225,10 +232,43 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="16dp"
                     android:text="@{viewModel.selectedDream.category}"
-                    app:layout_constraintBottom_toBottomOf="@+id/view_detail_wash_separation"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/view_detail_wash_separation"
-                    app:layout_constraintTop_toTopOf="@+id/view_detail_wash_separation" />
+                    app:layout_constraintTop_toTopOf="@+id/dream_detail_degree" />
+
+                <TextView
+                    android:id="@+id/dream_detail_time"
+                    style="@style/DetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="開始時間"
+                    android:textColor="@color/mario_red"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_degree_text" />
+
+                <View
+                    android:id="@+id/view_detail_time_separation"
+                    style="@style/DetailSeparation"
+                    android:layout_marginStart="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/dream_detail_time"
+                    app:layout_constraintStart_toEndOf="@+id/dream_detail_time"
+                    app:layout_constraintTop_toTopOf="@+id/dream_detail_time" />
+
+                <TextView
+                    android:id="@+id/dream_detail_time_text"
+                    style="@style/DetailContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{viewModel.selectedDream.createdTime.toDate().toString()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view_detail_wash_separation"
+                    app:layout_constraintTop_toTopOf="@+id/dream_detail_time" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -242,7 +282,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_degree"
+                    app:layout_constraintTop_toBottomOf="@+id/dream_detail_time"
                     tools:listitem="@layout/item_plan_edit" />
 
 

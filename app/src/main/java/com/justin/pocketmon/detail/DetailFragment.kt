@@ -20,6 +20,8 @@ import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.ext.getVmFactory
 import com.squareup.okhttp.internal.Internal.logger
 import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailFragment : Fragment() {
 
@@ -55,6 +57,7 @@ class DetailFragment : Fragment() {
                 plan.description = listOf(it.content)
                 plan.degree = it.category.toLong()
                 plan.createdTime = com.google.firebase.Timestamp.now()
+
             }
             viewModel.publishPlan(plan)
             Log.d("justin","再檢查從detail帶過來的資料 => $plan ")

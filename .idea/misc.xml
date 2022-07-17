@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/bg_dream_item.xml" value="0.1525" />
         <entry key="app/src/main/res/drawable/bg_dream_item2.xml" value="0.1045" />
         <entry key="app/src/main/res/drawable/bg_dream_item3.xml" value="0.108" />
+        <entry key="app/src/main/res/drawable/bg_dream_item4.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/bg_profile_image.xml" value="0.2335" />
         <entry key="app/src/main/res/drawable/bottom_nav_item_selector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/button_add2plan_black_ripple.xml" value="0.227" />
@@ -32,15 +33,15 @@
         <entry key="app/src/main/res/font/font_certs.xml" value="0.1" />
         <entry key="app/src/main/res/font/noto_sans.xml" value="0.26564102564102565" />
         <entry key="app/src/main/res/layout/activity_animation.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_opening.xml" value="0.2564814814814815" />
         <entry key="app/src/main/res/layout/content_opening.xml" value="0.2564814814814815" />
         <entry key="app/src/main/res/layout/dialog_comment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialog_login.xml" value="0.45579567779960706" />
+        <entry key="app/src/main/res/layout/dialog_login.xml" value="0.4185022026431718" />
         <entry key="app/src/main/res/layout/dialog_plan_todo.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_provider.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/fileprovider.xml" value="0.28425925925925927" />
-        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat_other.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/fragment_chat_room.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_chat_user.xml" value="0.353125" />
@@ -48,7 +49,7 @@
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_ext.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2564814814814815" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33178869323447635" />
         <entry key="app/src/main/res/layout/fragment_home_adapter.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_home_child.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_edit.xml" value="0.2077562326869806" />
@@ -60,15 +61,15 @@
         <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_plan_edit.xml" value="0.3190664672851563" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.4211074829101563" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.38513513513513514" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2564814814814815" />
-        <entry key="app/src/main/res/layout/item_broadcast.xml" value="0.3121301775147929" />
+        <entry key="app/src/main/res/layout/item_broadcast.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.31302083333333336" />
         <entry key="app/src/main/res/layout/item_detail_circle.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/layout/item_detail_comment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_detail_gallery.xml" value="0.1828125" />
         <entry key="app/src/main/res/layout/item_dream_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_plan.xml" value="0.7791666666666667" />
+        <entry key="app/src/main/res/layout/item_plan.xml" value="0.26285714285714284" />
         <entry key="app/src/main/res/layout/item_plan_edit.xml" value="0.1348314606741573" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.296875" />

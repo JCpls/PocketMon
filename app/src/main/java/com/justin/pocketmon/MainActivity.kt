@@ -101,11 +101,11 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
-                R.id.navigation_intro -> {
-
-                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToIntroFragment())
-                    return@setOnItemSelectedListener true
-                }
+//                R.id.navigation_intro -> {
+//
+//                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.navigateToIntroFragment())
+//                    return@setOnItemSelectedListener true
+//                }
 
                 R.id.navigation_home -> {
 
@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavController() {
         findNavController(R.id.myNavHostFragment).addOnDestinationChangedListener { navController: NavController, _: NavDestination, _: Bundle? ->
             viewModel.currentFragmentType.value = when (navController.currentDestination?.id) {
-                R.id.introFragment -> CurrentFragmentType.INTRO
+//                R.id.introFragment -> CurrentFragmentType.INTRO
                 R.id.homeFragment -> CurrentFragmentType.HOME
                 R.id.chatFragment -> CurrentFragmentType.CHAT
                 R.id.chatroomFragment -> CurrentFragmentType.CHATROOM

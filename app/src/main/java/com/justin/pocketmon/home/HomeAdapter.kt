@@ -19,10 +19,10 @@ class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<A
         fun bind(articledata: Articledata, onClickListener: OnClickListener) {
 
             binding.articledData = articledata
-//            binding.textAuthorName.text = articledata.name
+            binding.textAuthorName.text = articledata.name
             binding.textTitle.text = articledata.title
 //            binding.textContent.text = articledata.content
-//            binding.textCategory.text = articledata.category
+            binding.textCategory.text = articledata.category
 
 
 //            if (articledata.category == "0") {
@@ -40,10 +40,10 @@ class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<A
 //            }
 
 
-            val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm")
+            val sdf = SimpleDateFormat("MM.dd.yyyy")
             val time = articledata.createdTime?.seconds?.times(1000L)
             val dataTime = sdf.format(time)
-//            binding.textTime.text = dataTime
+            binding.textTime.text = dataTime
 
             binding.root.setOnClickListener{onClickListener.onClick(articledata)}
 

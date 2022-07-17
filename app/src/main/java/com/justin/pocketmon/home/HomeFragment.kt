@@ -36,22 +36,22 @@ class HomeFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val viewPagerAdapter = HomePagerAdapter(this)
-        val viewPager = binding.homeViewpager2
-        viewPager.adapter = viewPagerAdapter
+//        val viewPagerAdapter = HomePagerAdapter(this)
+//        val viewPager = binding.homeViewpager2
+//        viewPager.adapter = viewPagerAdapter
 
 
-        val catalogPageArray = arrayOf(
-            "My",
-            "好友",
-            "流行"
-        )
+//        val catalogPageArray = arrayOf(
+//            "My",
+//            "好友",
+//            "流行"
+//        )
 
-        val tabLayout = binding.homeTablayout
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = catalogPageArray[position]
-
-        } .attach()
+//        val tabLayout = binding.homeTablayout
+//        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+//            tab.text = catalogPageArray[position]
+//
+//        } .attach()
 
 // recyclerview
         val viewModel = HomeViewModel()

@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginEnd="1dp"
-            android:background="@color/court_green"
+            android:background="@drawable/bg_mario_02"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -95,7 +95,7 @@
             android:id="@+id/recycler_view_chat"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/light_green"
+            android:background="@color/gray_cccccc"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout_chat_End"
             app:layout_constraintEnd_toEndOf="parent"
