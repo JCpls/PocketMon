@@ -63,7 +63,7 @@ class CommentDialog : AppCompatDialogFragment() {
             Logger.d("再檢查從detailPage帶過來的資料 => $articledata")
 
             viewModel.navigateToDetailPage()
-            viewModel.getComment()
+//            viewModel.getComment()
 
 
 //            binding.planEditPlanDegreeText.text = it.toString()

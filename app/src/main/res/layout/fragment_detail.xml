@@ -38,16 +38,16 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/button_detail_close"
-                    android:layout_width="@dimen/size_detail_close"
-                    android:layout_height="@dimen/size_detail_close"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/ic_close"
-                    android:onClick="@{() -> viewModel.leaveDetail()}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <TextView-->
+<!--                    android:id="@+id/button_detail_close"-->
+<!--                    android:layout_width="@dimen/size_detail_close"-->
+<!--                    android:layout_height="@dimen/size_detail_close"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="@color/green"-->
+<!--                    android:onClick="@{() -> viewModel.leaveDetail()}"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
 <!--                <TextView-->
 <!--                    android:id="@+id/detail_bg_mario"-->
@@ -57,17 +57,19 @@
 <!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
+                <!--                 app:layout_constraintHorizontal_bias="0.0"-->
+
+
                 <ImageView
                     android:id="@+id/recycler_detail_image"
                     android:layout_width="0dp"
-                    android:layout_height="450dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_height="500dp"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.selectedDream.image}"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/layout_detail"
                     app:layout_constraintTop_toBottomOf="@+id/detail_bg_mario" />
-                <!--                 app:layout_constraintHorizontal_bias="0.0"-->
 
                 <TextView
                     android:id="@+id/dream_detail_id"
@@ -265,7 +267,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@{viewModel.selectedDream.createdTime.toDate().toString()}"
+                    android:text="@{viewModel.timeStampToDate(viewModel.selectedDream.createdTime)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/view_detail_wash_separation"
                     app:layout_constraintTop_toTopOf="@+id/dream_detail_time" />
@@ -284,6 +286,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dream_detail_time"
                     tools:listitem="@layout/item_plan_edit" />
+
+                <TextView
+                    android:id="@+id/button_detail_close"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/ic_close"
+                    android:onClick="@{() -> viewModel.leaveDetail()}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

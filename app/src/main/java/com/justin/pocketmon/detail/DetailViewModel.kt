@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Article
@@ -13,10 +14,13 @@ import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
+import com.justin.pocketmon.util.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailViewModel
 
@@ -165,6 +169,12 @@ class DetailViewModel
 
     fun onLeft() {
         _leave.value = null
+    }
+
+    fun timeStampToDate(createdTime: Timestamp): String {
+        val date = SimpleDateFormat("MM/dd, yyyy", Locale.CHINESE).format(createdTime.toDate())
+        Logger.i("date = $date")
+        return date
     }
 
 

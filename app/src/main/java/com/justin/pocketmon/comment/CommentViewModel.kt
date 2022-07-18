@@ -129,42 +129,42 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         Logger.i("------------------------------------")
 
 //        getComment(articledata)
-          getLiveComments(articledata.id, addComment.toString())
+//          getLiveComments(articledata.id, addComment.toString())
     }
 
-    fun getComment() {
-
-        coroutineScope.launch {
-
-            _status.value = LoadApiStatus.LOADING
-
-            val result = repository.getCommentList()
-
-            _commentAdded.value = when (result) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-                    result.data
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-            }
-            _refreshStatus.value = false
-        }
-    }
+//    fun getComment() {
+//
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            val result = repository.getCommentList()
+//
+//            _commentAdded.value = when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//                    result.data
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                else -> {
+//                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
 
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
@@ -172,16 +172,16 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
 
 
     // the liveData to get "getLiveComments" data from firebase
-    var liveComment = MutableLiveData<Comment>()
-
-    private fun getLiveComments(articleId: String, commentId: String) {
-        coroutineScope.launch {
-            liveComment = repository.getLiveComments(articleId, commentId)
-            Logger.i("getLiveTodoResult() liveToDo = $liveComment")
-            Logger.i("getLiveTodoResult() liveToDo.value = ${liveComment.value}")
-//            _isLiveToDoListReady.value = true
-        }
-    }
+//    var liveComment = MutableLiveData<Comment>()
+//
+//    private fun getLiveComments(articleId: String, commentId: String) {
+//        coroutineScope.launch {
+//            liveComment = repository.getLiveComments(articleId, commentId)
+//            Logger.i("getLiveTodoResult() liveToDo = $liveComment")
+//            Logger.i("getLiveTodoResult() liveToDo.value = ${liveComment.value}")
+////            _isLiveToDoListReady.value = true
+//        }
+//    }
 
 
 }

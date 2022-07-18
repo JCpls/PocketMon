@@ -68,13 +68,12 @@
                 android:text="完成這項計畫可以增加 "
                 android:textSize="18dp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/plan_todo_edit"
                 app:layout_constraintTop_toBottomOf="@+id/plan_todo_edit" />
 
             <SeekBar
                 android:id="@+id/seekbar_plan_todo"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:min="0"
