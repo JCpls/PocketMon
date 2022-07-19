@@ -13,4 +13,5 @@ data class Broadcast(
     var timeFinish: Timestamp = Timestamp.now(),
     var timeStart: String = ""
 
+
 ): Parcelable
