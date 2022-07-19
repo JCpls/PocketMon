@@ -47,7 +47,7 @@ class LoginDialog : AppCompatDialogFragment() {
         setStyle(DialogFragment.STYLE_NO_FRAME, R.style.LoginDialog)
 
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("")
+            .requestIdToken("879844148049-6gp99r41tluqbre69kd77krn9fd906k9.apps.googleusercontent.com")
             .requestEmail()
             .build()
 
@@ -86,7 +86,7 @@ class LoginDialog : AppCompatDialogFragment() {
 
     private fun signIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken( "")
+            .requestIdToken( "879844148049-6gp99r41tluqbre69kd77krn9fd906k9.apps.googleusercontent.com")
             .requestEmail()
             .build()
 
