@@ -32,7 +32,6 @@ class HomeViewModel: ViewModel() {
     init {
         Log.d("justin", "回到HomeFragment")
         getData()
-//        getFakeData()
 
     }
 

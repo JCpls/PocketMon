@@ -229,6 +229,31 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
         return liveData
     }
 
+
+    override suspend fun pushArticle(articledata: Articledata): Result<Boolean> = suspendCoroutine { continuation ->
+        val articleCollection = FirebaseFirestore.getInstance().collection("Article")
+        val document = articleCollection.document()
+
+        articledata.id = document.id
+
+        document
+            .set(articledata)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+
     override suspend fun publishPlan (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
         Log.i("justin","檢查計畫頁有無收到plan3")
         val plans = FirebaseFirestore.getInstance().collection(PATH_PLANS)

@@ -18,6 +18,7 @@ import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.login.UserManager
 import com.squareup.okhttp.internal.Internal.logger
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
@@ -52,8 +53,8 @@ class DetailFragment : Fragment() {
                 Log.d("justin","初檢查從detail帶過來的資料 => $plan ")
                 plan.title = it.title
                 plan.image = it.image
-                plan.ownerId = it.uid
-                plan.name = it.name
+                plan.ownerId = UserManager.user.id
+                plan.name = UserManager.user.name
                 plan.description = listOf(it.content)
                 plan.degree = it.category.toLong()
                 plan.createdTime = com.google.firebase.Timestamp.now()

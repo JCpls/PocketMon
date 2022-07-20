@@ -19,6 +19,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -34,11 +35,16 @@ import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.User
 import com.justin.pocketmon.databinding.FragmentHomeEditBinding
+import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.plan.todo.PlanToDoViewModel
 import com.justin.pocketmon.util.Logger
+import com.justin.pocketmon.util.ServiceLocator.repository
 import java.io.ByteArrayOutputStream
 import java.io.File
 
 class HomeEditFragment : Fragment() {
+
+    private val viewModel by viewModels<HomeEditViewModel> { getVmFactory()}
 
     var uri: Uri? = null
     var PICK_CONTACT_REQUEST = 1
@@ -47,7 +53,6 @@ class HomeEditFragment : Fragment() {
     var img2: ImageView? = null
     val FILE_NAME = "photo.jpg"
     var photoFile: File? = null
-    val viewModel = HomeEditViewModel()
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -113,9 +118,9 @@ class HomeEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val viewModel = HomeEditViewModel()
+        val binding = FragmentHomeEditBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
 
-        val binding = FragmentHomeEditBinding.inflate(inflater)
 
         //UserManager
         binding.homeEditData =  UserManager
@@ -124,21 +129,20 @@ class HomeEditFragment : Fragment() {
         val document = db.collection("Article").document()
 
         binding.buttonArticleAdd.setOnClickListener {
-            val article = Articledata()
+
+
+            val articledata = Articledata()
+
             val time = Timestamp.now()
 
-//            Log.d("justin", "這個是add後的回傳值 -> ${document.id}")
-
-            article.id = UserManager.user.name
-
-            article.id = document.id
-            article.uid = UserManager.user.id
-            article.name = UserManager.user.name
-            article.title = binding.textArticleTitle.text.toString()
-            article.category = binding.textArticleDegree.text.toString()
-            article.content = binding.textArticleContent.text.toString()
-            article.createdTime = time
-            article.image = uri.toString()
+            articledata.id = document.id
+            articledata.uid = UserManager.user.id
+            articledata.name = UserManager.user.name
+            articledata.title = binding.textArticleTitle.text.toString()
+            articledata.category = binding.textArticleDegree.text.toString()
+            articledata.content = binding.textArticleContent.text.toString()
+            articledata.createdTime = time
+            articledata.image = uri.toString()
 
             Logger.d("HomeEditFragment UserManager.user.name = ${UserManager.user.name}")
             Logger.d("HomeEditFragment UserManager.user.id = ${UserManager.user.id}")
@@ -146,7 +150,7 @@ class HomeEditFragment : Fragment() {
 
 
 //          viewModel.checkAuthor(article)
-            viewModel.addData(article)
+            viewModel.pushArticle(articledata)
 
             this.findNavController().navigate(NavigationDirections.navigateToHomeFragment())
 

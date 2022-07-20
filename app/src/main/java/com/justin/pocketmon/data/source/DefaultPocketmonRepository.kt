@@ -41,6 +41,10 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.getLiveArticles()
     }
 
+    override suspend fun pushArticle(articledata: Articledata): Result<Boolean>{
+        return remoteDataSource.pushArticle(articledata)
+    }
+
     override suspend fun publishPlan (plan: Plan): Result<Boolean> {
         return remoteDataSource.publishPlan(plan)
     }

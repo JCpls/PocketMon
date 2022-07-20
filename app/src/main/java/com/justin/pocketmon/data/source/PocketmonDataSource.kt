@@ -28,6 +28,8 @@ interface PocketmonDataSource {
 
     suspend fun addUser(user: User): Result<Boolean>
 
+    suspend fun pushArticle(articledata: Articledata): Result<Boolean>
+
     suspend fun publishPlan(plan: Plan): Result<Boolean>
 
     suspend fun publishBroadcast (broadcast: Broadcast): Result<Boolean>

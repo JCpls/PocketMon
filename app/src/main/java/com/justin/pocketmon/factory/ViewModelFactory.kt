@@ -12,6 +12,7 @@ import com.justin.pocketmon.R
 import com.justin.pocketmon.chat.ChatViewModel
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.home.HomeViewModel
+import com.justin.pocketmon.home.edit.HomeEditViewModel
 import com.justin.pocketmon.login.LoginViewModel
 import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditViewModel
@@ -44,6 +45,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(ChatViewModel::class.java) ->
                     ChatViewModel(repository)
+
+                isAssignableFrom(HomeEditViewModel::class.java) ->
+                    HomeEditViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
