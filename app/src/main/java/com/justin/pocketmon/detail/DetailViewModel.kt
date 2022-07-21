@@ -8,10 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Article
-import com.justin.pocketmon.data.Articledata
-import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.Result
+import com.justin.pocketmon.data.*
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
 import com.justin.pocketmon.util.Logger
@@ -32,6 +29,13 @@ class DetailViewModel
     }
     val selectedDream: LiveData<Articledata>
         get() = _selectedDream
+
+
+    // for livedata observe
+    private val _isLiveCommentListReady = MutableLiveData<Boolean>()
+
+    val isLiveCommentListReady: LiveData<Boolean>
+        get() = _isLiveCommentListReady
 
     // Handle leave detail
     private val _leaveDetail = MutableLiveData<Boolean>()
@@ -129,10 +133,16 @@ class DetailViewModel
     }
 
 
-//    init {
-//        _selectedDream.value = articledata
-//    }
+    init {
+        Logger.i("------------------------------------")
+        Logger.i("[${this::class.simpleName}]${this}")
+        Logger.i("------------------------------------")
 
+
+        getLiveComments(articledata.id)
+
+
+    }
 
     fun publishPlan(plan: Plan) {
         Log.i("justin","檢查計畫頁有無收到plan1" )
@@ -178,7 +188,25 @@ class DetailViewModel
     }
 
 
+    // the liveData to get "getLiveComment" data from firebase
+    var liveComment = MutableLiveData<List<Comment>>()
+
+    private fun getLiveComments(articleId: String) {
+        coroutineScope.launch {
+            liveComment = repository.getLiveComments(articleId)
+            Logger.i("getLiveComment() liveComent = $liveComment")
+            Logger.i("getLiveComment() liveComment.value = ${liveComment.value}")
+            _isLiveCommentListReady.value = true
+        }
+    }
+
 }
+
+
+
+
+
+
 
 
 // ------ for detail gallery further upgrades

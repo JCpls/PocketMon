@@ -5,50 +5,51 @@
 
     <data>
         <variable
-            name="commentData" type="com.justin.pocketmon.data.Articledata" />
+            name="commentData" type="com.justin.pocketmon.data.Comment" />
         <variable name="viewModel" type="com.justin.pocketmon.comment.CommentViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <ImageView
-            android:id="@+id/item_comment_circle"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_circle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_dream_item3"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="5dp"
             android:padding="10dp"
+            android:maxWidth="330dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_comment_circle"
-            app:layout_constraintTop_toTopOf="@+id/item_comment_circle">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/item_comment_circle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <!--         app:imageUrl="@{commentData.authorImage}"-->
 
             <TextView
                 android:id="@+id/item_comment_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Justin Yang"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:textSize="10sp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@+id/item_comment_circle"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text = "justin"/>
 
             <TextView
                 android:id="@+id/item_comment_text"
@@ -56,10 +57,12 @@
                 android:maxWidth="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="18sp"
+                android:layout_marginEnd="10dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/noto_sans"
                 android:textColor="@color/gray_999999"
                 app:layout_constraintStart_toStartOf="@+id/item_comment_user"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_comment_user"
                 tools:text = "找十字起子"/>
 

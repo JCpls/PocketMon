@@ -95,13 +95,13 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
 //    }
 
 
-    fun addComment(articledata: Articledata) {
+    fun addComment(comment: Comment) {
         Log.i("justin","檢查addComment有無收到plan1" )
         coroutineScope.launch {
             Log.i("justin","檢查addComment有無收到plan2")
             _status.value = LoadApiStatus.LOADING
 
-            when (val result = repository.addComment(articledata)) {
+            when (val result = repository.addComment(comment)) {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE

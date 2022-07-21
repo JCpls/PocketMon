@@ -25,8 +25,8 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.getLiveToDoList(userId, planId)
     }
 
-    override fun getLiveComments(articleId: String, commentId: String): MutableLiveData<Comment>{
-        return remoteDataSource.getLiveComments(articleId, commentId)
+    override fun getLiveComments(articleId: String): MutableLiveData<List<Comment>>{
+        return remoteDataSource.getLiveComments(articleId)
     }
 
     override suspend fun getToDoList(plan:Plan): Result<Plan> {
@@ -61,8 +61,8 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.addCheckboxStatus(plan)
     }
 
-    override suspend fun addComment (articledata: Articledata): Result<Boolean> {
-        return remoteDataSource.addComment(articledata)
+    override suspend fun addComment (comment: Comment): Result<Boolean> {
+        return remoteDataSource.addComment(comment)
     }
 
 

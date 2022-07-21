@@ -48,9 +48,8 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
     }
 
     override fun getLiveComments(
-        articleId: String,
-        commentId: String
-    ): MutableLiveData<Comment> {
+        articleId: String
+    ): MutableLiveData<List<Comment>> {
         TODO("Not yet implemented")
     }
 
@@ -90,7 +89,7 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addComment(articledata: Articledata): Result<Boolean> {
+    override suspend fun addComment(comment: Comment): Result<Boolean> {
         TODO("Not yet implemented")
     }
 

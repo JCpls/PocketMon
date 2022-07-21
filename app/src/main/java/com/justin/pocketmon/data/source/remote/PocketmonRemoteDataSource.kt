@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.toObject
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.*
@@ -164,14 +165,14 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
 
-    override fun getLiveComments(articleId: String, commentId: String): MutableLiveData<Comment> {
-        val liveData = MutableLiveData<Comment>()
+    override fun getLiveComments(articleId: String): MutableLiveData<List<Comment>> {
+        val liveData = MutableLiveData<List<Comment>>()
 
         FirebaseFirestore.getInstance()
             .collection(PATH_COMMENTS)
-            .document(articleId)
-//            .whereEqualTo(FIELD_IMDB_ID, imdbID)
-//            .orderBy(FIELD_CREATED_TIME, Query.Direction.DESCENDING)
+//            .document(articleId)
+            .whereEqualTo("articleId", articleId )
+            .orderBy("createdTime", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
                 Logger.i("getLiveComments addSnapshotListener detect")
 
@@ -184,12 +185,22 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 //                        val list = mutableListOf<Comment>()
 //                        snapshot.forEach { document ->
 //                            Logger.d(document.id + " => " + document.data)
-                    val comment = snapshot.toObject(Comment::class.java)
-                    Logger.i("snapshot plan = $comment")
 
-                    comment?.let {
-                        liveData.value = it
+                    if (snapshot.size() >= 1) {
+                        val list = mutableListOf<Comment>()
+                        snapshot.forEach { document ->
+                            Logger.d(document.id + " => " + document.data)
+                            val comment = document.toObject(Comment::class.java)
+                            list.add(comment)
+                        }
+                        liveData.value = list
                     }
+//                    val comment = snapshot.toObject(Comment::class.java)
+//                    Logger.i("snapshot plan = $comment")
+//
+//                    comment?.let {
+//                        liveData.value = it
+//                    }
 
                 } else {
                     Logger.w("[${this::class.simpleName}] getLiveComment snapshot == null")
@@ -363,14 +374,14 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
 
-    override suspend fun addComment (articledata: Articledata): Result<Boolean> = suspendCoroutine { continuation ->
-        Logger.i("RemoteDataSource articledata = $articledata")
-        Logger.i("RemoteDataSource articledata.comment = ${articledata.comment}")
-        Logger.i("articledata.uid = ${articledata.uid}")
+    override suspend fun addComment (comment: Comment): Result<Boolean> = suspendCoroutine { continuation ->
+        Logger.i("RemoteDataSource comment = $comment")
+        Logger.i("articleId = ${comment.id}")
         FirebaseFirestore.getInstance()
-            .collection(PATH_ARTICLE)
-            .document(articledata.uid)
-            .update("comment", FieldValue.arrayUnion(articledata.comment.last()))
+            .collection(PATH_COMMENTS)
+            .document(comment.id)
+//            .update("comment", FieldValue.arrayUnion(articledata.comment.last()))
+            .set(comment)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Logger.i("add comment task.isSuccessful")

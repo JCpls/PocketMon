@@ -20,7 +20,7 @@ interface PocketmonRepository {
 
     suspend fun getCommentList(): Result<List<Articledata>>
 
-    fun getLiveComments(articleId: String, commentId: String): MutableLiveData<Comment>
+    fun getLiveComments(articleId: String): MutableLiveData<List<Comment>>
 
     fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan>
 
@@ -38,7 +38,7 @@ interface PocketmonRepository {
 
     suspend fun addCheckboxStatus (plan: Plan): Result<Boolean>
 
-    suspend fun addComment (articledata: Articledata): Result<Boolean>
+    suspend fun addComment (comment: Comment): Result<Boolean>
 
     suspend fun delete(article: Article): Result<Boolean>
 

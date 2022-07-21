@@ -19,10 +19,7 @@ import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.login.UserManager
-import com.squareup.okhttp.internal.Internal.logger
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.util.*
+import com.justin.pocketmon.util.Logger
 
 class DetailFragment : Fragment() {
 
@@ -69,9 +66,28 @@ class DetailFragment : Fragment() {
 
         }
 
+
+        val detailCommentAdapter = DetailCommentAdapter(viewModel)
+        binding.detailCommentRecyclerview.adapter = detailCommentAdapter
+
+        // recyclerView
+        viewModel.isLiveCommentListReady.observe(viewLifecycleOwner) {
+            Logger.i("isLiveCommentListReady = $it")
+
+            viewModel.liveComment.observe(viewLifecycleOwner) {
+                Logger.i("liveCommentList = $it")
+                detailCommentAdapter.submitList(it)
+            }
+        }
+
+
 //        binding.buttonDetailMessage.setOnClickListener{
 //            viewModel.navigateToChatRoom()
 //        }
+
+
+
+
 
         binding.buttonDetailComment.setOnClickListener{
             viewModel.navigateToCommentDialog()

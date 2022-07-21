@@ -14,6 +14,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.Broadcast
+import com.justin.pocketmon.data.Comment
+import com.justin.pocketmon.login.UserManager
 import com.justin.pocketmon.databinding.DialogCommentBinding
 import com.justin.pocketmon.databinding.DialogPlanTodoBinding
 import com.justin.pocketmon.ext.getVmFactory
@@ -47,85 +49,43 @@ class CommentDialog : AppCompatDialogFragment() {
 
         // add data from Dialog to PlanEdit page
         val db = FirebaseFirestore.getInstance()
-        val document = db.collection("Article").document()
+        val document = db.collection("Comments").document()
 
         binding.addCommentButton.setOnClickListener{
 
-            val articledata = viewModel.addComment.value!!
+            val comment = Comment()
+            comment.id = document.id
 
-            articledata.comment.add(binding.commentEdit.text.toString())
-            Logger.i("articledata.comment = ${articledata.comment}")
-//             plan.method = binding.planTodoEdit.text
+            viewModel.addComment.value?.let {
+                Log.d("justin","初檢查從detail帶過來的資料 => $comment ")
+                comment.articleId = it.id
+                comment.authorId = UserManager.user.id
+                comment.authorName = UserManager.user.name
+                comment.authorImage = UserManager.user.image
+                comment.content = binding.commentEdit.text.toString()
+                comment.createdTime = com.google.firebase.Timestamp.now()
 
-            Logger.d("first check for data from PlanEditPage => $articledata")
-
-            viewModel.addComment(articledata)
-            Logger.d("再檢查從detailPage帶過來的資料 => $articledata")
-
+            }
+            viewModel.addComment(comment)
+            Log.d("justin","再檢查從detail帶過來的資料 => $comment ")
             viewModel.navigateToDetailPage()
-//            viewModel.getComment()
 
 
-//            binding.planEditPlanDegreeText.text = it.toString()
+//            val articledata = viewModel.addComment.value!!
 //
-//            if (it >= 100L) {
+//            articledata.comment.add(binding.commentEdit.text.toString())
+//            Logger.i("articledata.comment = ${articledata.comment}")
+////             plan.method = binding.planTodoEdit.text
 //
-//                val db = FirebaseFirestore.getInstance()
-//                val document = db.collection("Broadcasts").document()
+//            Logger.d("first check for data from PlanEditPage => $articledata")
 //
-//                val broadcast = Broadcast()
-//                broadcast.id = document.id
-//                // livedata 必須要 .value 才能夠賦值
-//                viewModel.planEdit.value?.let {
-//                    broadcast.title = it.title
-//                    broadcast.from = it.ownerId
-//                    broadcast.timeFinish = com.google.firebase.Timestamp.now()
-//                    broadcast.timeStart = it.createdTime.toString()
-//                    Log.d("justin","檢查 -上傳前- broadcast 長這樣 => $broadcast ")
-//                }
+//            viewModel.addComment(articledata)
+//            Logger.d("再檢查從detailPage帶過來的資料 => $articledata")
 //
-//                viewModel.publishToBroadcast(broadcast)
-////                findNavController().navigate(NavigationDirections.navigateToIntroFragment())
-////
-//            }
-
-
-
+//            viewModel.navigateToDetailPage()
+////            viewModel.getComment()
 
         }
-
-//       //recyclerView
-//        val adapter = CommentAdapter()
-//        binding.commentRecyclerview.adapter = adapter
-//
-//        // recyclerView
-//        viewModel.commentAdded.observe(viewLifecycleOwner, Observer {
-//
-//            (binding.commentRecyclerview.adapter as CommentAdapter).submitList(it)
-//            (binding.commentRecyclerview.adapter as CommentAdapter).notifyDataSetChanged()
-//            binding.swipeRefreshLayout.isRefreshing = false
-
-//            it.method.let {
-//
-//                adapter.submitList(it)
-//            }
-
-//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
-//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
-
-
-//            binding.swipeRefreshLayout.isRefreshing = false
-//            Logger.i("second viewModel.planEdit = $it")
-//            viewModel.getToDoResult(Plan(
-//                id = "fzKBm4kriaxT3qMnCGFW"
-//            ))
-
-//            Logger.i("Justin Livedata todo list = $it")
-
-//        })
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//            viewModel.getComment()
-//        }
 
 
         viewModel.navigateToDetailPage.observe(
