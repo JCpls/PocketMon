@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.databinding.FragmentHomeBinding
 import com.justin.pocketmon.ext.getVmFactory
+import com.justin.pocketmon.login.UserManager
 import com.justin.pocketmon.util.ServiceLocator.repository
 
 class HomeFragment: Fragment() {
@@ -35,6 +36,10 @@ class HomeFragment: Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+
+
+
 
 //        val viewPagerAdapter = HomePagerAdapter(this)
 //        val viewPager = binding.homeViewpager2

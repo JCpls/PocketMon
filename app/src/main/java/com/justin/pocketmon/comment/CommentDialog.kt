@@ -69,6 +69,7 @@ class CommentDialog : AppCompatDialogFragment() {
             viewModel.addComment(comment)
             Log.d("justin","再檢查從detail帶過來的資料 => $comment ")
             viewModel.navigateToDetailPage()
+            dismiss()
 
 
 //            val articledata = viewModel.addComment.value!!

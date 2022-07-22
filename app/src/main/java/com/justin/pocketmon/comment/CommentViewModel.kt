@@ -88,11 +88,6 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         viewModelJob.cancel()
     }
 
-//    init {
-//        Logger.i("------------------------------------")
-//        Logger.i("[${this::class.simpleName}]${this}")
-//        Logger.i("------------------------------------")
-//    }
 
 
     fun addComment(comment: Comment) {

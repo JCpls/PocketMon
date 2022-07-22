@@ -74,7 +74,8 @@ class LoginDialog : AppCompatDialogFragment() {
             Observer {
                 Logger.i("leave的值變化 -> $it")
                 it?.let {
-                    if (it) findNavController().popBackStack()
+//                    if (it) findNavController().popBackStack()
+                    dismiss()
 
                 }
             }
