@@ -14,11 +14,9 @@
 ## Feature
 
 * **Log in** - Help you to have a quicker log-in with Google Login SDK
+<pre> <img src="https://github.com/JCpls/PocketMon/blob/develop/app/src/main/res/drawable-v24/readme_01.gif" height=400>  </pre>
 
 * **Browse through wishes** - You are welcome to browse through wishes by users on the DreamPage 
-
-<pre> <img src="https://github.com/JCpls/PocketMon/blob/develop/app/src/main/res/drawable-v24/01.gif" height=400>  </pre>
-
 
 
 * **Go for details** - Click on those wishes to show you more details including description, degree of completion, and time posted 
@@ -31,15 +29,18 @@
  
 
 * **Add To-Do list** - Add your items of plan which can make your wish come true, by clicking To-Do-Plan button to start the practice 
+<pre> <img src="https://github.com/JCpls/PocketMon/blob/develop/app/src/main/res/drawable-v24/readme_06.gif" height=400>  </pre>
 
 
 * **Follow up completion** - Each item of plan is set with a score by yourself, and the credit will be earned when completed (is checked)
-
+<pre> <img src="https://github.com/JCpls/PocketMon/blob/develop/app/src/main/res/drawable-v24/readme_07.gif" height=400>  </pre>
 
 * **Page of dream completed** - When you keep finishing your items of plan, you will approach the score of 100, the wish will be recoginized as a completed one at 100 or more, and be shown onto the wall of dream completed in Friend Page
 
-
 * **Start a chat** - In Friend Page, you can find who has completed his/her dream recently, and you can send a congrat to start a conversation for further discussion about the dream or so on
+
+<pre> <img src="https://github.com/JCpls/PocketMon/blob/develop/app/src/main/res/drawable-v24/readme_08.gif" height=400>  </pre>
+
 
 
 
