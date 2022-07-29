@@ -8,12 +8,18 @@
 ![](https://img.shields.io/badge/version-v1.0.6-yellow)
 
 ## Test Account 
-**Account:** chftstccnt@gmail.com   
-**Password:** hu66i2vg
+**Account:** ppppocketmon@gmail.com   
+**Password:** 123test123
 
 ## Feature
 
+* **Log in** - Help you to have a quicker log-in with Google Login SDK
+
 * **Browse through wishes** - You are welcome to browse through wishes by users on the DreamPage 
+
+<pre> <img src="https://github.com/JCpls/PocketMon/blob/develop/app/src/main/res/drawable-v24/01.gif" height=400>  </pre>
+
+
 
 * **Go for details** - Click on those wishes to show you more details including description, degree of completion, and time posted 
 
