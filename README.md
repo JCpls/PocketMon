@@ -16,6 +16,7 @@
 * **Log in** - Help you to have a quicker log-in with Google Login SDK
 <pre> <img src="https://github.com/JCpls/PocketMon/blob/develop/app/src/main/res/drawable-v24/readme_01.gif" height=400>  </pre>
 
+
 * **Browse through wishes** - You are welcome to browse through wishes by users on the DreamPage 
 
 
