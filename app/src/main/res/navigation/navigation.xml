@@ -5,13 +5,6 @@
     app:startDestination="@+id/profileFragment">
 
     <fragment
-        android:id="@+id/introFragment"
-        android:name="com.justin.pocketmon.intro.IntroFragment"
-        android:label="IntroFragment"
-        tools:layout="@layout/fragment_intro" >
-    </fragment>
-
-    <fragment
         android:id="@+id/homeFragment"
         android:name="com.justin.pocketmon.home.HomeFragment"
         android:label="HomeFragment"
@@ -106,9 +99,6 @@
         tools:layout="@layout/dialog_login">
     </dialog>
 
-    <action android:id="@+id/navigate_to_intro_fragment" app:destination="@id/introFragment"
-        app:popUpTo="@id/navigation"
-        app:popUpToInclusive="true" />
     <action android:id="@+id/navigate_to_home_fragment" app:destination="@id/homeFragment"
         app:popUpTo="@id/navigation"
         app:popUpToInclusive="true" />
@@ -131,18 +121,5 @@
     <action android:id="@+id/navigate_to_plan_todo_dialog" app:destination="@id/planToDoDialog"/>
     <action android:id="@+id/navigate_to_login_dialog" app:destination="@id/loginDialog"/>
 
-
 </navigation>
-<!--    <navigation android:id="@+id/navigation3"-->
-<!--        app:startDestination="@id/navigation2">-->
-<!--        <navigation-->
-<!--            android:id="@+id/navigation2"-->
-<!--            app:startDestination="@id/profileFragment">-->
-<!--            <fragment-->
-<!--                android:id="@+id/profileFragment"-->
-<!--                android:name="com.justin.pocketmon.profile.ProfileFragment"-->
-<!--                android:label="ProfileFragment"-->
-<!--                tools:layout="@layout/fragment_profile"></fragment>-->
-<!--        </navigation>-->
-<!--    </navigation>-->
 

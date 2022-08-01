@@ -18,8 +18,6 @@ import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditViewModel
 import com.justin.pocketmon.profile.ProfileViewModel
 
-/* Factory for home item ViewModels.
-*/
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
     private val repository: PocketmonRepository

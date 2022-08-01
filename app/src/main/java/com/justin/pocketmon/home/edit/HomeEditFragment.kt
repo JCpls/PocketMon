@@ -50,7 +50,7 @@ class HomeEditFragment : Fragment() {
     var PICK_CONTACT_REQUEST = 1
     var REQUEST_CODE = 42
     var img1: ImageView? = null
-    var img2: ImageView? = null
+//    var img2: ImageView? = null
     val FILE_NAME = "photo.jpg"
     var photoFile: File? = null
 
@@ -99,19 +99,19 @@ class HomeEditFragment : Fragment() {
 
     }
 
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//    // [START storage_field_initialization]
+//        //storage = Firebase.storage
+//        // [END storage_field_initialization]
+//
+//    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    // [START storage_field_initialization]
-        //storage = Firebase.storage
-        // [END storage_field_initialization]
-
-    }
-
-    private fun setContentView(fragmentHomeEdit: Int) {
-
-    }
+//    private fun setContentView(fragmentHomeEdit: Int) {
+//
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

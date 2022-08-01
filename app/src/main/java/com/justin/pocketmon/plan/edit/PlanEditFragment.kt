@@ -54,27 +54,6 @@ class PlanEditFragment: Fragment() {
             viewModel.navigateToAddTodo()
         }
 
-
-//        viewModel.liveToDoList.observe(viewLifecycleOwner, Observer {
-//            Logger.i("liveToDoList = $it")
-//                it.let {
-//
-//
-//                // - dead circle of observe and upload -- paralyze firebase
-////               viewModel.getToDoResult(plan)
-//
-////              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
-////              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
-//                }
-//
-////            binding.swipeRefreshLayout.isRefreshing = false
-//            Logger.i("second viewModel.planEdit = $it")
-////                id = "fzKBm4kriaxT3qMnCGFW"
-////            ))
-//            Logger.i("Justin Livedata todo list = $it")
-//
-//        })
-
         // observe for checkBox status in recyclerView
         viewModel.newDegree.observe(viewLifecycleOwner, Observer {
             Logger.i("newDegree is -> $it")
@@ -88,28 +67,22 @@ class PlanEditFragment: Fragment() {
 
                 val broadcast = Broadcast()
                 broadcast.id = document.id
-                // livedata 必須要 .value 才能夠賦值
+
                 viewModel.liveToDoList.value?.let {
                     broadcast.title = it.title
                     broadcast.fromId = it.ownerId
                     broadcast.fromName = it.name
                     broadcast.timeFinish = com.google.firebase.Timestamp.now()
                     broadcast.timeStart = it.createdTime.toString()
-                    Log.d("justin","檢查 -上傳前- broadcast 長這樣 => $broadcast ")
+                    Logger.i("Check how does broadcast look after liveToDoList => $broadcast")
                 }
 
                 viewModel.publishToBroadcast(broadcast)
-//                findNavController().navigate(NavigationDirections.navigateToIntroFragment())
-//
+
             }
 
-            Logger.i("observe有無啟動")
+            Logger.i("observe is working")
         })
-
-
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//            viewModel.getArticlesResult()
-//        }
 
 
         viewModel.leavePlanEdit.observe(

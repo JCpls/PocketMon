@@ -13,4 +13,5 @@ data class Chat (
     var content: String = "",
     var image: String = "",
     var name: String = ""
+
 ) : Parcelable

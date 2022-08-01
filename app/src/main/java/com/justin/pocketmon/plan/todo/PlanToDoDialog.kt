@@ -53,36 +53,19 @@ class PlanToDoDialog : AppCompatDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+
         // add data from Dialog to PlanEdit page
-        val db = FirebaseFirestore.getInstance()
-        val document = db.collection("Plans").document()
-
         binding.planTodoButton.setOnClickListener{
-
 
             val plan = viewModel.addedTodo.value!!
 
-//          plan.method.add(binding.planTodoEdit.text.toString())
-
             plan.method.add(PlanMethod(done = false, score = binding.planTodoScore.text.toString(), todo = binding.planTodoEdit.text.toString()))
 
-
-            Logger.i("plan.method = ${plan.method}")
-//             plan.method = binding.planTodoEdit.text
-
-            Logger.d("first check for data from PlanEditPage => $plan")
-
             viewModel.addToDo(plan)
-            Logger.d("再檢查從planEdit帶過來的資料 => $plan")
 
-//            ViewModelProvider(requireActivity()).get(PlanEditViewModel::class.java).getToDoResult(plan)
-
-//          findNavController().popBackStack()
             dismiss()
-///         viewModel.navigateToPlanEditPage()
 
         }
-
 
         viewModel.navigateToPlanEditPage.observe(
             viewLifecycleOwner,
@@ -94,7 +77,7 @@ class PlanToDoDialog : AppCompatDialogFragment() {
             }
         )
 
-        //輸入完成度的 seekbar
+        //seekbar for degree of completion
         binding.seekbarPlanTodo.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekbar: SeekBar?, process: Int, fromUser: Boolean) {
                 binding.planTodoScore.text = process.toString()
@@ -109,7 +92,6 @@ class PlanToDoDialog : AppCompatDialogFragment() {
             }
 
         })
-
 
         return binding.root
     }

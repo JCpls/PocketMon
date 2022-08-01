@@ -16,32 +16,23 @@ import com.justin.pocketmon.databinding.FragmentHomeEditBinding
 import com.justin.pocketmon.databinding.FragmentIntroBinding
 import com.justin.pocketmon.home.edit.HomeEditViewModel
 
-class IntroFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-//        val viewModel = HomeEditViewModel()
-
-        val binding = FragmentIntroBinding.inflate(inflater)
-        val db = FirebaseFirestore.getInstance()
-        val document = db.collection("Article").document()
-
-//        binding.introRocketIcon.setOnClickListener {
+//class IntroFragment : Fragment() {
 //
-//        this.findNavController().navigate(NavigationDirections.navigateToLoginDialog())
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
 //
-//        }
-
-        return binding.root
-    }
-
-
-}
+//    }
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater, container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//
+//        val binding = FragmentIntroBinding.inflate(inflater)
+//        val db = FirebaseFirestore.getInstance()
+//        val document = db.collection("Article").document()
+//
+//        return binding.root
+//    }
+//
+//}

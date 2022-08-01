@@ -24,15 +24,7 @@ class HomeEditViewModel
 
     (private val repository: PocketmonRepository) : ViewModel() {
 
-//    private val _addedArticle = MutableLiveData<Articledata>()
-//
-//    val addedArticle: LiveData<Articledata>
-//        get() = _addedArticle
-
     private val _leave = MutableLiveData<Boolean?>()
-
-    val leave: LiveData<Boolean?>
-        get() = _leave
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -61,7 +53,6 @@ class HomeEditViewModel
         viewModelJob.cancel()
     }
 
-    val db = FirebaseFirestore.getInstance()
     val liveData = MutableLiveData<Boolean>()
 
     init {
@@ -71,9 +62,8 @@ class HomeEditViewModel
     }
 
     fun pushArticle(articledata: Articledata) {
-        Log.i("justin","檢查ToDo有無收到plan1" )
+
         coroutineScope.launch {
-            Log.i("justin","檢查ToDo有無收到plan2")
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.pushArticle(articledata)) {
@@ -103,17 +93,3 @@ class HomeEditViewModel
     }
 
 }
-
-//    fun addData(article: Articledata) {
-//
-//        db.collection("Article").add(article).addOnSuccessListener {
-//            Log.d("justin", "成功 id =>${it}")
-//            Log.d("justin", "新增了 =>${article}")
-//        }
-//            .addOnFailureListener {
-//                Log.d("justin", "失敗,${it}")
-//            }
-//
-//    }
-
-

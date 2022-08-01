@@ -30,42 +30,17 @@ class HomeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-// viewPager
-
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
 
-
-
-
-//        val viewPagerAdapter = HomePagerAdapter(this)
-//        val viewPager = binding.homeViewpager2
-//        viewPager.adapter = viewPagerAdapter
-
-
-//        val catalogPageArray = arrayOf(
-//            "My",
-//            "好友",
-//            "流行"
-//        )
-
-//        val tabLayout = binding.homeTablayout
-//        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-//            tab.text = catalogPageArray[position]
-//
-//        } .attach()
-
-// recyclerview
+    // recyclerview
         val viewModel = HomeViewModel()
 
-// stagger style recyclerview
+    // stagger style recyclerview
         binding.recycleviewHome.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-
-//      val adapter = HomeAdapter()
-//      binding.recycleviewHome.adapter = adapter
 
         binding.recycleviewHome.adapter = HomeAdapter(
             HomeAdapter.OnClickListener {
@@ -73,15 +48,9 @@ class HomeFragment: Fragment() {
             }
         )
 
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//            viewModel.refresh()
-//        }
-
         viewModel.articleData.observe(viewLifecycleOwner, Observer {
             (binding.recycleviewHome.adapter as HomeAdapter).submitList(it)
             (binding.recycleviewHome.adapter as HomeAdapter).notifyDataSetChanged()
-//            adapter.submitList(it)
-//            adapter.notifyDataSetChanged()
             binding.swipeRefreshLayout.isRefreshing = false
 
         })
@@ -92,12 +61,10 @@ class HomeFragment: Fragment() {
 
 
         binding.buttonAdd.setOnClickListener {
-//            throw RuntimeException("Test Crash") // Force a crash
             this.findNavController().navigate(NavigationDirections.navigateToHomeEditFragment())
         }
 
-
-// handle navigation to detail
+    // handle navigation to detail
         viewModel.navigateToDetail.observe(
             viewLifecycleOwner,
             Observer {
@@ -107,7 +74,6 @@ class HomeFragment: Fragment() {
                 }
             }
         )
-
 
         return binding.root
 

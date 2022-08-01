@@ -21,24 +21,7 @@ class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<A
             binding.articledData = articledata
             binding.textAuthorName.text = articledata.name
             binding.textTitle.text = articledata.title
-//            binding.textContent.text = articledata.content
             binding.textCategory.text = articledata.category
-
-
-//            if (articledata.category == "0") {
-//                binding.textCategory.setTextColor(Color.rgb(0, 0, 200))
-//            } else if (articledata.category == "1") {
-//                binding.textCategory.setTextColor(Color.rgb(0, 0, 200))
-//            } else if (articledata.category == "2") {
-//                binding.textCategory.setTextColor(Color.rgb(0, 160, 0))
-//            } else if (articledata.category == "3") {
-//                binding.textCategory.setTextColor(Color.rgb(0, 160, 0))
-//            } else if (articledata.category == "4") {
-//                binding.textCategory.setTextColor(Color.rgb(0, 160, 0))
-//            } else {
-//                binding.textCategory.setTextColor(Color.rgb(160, 0, 160))
-//            }
-
 
             val sdf = SimpleDateFormat("MM.dd.yyyy")
             val time = articledata.createdTime?.seconds?.times(1000L)
@@ -73,7 +56,6 @@ class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<A
                 holder.bind(articleItem, onClickListener)
             }
         }
-
     }
 
 

@@ -21,9 +21,6 @@ import com.justin.pocketmon.util.Logger
 
 class PlanFragment : Fragment() {
 
-    /**
-     * Lazily initialize our [HomeViewModel].
-     */
     private val viewModel by viewModels<PlanViewModel> { getVmFactory() }
 
     override fun onCreateView(
@@ -37,16 +34,13 @@ class PlanFragment : Fragment() {
         binding.isLiveDataDesign = PocketmonApplication.instance.isLiveDataDesign()
         binding.viewModel = viewModel
 
-//        binding.recycleviewPlan.layoutManager = LinearLayoutManager(context)
-//        binding.recycleviewPlan.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.HORIZONTAL))
         binding.recycleviewPlan.adapter = PlanAdapter(PlanAdapter.OnClickListener {
 
             Logger.d("click, it=$it")
             viewModel.getArticlesResult()
-//        handle navigation to detail
             viewModel.navigateToPlanEdit(it)
             Logger.d("click, it=$it")
-//            viewModel.delete(it)
+
         })
 
 // --- submistList here ---
@@ -54,8 +48,7 @@ class PlanFragment : Fragment() {
             (binding.recycleviewPlan.adapter as PlanAdapter).submitList(it)
             (binding.recycleviewPlan.adapter as PlanAdapter).notifyDataSetChanged()
             binding.swipeRefreshLayout.isRefreshing = false
-            Logger.i("Justin Livedata plan = $it")
-
+            Logger.i("PlanFragment Livedata plan = $it")
 
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
@@ -76,44 +69,3 @@ class PlanFragment : Fragment() {
         return binding.root
     }
 }
-
-//        binding.recycleviewPlan.adapter = HomeAdapter(PlanAdapter.OnClickListener {
-//            Logger.d("click, it=$it")
-//            viewModel.delete(it)
-//        })
-//
-//        viewModel.navigationToPublish.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                findNavController().navigate(NavigationDirections.navigationToPublishDialog(it))
-//                viewModel.onPublishNavigated()
-//            }
-//        })
-//
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//            viewModel.refresh()
-//        }
-//
-//        viewModel.refreshStatus.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                binding.swipeRefreshLayout.isRefreshing = it
-//            }
-//        })
-//
-//        ViewModelProvider(requireActivity()).get(MainViewModel::class.java).apply {
-//            refresh.observe(viewLifecycleOwner, Observer {
-//                it?.let {
-//                    viewModel.refresh()
-//                    onRefreshed()
-//                }
-//            })
-//        }
-//
-//        viewModel.liveArticles.observe(viewLifecycleOwner, Observer {
-//            Logger.d("viewModel.liveArticles.observe, it=$it")
-//            it?.let {
-//                binding.viewModel = viewModel
-//            }
-//        })
-//
-//        return binding.root
-//    }

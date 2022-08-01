@@ -17,7 +17,7 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(planMethod: PlanMethod) {
-            Logger.i("adapter bind()")
+
             binding.planData = planMethod.toString()
             binding.itemPlanEditTodo.text = planMethod.todo
             binding.itemPlanEditScore.text = planMethod.score
@@ -27,7 +27,6 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
             Logger.i("adapter planMethod.todo = ${planMethod.todo}")
             Logger.i("adapter planMethod.score = ${planMethod.score}")
             Logger.i("adapter planMethod.done = ${planMethod.done}")
-
 
             binding.executePendingBindings()
 
@@ -44,21 +43,14 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
                         viewModel.addPoint(planMethod.score)
                         viewModel.DoneIsTrue(value = true, planMethod.todo )
 
-//                        binding.itemPlanEditScore.setTextColor(Color.rgb(255, 153, 18 ))
-//                      binding.itemPlanEditScore.setBackgroundColor(Color.rgb(176,224,230))
-
                     } else {
 
                         viewModel.minusPoint(planMethod.score)
                         viewModel.DoneIsFalse(value = false, planMethod.todo)
 
-//                        binding.itemPlanEditScore.setTextColor(Color.rgb(128,138,135))
                     }
-
                 }
-
             }
-
         }
     }
 
@@ -86,14 +78,10 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
             }
         }
 
-    /**
-     * Replaces the contents of a view (invoked by the layout manager)
-     */
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
             when (holder) {
                 is PlanEditViewHolder -> {
-//                    holder.binding.itemTodoCheckbox.isChecked = checkedItems.get(position, false)
                     holder.bind((getItem(position) as PlanMethod))
                 }
             }
@@ -102,8 +90,7 @@ class PlanEditAdapter (var viewModel: PlanEditViewModel) :
         override fun getItemViewType(position: Int): Int {
             return ITEM_VIEW_TYPE_PLAN
         }
-
-    }
+}
 
 
 

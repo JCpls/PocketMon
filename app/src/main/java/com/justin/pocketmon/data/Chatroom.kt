@@ -15,4 +15,5 @@ data class Chatroom (
     val name: String = "",
     val member: List<String> = listOf(""),
     var chat: List<Chat> = emptyList()
+
 ) : Parcelable

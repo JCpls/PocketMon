@@ -43,7 +43,6 @@ class DetailViewModel
     val leaveDetail: LiveData<Boolean>
         get() = _leaveDetail
 
-
     // Handle leave to ChatRoom
     private val _navigateToChat = MutableLiveData<Boolean>()
 
@@ -79,7 +78,6 @@ class DetailViewModel
     fun navigateToComment() {
         _navigateToComment.value = articledata
     }
-
 
     // Handle navigation to PlanPage
     private val _navigateToPlanPage = MutableLiveData<Boolean?>()
@@ -123,10 +121,7 @@ class DetailViewModel
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    /**
-     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-     * Retrofit service to stop.
-     */
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -138,16 +133,14 @@ class DetailViewModel
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
-
         getLiveComments(articledata.id)
-
 
     }
 
     fun publishPlan(plan: Plan) {
-        Log.i("justin","檢查計畫頁有無收到plan1" )
+        Logger.i("check if planPage receives plan 1")
         coroutineScope.launch {
-            Log.i("justin","檢查計畫頁有無收到plan2")
+            Logger.i("check if planPage receives plan 2")
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.publishPlan(plan)) {
@@ -177,16 +170,12 @@ class DetailViewModel
         _leave.value = needRefresh
     }
 
-    fun onLeft() {
-        _leave.value = null
-    }
 
     fun timeStampToDate(createdTime: Timestamp): String {
         val date = SimpleDateFormat("MM/dd, yyyy", Locale.CHINESE).format(createdTime.toDate())
         Logger.i("date = $date")
         return date
     }
-
 
     // the liveData to get "getLiveComment" data from firebase
     var liveComment = MutableLiveData<List<Comment>>()
@@ -199,37 +188,4 @@ class DetailViewModel
             _isLiveCommentListReady.value = true
         }
     }
-
 }
-
-
-
-
-
-
-
-
-// ------ for detail gallery further upgrades
-
-// it for gallery circles design
-//    private val _snapPosition = MutableLiveData<Int>()
-//
-//    val snapPosition: LiveData<Int>
-//        get() = _snapPosition
-
-/**
- * When the gallery scroll, at the same time circles design will switch.
- */
-//    fun onGalleryScrollChange(
-//        layoutManager: RecyclerView.LayoutManager?,
-//        linearSnapHelper: LinearSnapHelper
-//    ) {
-//        val snapView = linearSnapHelper.findSnapView(layoutManager)
-//        snapView?.let {
-//            layoutManager?.getPosition(snapView)?.let {
-//                if (it != snapPosition.value) {
-//                    _snapPosition.value = it
-//                }
-//            }
-//        }
-//    }

@@ -41,21 +41,6 @@ class PlanAdapter(private val onClickListener: OnClickListener ) :
                 binding.planDegreeText.setTextColor(Color.rgb(160, 0, 160))
             }
 
-
-
-
-
-//            binding.textAuthorName.text = plan.ownerId
-//            binding.textContent.text = plan.description[0]
-//            //
-//            binding.textContent2.text = plan.description[1]
-//
-//
-//            val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm")
-//            val time = plan.createdTime?.seconds?.times(1000L)
-//            val dataTime = sdf.format(time)
-//            binding.textTime.text = dataTime
-
             binding.root.setOnClickListener { onClickListener.onClick(plan) }
             binding.executePendingBindings()
         }
@@ -80,9 +65,7 @@ class PlanAdapter(private val onClickListener: OnClickListener ) :
         }
     }
 
-    /**
-     * Replaces the contents of a view (invoked by the layout manager)
-     */
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (holder) {

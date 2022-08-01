@@ -34,14 +34,9 @@ class PlanToDoViewModel
         val navigateToPlanEditPage: LiveData<Plan?>
             get() = _navigateToPlanEditPage
 
-        fun navigateToPlanEditPage() {
-            _navigateToPlanEditPage.value = plan
-        }
-
         fun onToDotoPlanEditNavigated() {
             _navigateToPlanEditPage.value = null
         }
-
 
         private val _leave = MutableLiveData<Boolean?>()
 
@@ -66,10 +61,7 @@ class PlanToDoViewModel
         // the Coroutine runs using the Main (UI) dispatcher
         private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-        /**
-         * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-         * Retrofit service to stop.
-         */
+
         override fun onCleared() {
             super.onCleared()
             viewModelJob.cancel()
@@ -83,9 +75,7 @@ class PlanToDoViewModel
 
 
         fun addToDo(plan: Plan) {
-            Log.i("justin","檢查ToDo有無收到plan1" )
             coroutineScope.launch {
-                Log.i("justin","檢查ToDo有無收到plan2")
                 _status.value = LoadApiStatus.LOADING
 
                 when (val result = repository.addToDo(plan)) {
@@ -114,7 +104,7 @@ class PlanToDoViewModel
             _leave.value = needRefresh
         }
 
-    }
+}
 
 
 

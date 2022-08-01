@@ -8,5 +8,4 @@ class ProfileViewModel(val repository: PocketmonRepository) : ViewModel() {
     // get user id from UserManager
     val user = UserManager.user
 
-
 }

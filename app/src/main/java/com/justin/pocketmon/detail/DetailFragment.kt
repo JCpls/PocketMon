@@ -37,7 +37,7 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-// add data from DetailFragment to Plan collection
+        // add data from DetailFragment to Plan collection
         val db = FirebaseFirestore.getInstance()
         val document = db.collection("Plans").document()
 
@@ -45,9 +45,9 @@ class DetailFragment : Fragment() {
 
             val plan = Plan()
             plan.id = document.id
-            // livedata 必須要 .value 才能夠賦值
+
             viewModel.selectedDream.value?.let {
-                Log.d("justin","初檢查從detail帶過來的資料 => $plan ")
+            Logger.i("1st check argument from detailPage => $plan ")
                 plan.title = it.title
                 plan.image = it.image
                 plan.ownerId = UserManager.user.id
@@ -58,19 +58,17 @@ class DetailFragment : Fragment() {
 
             }
             viewModel.publishPlan(plan)
-            Log.d("justin","再檢查從detail帶過來的資料 => $plan ")
+            Logger.i("2nd check argument from detailPage => $plan ")
 
-// call out to execute fun: navigateToPlan in MainActivity
+        // call out to execute fun: navigateToPlan in MainActivity
             (activity as MainActivity).navigateToPlan()
-//          viewModel.navigateToStartPlan()
 
         }
-
 
         val detailCommentAdapter = DetailCommentAdapter(viewModel)
         binding.detailCommentRecyclerview.adapter = detailCommentAdapter
 
-        // recyclerView
+        // for recyclerView
         viewModel.isLiveCommentListReady.observe(viewLifecycleOwner) {
             Logger.i("isLiveCommentListReady = $it")
 
@@ -80,21 +78,11 @@ class DetailFragment : Fragment() {
             }
         }
 
-
-//        binding.buttonDetailMessage.setOnClickListener{
-//            viewModel.navigateToChatRoom()
-//        }
-
-
-
-
-
         binding.buttonDetailComment.setOnClickListener{
             viewModel.navigateToCommentDialog()
         }
 
         // --- submistList here ---
-
         viewModel.navigateToPlanPage.observe(
             viewLifecycleOwner,
             Observer {
@@ -114,7 +102,6 @@ class DetailFragment : Fragment() {
                 }
             }
         )
-
 
         viewModel.navigateToComment.observe(
             viewLifecycleOwner,
@@ -138,82 +125,3 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 }
-
-
-
-
-
-
-//   binding.recyclerDetailGallery.adapter = DetailGalleryAdapter()
-//        binding.recyclerDetailCircles.adapter = DetailCircleAdapter()
-//
-//        viewModel.selectedDream.observe(viewLifecycleOwner, Observer {
-//            Logger.i("selectedDream = $it")
-//        })
-//
-//        val linearSnapHelper = LinearSnapHelper().apply {
-//            attachToRecyclerView(binding.recyclerDetailGallery)
-//        }
-//
-//        binding.recyclerDetailGallery.setOnScrollChangeListener { _, _, _, _, _ ->
-//            viewModel.onGalleryScrollChange(
-//                binding.recyclerDetailGallery.layoutManager,
-//                linearSnapHelper
-//            )
-//        }
-//  以上 ----binding.recyclerDetailGallery.adapter = DetailGalleryAdapter()
-
-// ---- set the initial position to the center of infinite gallery
-//        viewModel.selectedDream.value?.let { articleData ->
-//            binding.recyclerDetailGallery
-//                .scrollToPosition(articleData.image.size * 100)
-//
-//            viewModel.snapPosition.observe(
-//                viewLifecycleOwner,
-//                Observer {
-//                    (binding.recyclerDetailCircles.adapter as DetailCircleAdapter).selectedPosition.value = (it % articleData.image.size)
-//                }
-//            )
-//        }
-
-
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-//                              savedInstanceState: Bundle?): View? {
-//        val application = requireNotNull(activity).application
-//        val binding = DetailFragmentBinding.inflate(inflater)
-//        binding.lifecycleOwner = this
-//
-//        val product:Product = DetailFragmentArgs.fromBundle(requireArguments()).selectedProduct
-//
-//
-//        val viewModelFactory = DetailPageViewModelFactory(product, application)
-//        binding.detailViewModel = ViewModelProvider(
-//            this, viewModelFactory).get(DetailPageViewModel::class.java)
-//
-//
-//        binding.detailItemNumber.text = product.id.toString()
-//        binding.detailItemPrice.text = "NT$" + product.price.toString()
-//
-//
-//        if(product.sizes.size == 1){
-//            binding.detailItemSizeContent.text = product.sizes.first()
-//        }else{
-//            binding.detailItemSizeContent.text = "${product.sizes.first()} - ${product.sizes.last()}"
-//        }
-////庫存的迴圈
-//        var productStock = 0
-//        for(i in product.variants){
-//            productStock += i.stock
-//        }
-//        binding.detailItemStockContent.text = productStock.toString()
-//
-//
-////4thMay android navcontroller in fragment 設定間單的點擊事件給detail頁的左上小圓圈 直接帶回上一頁
-//        binding.imageView2.setOnClickListener {
-//            findNavController().navigateUp()
-//        }
-//
-//
-//        binding.detailItemTextureContent.text = product.texture
-//        binding.detailItemOriginContent.text = product.place
-//

@@ -30,7 +30,7 @@ class DetailCommentAdapter (var viewModel: DetailViewModel):
 
                     Logger.i("authorImage = ${comment.authorImage}")
 
-                // viewBinding for comment's autherImage
+        // viewBinding for comment's autherImage
                     comment.authorImage.let {
                         val imgUri = it.toUri().buildUpon().build()
                         GlideApp.with(binding.itemCommentCircle.context)

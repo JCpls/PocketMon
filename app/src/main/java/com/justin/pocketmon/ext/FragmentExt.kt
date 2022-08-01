@@ -1,13 +1,8 @@
 package com.justin.pocketmon.ext
 
-import android.os.Bundle
+
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.google.firebase.firestore.auth.User
 import com.justin.pocketmon.PocketmonApplication
-import com.justin.pocketmon.R
 import com.justin.pocketmon.data.*
 import com.justin.pocketmon.factory.*
 
@@ -32,29 +27,3 @@ fun Fragment.getVmFactory(broadcast: Broadcast): BroadcastViewModelFactory {
     val repository = (requireContext().applicationContext as PocketmonApplication).repository
     return BroadcastViewModelFactory(broadcast, repository)
 }
-
-//fun Fragment.getVmFactory(chatroom: Chatroom): ChatroomViewModelFactory {
-//    val repository = (requireContext().applicationContext as PocketmonApplication).repository
-//    return ChatroomViewModelFactory(chatroom, repository)
-//}
-
-//fun Fragment.getVmFactory(todo: ToDo): ToDoViewModelFactory {
-//    val repository = (requireContext().applicationContext as PocketmonApplication).repository
-//    return ToDoViewModelFactory(todo, repository)
-//}
-
-
-//fun Fragment.getVmFactory(user: User?): ProfileViewModelFactory {
-//    val repository = (requireContext().applicationContext as PocketmonApplication).repository
-//    return ProfileViewModelFactory(repository, user)
-//}
-//
-//fun Fragment.getVmFactory(product: Product): ProductViewModelFactory {
-//    val repository = (requireContext().applicationContext as PocketmonApplication).repository
-//    return ProductViewModelFactory(repository, product)
-//}
-//
-//fun Fragment.getVmFactory(catalogType: CatalogTypeFilter): CatalogItemViewModelFactory {
-//    val repository = (requireContext().applicationContext as PocketmonApplication).repository
-//    return CatalogItemViewModelFactory(repository, catalogType)
-//}
