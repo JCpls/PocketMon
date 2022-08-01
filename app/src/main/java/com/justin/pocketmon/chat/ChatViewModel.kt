@@ -36,7 +36,6 @@ class ChatViewModel(private val repository: PocketmonRepository) : ViewModel()  
     val error: LiveData<String?>
         get() = _error
 
-    // status for the loading icon of swl
     private val _refreshStatus = MutableLiveData<Boolean>()
 
     val refreshStatus: LiveData<Boolean>
@@ -93,7 +92,4 @@ class ChatViewModel(private val repository: PocketmonRepository) : ViewModel()  
             _refreshStatus.value = false
         }
     }
-
-
-
 }

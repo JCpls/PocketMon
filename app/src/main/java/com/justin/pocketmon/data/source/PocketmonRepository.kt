@@ -4,8 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.justin.pocketmon.data.*
 
 
-/* Interface to the PocketMon layers.
-*/
 interface PocketmonRepository {
 
     suspend fun loginMockData(id: String): Result<Author>
@@ -39,8 +37,6 @@ interface PocketmonRepository {
     suspend fun addCheckboxStatus (plan: Plan): Result<Boolean>
 
     suspend fun addComment (comment: Comment): Result<Boolean>
-
-    suspend fun delete(article: Article): Result<Boolean>
 
     suspend fun getGroupChatroom(groupId: String): Result<Chatroom>
 

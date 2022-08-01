@@ -17,8 +17,7 @@ import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-/* Implementation of the PocketMon source that from network.
-*/
+
 object PocketmonRemoteDataSource : PocketmonDataSource {
 
     private const val PATH_PLANS = "Plans"
@@ -28,7 +27,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     private const val PATH_BROADCAST = "Broadcasts"
     private const val KEY_CREATED_TIME = "createdTime"
     private const val PATH_CHATS = "chats"
-    private const val  PATH_USERS = "Users"
+    private const val PATH_USERS = "Users"
 
 
 
@@ -66,7 +65,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
     override suspend fun getBroadcasts(): Result<List<Broadcast>> = suspendCoroutine { continuation ->
-        Logger.i("RemoteDataSource Broadcast check ")
+        Logger.i("RemoteDataSource Broadcast check")
         FirebaseFirestore.getInstance()
             .collection(PATH_BROADCAST)
             .orderBy("timeFinish", Query.Direction.DESCENDING)
@@ -100,18 +99,10 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
         FirebaseFirestore.getInstance()
             .collection(PATH_PLANS)
-//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
             .document(plan.id)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-//                    val list = mutableListOf<Plan>()
-//                    for (document in task.result) {
-//                        Logger.d(document.id + " => " + document.data)
-//
-//                        val todo = document.toObject(Plan::class.java)
-//                        list.add(todo)
-//                    }
 
                     val item = (task.result.toObject(Plan::class.java)!!)
                     Logger.i("task.result = ${item}")
@@ -129,14 +120,13 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
+
     override fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan> {
         val liveData = MutableLiveData<Plan>()
         Logger.i("getLiveToDoList userId = $userId")
         FirebaseFirestore.getInstance()
             .collection("Plans")
             .document(planId)
-//            .whereEqualTo("ownerId", userId)
-//            .orderBy("createdTime", Query.Direction.ASCENDING)
             .addSnapshotListener { snapshot, exception ->
                 Logger.i("getLiveToDoList addSnapshotListener detect")
 
@@ -145,8 +135,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                 }
 
                 if (snapshot != null) {
-//                            Logger.d(document.id + " => " + document.data)
-//                            val plan = document.toObject(Plan::class.java)
                     Logger.i("snapshot.data = ${snapshot.data}")
                     val plan = snapshot.toObject(Plan::class.java)
                     Logger.i("snapshot plan = $plan")
@@ -163,14 +151,11 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
 
-
-
     override fun getLiveComments(articleId: String): MutableLiveData<List<Comment>> {
         val liveData = MutableLiveData<List<Comment>>()
 
         FirebaseFirestore.getInstance()
             .collection(PATH_COMMENTS)
-//            .document(articleId)
             .whereEqualTo("articleId", articleId )
             .orderBy("createdTime", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
@@ -181,10 +166,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                 }
 
                 if (snapshot != null) {
-//                    if (snapshot.size() >=1 ) {
-//                        val list = mutableListOf<Comment>()
-//                        snapshot.forEach { document ->
-//                            Logger.d(document.id + " => " + document.data)
 
                     if (snapshot.size() >= 1) {
                         val list = mutableListOf<Comment>()
@@ -195,12 +176,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         }
                         liveData.value = list
                     }
-//                    val comment = snapshot.toObject(Comment::class.java)
-//                    Logger.i("snapshot plan = $comment")
-//
-//                    comment?.let {
-//                        liveData.value = it
-//                    }
 
                 } else {
                     Logger.w("[${this::class.simpleName}] getLiveComment snapshot == null")
@@ -208,8 +183,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
         return liveData
     }
-
-
 
 
     override fun getLiveArticles(): MutableLiveData<List<Article>> {
@@ -266,17 +239,16 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
     override suspend fun publishPlan (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
-        Log.i("justin","檢查計畫頁有無收到plan3")
+        Logger.i("PlanPage plans check")
         val plans = FirebaseFirestore.getInstance().collection(PATH_PLANS)
-        Log.i("justin","檢查計畫頁有無收到plans = $plans")
+        Logger.i("PlanPage plans received = $plans")
         val document = plans.document()
-        Log.i("justin","檢查計畫頁有無收到document = $document")
+        Logger.i("PlanPage document received = $document")
 
         plan.id = document.id
-        Log.i("justin","檢查計畫頁有無收到plan = $plan")
-        Log.i("justin","檢查計畫頁有無收到plan id ${plan.id}  => ${document.id}")
+        Logger.i("PlanPage plan received = $plan")
+        Logger.i("PlanPage plan id received = ${plan.id}  => ${document.id}")
 
-//      plan.createdTime = Calendar.getInstance().timeInMillis
         document
             .set(plan)
             .addOnCompleteListener { task ->
@@ -305,7 +277,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             .collection(PATH_PLANS)
             .document(plan.id)
             .update("method", FieldValue.arrayUnion(plan.method.last()))
-//            .update("method", plan.method)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Logger.i("add ToDo list task.isSuccessful")
@@ -323,7 +294,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
 
-
     override suspend fun addCheckboxStatus (plan: Plan): Result<Boolean> = suspendCoroutine { continuation ->
         Logger.i("RemoteDataSource plan.degree = ${plan.degree}")
         Logger.i("RemoteDataSource plan.method = ${plan.method}")
@@ -331,7 +301,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             .collection(PATH_PLANS)
             .document(plan.id)
             .set(plan)
-//            .update(plan)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Logger.i("add ToDo list task.isSuccessful")
@@ -356,7 +325,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             .collection(PATH_BROADCAST)
             .document(broadcast.id)
             .set(broadcast)
-//            .update(broadcast)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Logger.i("publish broadcast task.isSuccessful")
@@ -380,7 +348,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
         FirebaseFirestore.getInstance()
             .collection(PATH_COMMENTS)
             .document(comment.id)
-//            .update("comment", FieldValue.arrayUnion(articledata.comment.last()))
             .set(comment)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -398,10 +365,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
-
     override suspend fun getCommentList(): Result<List<Articledata>> = suspendCoroutine { continuation ->
-
-//        Logger.i("RemoteDataSource comment list articledata.uid = ${articledata.uid}")
 
         FirebaseFirestore.getInstance()
             .collection(PATH_ARTICLE)
@@ -409,18 +373,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-//                    val list = mutableListOf<Plan>()
-//                    for (document in task.result) {
-//                        Logger.d(document.id + " => " + document.data)
-//
-//                        val todo = document.toObject(Plan::class.java)
-//                        list.add(todo)
-//                    }
 
-//                    val item = (task.result.toObject(Articledata::class.java)!!)
-//                    Logger.i("task.result = ${item}")
-//
-//                    continuation.resume(Result.Success(item))
                 } else {
                     task.exception?.let {
 
@@ -433,34 +386,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
-
-
-    override suspend fun delete(article: Article): Result<Boolean> = suspendCoroutine { continuation ->
-
-        when {
-            article.author?.id == "waynechen323"
-                    && article.tag.toLowerCase(Locale.TAIWAN) != "test"
-                    && article.tag.trim().isNotEmpty() -> {
-
-                continuation.resume(Result.Fail("You know nothing!! ${article.author.name}"))
-            }
-            else -> {
-                FirebaseFirestore.getInstance()
-                    .collection(PATH_ARTICLE)
-                    .document(article.id)
-                    .delete()
-                    .addOnSuccessListener {
-                        Logger.i("Delete: $article")
-
-                        continuation.resume(Result.Success(true))
-                    }.addOnFailureListener {
-                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-                        continuation.resume(Result.Error(it))
-                    }
-            }
-        }
-
-    }
 
     override suspend fun addUser(user: User): Result<Boolean> = suspendCoroutine { continuation ->
         val groups = FirebaseFirestore.getInstance().collection(PATH_USERS)
@@ -484,7 +409,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
 
-
     override suspend fun getGroupChatroom(ownerId: String): Result<Chatroom> =
         suspendCoroutine { continuation ->
             Logger.d("getGroupChatroom start 2")
@@ -494,8 +418,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                 Logger.d("ownerId=$ownerId")
                 FirebaseFirestore.getInstance()
                     .collection(PATH_CHATROOM)
-//                    .whereEqualTo(KEY_GROUP_ID, groupId)
-//                    .wherein(plan.id, senderId)
                     .whereArrayContainsAny("member", listOf(ownerId, id))
                     .get()
                     .addOnSuccessListener {
@@ -528,7 +450,8 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                     }
             }
         }
-//
+
+
     override suspend fun addChatroom(chatroom: Chatroom): Result<Boolean> =
         suspendCoroutine { continuation ->
             val chatroomCollection = FirebaseFirestore.getInstance().collection(PATH_CHATROOM)
@@ -552,13 +475,12 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                     }
                 }
         }
-//
-//
+
+
     override suspend fun getAllChatroom(): Result<List<Chatroom>> =
         suspendCoroutine { continuation ->
             FirebaseFirestore.getInstance()
                 .collection(PATH_CHATROOM)
-//            .orderBy(KEY_LAST_TALK_TIME,Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -582,35 +504,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
         }
 
 
-    //--------- 不用使用 ----------
-//    override suspend fun getTypeChatroom(type: String): Result<List<Chatroom>> =
-//        suspendCoroutine { continuation ->
-//            FirebaseFirestore.getInstance()
-//                .collection(PATH_CHATROOM)
-//                .whereEqualTo(KEY_TYPE, type)
-////            .orderBy(KEY_LAST_TALK_TIME,Query.Direction.ASCENDING)
-//                .get()
-//                .addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        val list = mutableListOf<Chatroom>()
-//                        for (document in task.result) {
-//                            Timber.d(document.id + " => " + document.data)
-//
-//                            val chatroom = document.toObject(Chatroom::class.java)
-//                            list.add(chatroom)
-//                        }
-//                        continuation.resume(Result.Success(list))
-//                    } else {
-//                        task.exception?.let {
-//                            Timber.e("Error getting documents. ${it.message}")
-//                            continuation.resume(Result.Error(it))
-//                            return@addOnCompleteListener
-//                        }
-//                        continuation.resume(Result.Fail(MainApplication.instance.getString(R.string.you_know_nothing)))
-//                    }
-//                }
-//        }
-//
     override suspend fun getChats(chatroomId: String): Result<List<Chat>> =
         suspendCoroutine { continuation ->
             FirebaseFirestore.getInstance()
@@ -640,7 +533,8 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                     }
                 }
         }
-//
+
+
     override suspend fun sendChat(chatroomId: String, chat: Chat): Result<Boolean> =
         suspendCoroutine { continuation ->
             val chatroomCollection = FirebaseFirestore.getInstance().collection(PATH_CHATROOM)
@@ -667,7 +561,8 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                     }
                 }
         }
-//
+
+
     override suspend fun addChatroomMessageAndTime(
         chatroomId: String,
         message: String
@@ -697,7 +592,8 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                     }
                 }
         }
-//
+
+
     override fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>> {
         val liveData = MutableLiveData<List<Chat>>()
 

@@ -3,8 +3,7 @@ package com.justin.pocketmon.data.source
 import androidx.lifecycle.MutableLiveData
 import com.justin.pocketmon.data.*
 
-/* Concrete implementation to load PocketMon sources.
-*/
+
 class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSource,
                                  private val localDataSource: PocketmonDataSource
 ) : PocketmonRepository {
@@ -63,11 +62,6 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
 
     override suspend fun addComment (comment: Comment): Result<Boolean> {
         return remoteDataSource.addComment(comment)
-    }
-
-
-    override suspend fun delete(article: Article): Result<Boolean> {
-        return remoteDataSource.delete(article)
     }
 
     override suspend fun addUser(user: User): Result<Boolean> {

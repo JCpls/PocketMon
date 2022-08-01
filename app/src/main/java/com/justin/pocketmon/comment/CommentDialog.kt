@@ -71,23 +71,7 @@ class CommentDialog : AppCompatDialogFragment() {
             viewModel.navigateToDetailPage()
             dismiss()
 
-
-//            val articledata = viewModel.addComment.value!!
-//
-//            articledata.comment.add(binding.commentEdit.text.toString())
-//            Logger.i("articledata.comment = ${articledata.comment}")
-////             plan.method = binding.planTodoEdit.text
-//
-//            Logger.d("first check for data from PlanEditPage => $articledata")
-//
-//            viewModel.addComment(articledata)
-//            Logger.d("再檢查從detailPage帶過來的資料 => $articledata")
-//
-//            viewModel.navigateToDetailPage()
-////            viewModel.getComment()
-
         }
-
 
         viewModel.navigateToDetailPage.observe(
             viewLifecycleOwner,
@@ -98,7 +82,6 @@ class CommentDialog : AppCompatDialogFragment() {
                 }
             }
         )
-
 
         return binding.root
     }

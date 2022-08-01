@@ -27,14 +27,6 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         get() = _addComment
 
 
-
-    // for recyeclerview observe
-    private val _commentAdded = MutableLiveData<List<Articledata>>()
-
-    val commentAdded: LiveData<List<Articledata>>
-        get() = _commentAdded
-
-
     // Handle navigation to DetailPage
     private val _navigateToDetailPage = MutableLiveData<Articledata?>()
 
@@ -49,23 +41,13 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         _navigateToDetailPage.value = null
     }
 
-
     private val _leave = MutableLiveData<Boolean?>()
-
-    val leave: LiveData<Boolean?>
-        get() = _leave
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
     val status: LiveData<LoadApiStatus>
         get() = _status
-
-    // status for the loading icon of swl
-    private val _refreshStatus = MutableLiveData<Boolean>()
-
-    val refreshStatus: LiveData<Boolean>
-        get() = _refreshStatus
 
     // error: The internal MutableLiveData that stores the error of the most recent request
     private val _error = MutableLiveData<String?>()
@@ -79,16 +61,11 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    /**
-     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-     * Retrofit service to stop.
-     */
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
-
-
 
     fun addComment(comment: Comment) {
         Log.i("justin","檢查addComment有無收到plan1" )
@@ -118,65 +95,8 @@ class CommentViewModel (private val articledata: Articledata, private val reposi
         }
     }
 
-    init {
-        Logger.i("------------------------------------")
-        Logger.i("[${this::class.simpleName}]${this}")
-        Logger.i("------------------------------------")
-
-//        getComment(articledata)
-//          getLiveComments(articledata.id, addComment.toString())
-    }
-
-//    fun getComment() {
-//
-//        coroutineScope.launch {
-//
-//            _status.value = LoadApiStatus.LOADING
-//
-//            val result = repository.getCommentList()
-//
-//            _commentAdded.value = when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    result.data
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//            _refreshStatus.value = false
-//        }
-//    }
-
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
     }
-
-
-    // the liveData to get "getLiveComments" data from firebase
-//    var liveComment = MutableLiveData<Comment>()
-//
-//    private fun getLiveComments(articleId: String, commentId: String) {
-//        coroutineScope.launch {
-//            liveComment = repository.getLiveComments(articleId, commentId)
-//            Logger.i("getLiveTodoResult() liveToDo = $liveComment")
-//            Logger.i("getLiveTodoResult() liveToDo.value = ${liveComment.value}")
-////            _isLiveToDoListReady.value = true
-//        }
-//    }
-
 
 }

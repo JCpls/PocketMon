@@ -11,7 +11,6 @@ data class Articledata(
     var createdTime: Timestamp = Timestamp.now(),
     var title: String = " ",
     var uid: String = " ",
-//    val image: List<String> = listOf(""),
     var image: String = "",
     var email: String = "",
     var id: String = "",

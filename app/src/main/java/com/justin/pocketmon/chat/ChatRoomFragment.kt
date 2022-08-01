@@ -13,7 +13,7 @@ import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.util.Logger
 
-//
+
 class ChatroomFragment : Fragment() {
 
     private val viewModel by viewModels<ChatRoomViewModel> {
@@ -25,10 +25,6 @@ class ChatroomFragment : Fragment() {
     }
 
     lateinit var binding: FragmentChatRoomBinding
-
-    companion object {
-        fun newInstance() = ChatroomFragment()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,8 +81,6 @@ class ChatroomFragment : Fragment() {
                     adapter.submitList(chats)
                     binding.recyclerViewChat.smoothScrollToPosition(chats.size)
                 }
-
-
             }
         }
 

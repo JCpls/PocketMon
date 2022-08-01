@@ -26,50 +26,10 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
 
         fun bind(broadcast: Broadcast, onClickListener: OnClickListener) {
 
-//            val time = System.currentTimeMillis().toString()
-//            val timeNew = SimpleDateFormat("E, d MMM yyyy HH:mm").format(time)
-
-//            val time = java.sql.Timestamp(System.currentTimeMillis())
-//            val timeNew = SimpleDateFormat("E, d MMM yyyy HH:mm").format(broadcast.timeStart)
-//            Logger.i("timeNew = $timeNew")
-
             binding.itemBroadcast = broadcast
             binding.broadcastTitle.text = broadcast.title
             binding.broadcastFromWho.text = broadcast.fromName
             binding.broadcastTimeFinish.text = SimpleDateFormat("MM/dd, yyyy", Locale.CHINESE).format(Timestamp.now().toDate())
-
-
-//            fun dateToday(): String {
-//                val today = SimpleDateFormat("EEEE, MMMM dd, yyyy", Locale.ENGLISH).format(Timestamp.now().toDate())
-//                Logger.i("today = $today")
-//                return today
-//            }
-
-
-//            if (plan.degree.toString() == "0") {
-//                binding.planDegreeText.setTextColor(Color.rgb(0, 0, 200))
-//            } else if (plan.degree.toString() == "1") {
-//                binding.planDegreeText.setTextColor(Color.rgb(0, 0, 200))
-//            } else if (plan.degree.toString() == "2") {
-//                binding.planDegreeText.setTextColor(Color.rgb(0, 160, 0))
-//            } else if (plan.degree.toString() == "3") {
-//                binding.planDegreeText.setTextColor(Color.rgb(0, 160, 0))
-//            } else if (plan.degree.toString() == "4") {
-//                binding.planDegreeText.setTextColor(Color.rgb(0, 160, 0))
-//            } else {
-//                binding.planDegreeText.setTextColor(Color.rgb(160, 0, 160))
-//            }
-
-//            binding.textAuthorName.text = plan.ownerId
-//            binding.textContent.text = plan.description[0]
-//            //
-//            binding.textContent2.text = plan.description[1]
-
-//            val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm")
-//            val time = broadcast.timeStart?.seconds?.times(1000L)
-//            val dataTime = sdf.format(time)
-//            binding.textTime.text = dataTime
-
 
             binding.root.setOnClickListener { onClickListener.onClick(broadcast) }
             binding.executePendingBindings()
@@ -96,9 +56,6 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
         }
     }
 
-    /**
-     * Replaces the contents of a view (invoked by the layout manager)
-     */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (holder) {
@@ -112,4 +69,3 @@ class ChatAdapter(private val onClickListener: OnClickListener ) :
         return ITEM_VIEW_TYPE_BROADCAST
     }
 }
-

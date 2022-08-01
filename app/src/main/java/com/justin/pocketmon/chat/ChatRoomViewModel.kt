@@ -48,8 +48,6 @@ class ChatRoomViewModel(
             }
         }
     }
-    val addChatroom: LiveData<Chatroom>
-        get() = _addChatroom
 
     private val _chatItem = MutableLiveData<List<ChatItem>>()
     val chatItem: LiveData<List<ChatItem>>
@@ -93,9 +91,7 @@ class ChatRoomViewModel(
         Logger.d("$this")
         Logger.d("------------------------------------------")
 
-
         getGroupChatroomResult()
-//        getUserResult()
 
     }
 
@@ -207,45 +203,13 @@ class ChatRoomViewModel(
         return newItems
     }
 
-//    fun getUserResult() {
-//        coroutineScope.launch {
-//            _status.value = LoadApiStatus.LOADING
-//            Timber.d("getUserResult is start")
-//
-//            val result = UserManager.userId?.let { repository.getUser(it) }
-//            _user.value = when (result) {
-//
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    result.data
-//
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = MainApplication.instance.getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//        }
-//    }
 
     fun sendMessageResult(content: String) {
         Logger.d("_user.value = ${_user.value}")
         Logger.d("chat.value = ${chat.value}")
-//        _user.value?.let {
+
             _chat.value = Chat("", UserManager.user.id, Date(), content, UserManager.user.image, UserManager.user.name)
-//        }
+
         Logger.d("_chat.value = ${_chat.value}")
 
         coroutineScope.launch {
@@ -314,5 +278,4 @@ class ChatRoomViewModel(
             _status.value = LoadApiStatus.DONE
 
         }
-
 }
