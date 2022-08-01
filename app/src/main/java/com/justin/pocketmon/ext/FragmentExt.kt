@@ -13,7 +13,7 @@ fun Fragment.getVmFactory(): ViewModelFactory {
     return ViewModelFactory(repository)
 }
 
-fun Fragment.getVmFactory(articledata: Articledata): ArticleViewModelFactory {
+fun Fragment.getVmFactory(articledata: ArticleData): ArticleViewModelFactory {
     val repository = (requireContext().applicationContext as PocketmonApplication).repository
     return ArticleViewModelFactory(articledata, repository)
 }

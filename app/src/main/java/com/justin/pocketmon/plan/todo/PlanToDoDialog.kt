@@ -1,7 +1,6 @@
 package com.justin.pocketmon.plan.todo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,28 +8,11 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.NavigationDirections
-import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
-import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.PlanMethod
-import com.justin.pocketmon.data.ToDo
 import com.justin.pocketmon.databinding.DialogPlanTodoBinding
-import com.justin.pocketmon.detail.DetailFragmentArgs
-import com.justin.pocketmon.detail.DetailViewModel
 import com.justin.pocketmon.ext.getVmFactory
-import com.justin.pocketmon.home.edit.HomeEditViewModel
-import com.justin.pocketmon.plan.PlanViewModel
-import com.justin.pocketmon.plan.edit.PlanEditFragmentArgs
-import com.justin.pocketmon.plan.edit.PlanEditViewModel
-import com.justin.pocketmon.util.Logger
-import com.justin.pocketmon.util.Logger.i
-import com.justin.pocketmon.util.ServiceLocator.repository
-import java.util.stream.Collectors.toList
 
 
 class PlanToDoDialog : AppCompatDialogFragment() {

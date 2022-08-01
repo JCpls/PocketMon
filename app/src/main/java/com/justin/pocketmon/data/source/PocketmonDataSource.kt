@@ -14,7 +14,7 @@ interface PocketmonDataSource {
 
     suspend fun getToDoList(plan: Plan): Result<Plan>
 
-    suspend fun getCommentList(): Result<List<Articledata>>
+    suspend fun getCommentList(): Result<List<ArticleData>>
 
     fun getLiveComments(articleId: String): MutableLiveData<List<Comment>>
 
@@ -26,7 +26,7 @@ interface PocketmonDataSource {
 
     suspend fun addUser(user: User): Result<Boolean>
 
-    suspend fun pushArticle(articledata: Articledata): Result<Boolean>
+    suspend fun pushArticle(articledata: ArticleData): Result<Boolean>
 
     suspend fun publishPlan(plan: Plan): Result<Boolean>
 

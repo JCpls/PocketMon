@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="articledData" type="com.justin.pocketmon.data.Articledata" />
+        <variable name="articledData" type="com.justin.pocketmon.data.ArticleData" />
         <variable name="viewModel" type="com.justin.pocketmon.home.HomeViewModel"/>
     </data>
 

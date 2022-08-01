@@ -1,17 +1,10 @@
 package com.justin.pocketmon.plan
 
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository

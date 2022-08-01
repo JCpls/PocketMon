@@ -1,15 +1,12 @@
 package com.justin.pocketmon.plan.todo
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
-import com.justin.pocketmon.data.ToDo
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
 import com.justin.pocketmon.util.Logger

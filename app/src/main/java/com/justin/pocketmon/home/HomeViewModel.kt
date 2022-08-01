@@ -1,22 +1,19 @@
 package com.justin.pocketmon.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.storage.FirebaseStorage
-import com.justin.pocketmon.data.Articledata
-import com.justin.pocketmon.data.source.PocketmonRepository
+import com.justin.pocketmon.data.ArticleData
 import com.justin.pocketmon.util.Logger
 import kotlinx.coroutines.Job
 
 
 class HomeViewModel: ViewModel() {
 
-    val articleData = MutableLiveData<List<Articledata>>()
+    val articleData = MutableLiveData<List<ArticleData>>()
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -33,7 +30,7 @@ class HomeViewModel: ViewModel() {
     }
 
     fun getData() {
-        val itemData = mutableListOf<Articledata>()
+        val itemData = mutableListOf<ArticleData>()
         db.collection("Article")
             .orderBy("createdTime", Query.Direction.DESCENDING)
             .get()
@@ -52,7 +49,7 @@ class HomeViewModel: ViewModel() {
                     val email = document.data["email"]
 
                     itemData.add(
-                        Articledata(
+                        ArticleData(
                             category as String,
                             content as String,
                             createdTime as Timestamp,
@@ -78,12 +75,12 @@ class HomeViewModel: ViewModel() {
     }
 
     // Handle navigation to detail
-    private val _navigateToDetail = MutableLiveData<Articledata>()
+    private val _navigateToDetail = MutableLiveData<ArticleData>()
 
-    val navigateToDetail: LiveData<Articledata>
+    val navigateToDetail: LiveData<ArticleData>
         get() = _navigateToDetail
 
-    fun navigateToDetail(articledata: Articledata) {
+    fun navigateToDetail(articledata: ArticleData) {
         _navigateToDetail.value = articledata
     }
     fun onDetailNavigated() {

@@ -2,7 +2,6 @@ package com.justin.pocketmon.detail
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.MainActivity
 import com.justin.pocketmon.databinding.FragmentDetailBinding
 import com.justin.pocketmon.NavigationDirections
-import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.login.UserManager

@@ -6,31 +6,29 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.data.ArticleData
 import com.justin.pocketmon.data.Comment
-import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
-import com.justin.pocketmon.util.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class CommentViewModel (private val articledata: Articledata, private val repository: PocketmonRepository) : ViewModel() {
+class CommentViewModel (private val articledata: ArticleData, private val repository: PocketmonRepository) : ViewModel() {
 
-    private val _addComment = MutableLiveData<Articledata>().apply{
+    private val _addComment = MutableLiveData<ArticleData>().apply{
         value = articledata
     }
-    val addComment: LiveData<Articledata>
+    val addComment: LiveData<ArticleData>
         get() = _addComment
 
 
     // Handle navigation to DetailPage
-    private val _navigateToDetailPage = MutableLiveData<Articledata?>()
+    private val _navigateToDetailPage = MutableLiveData<ArticleData?>()
 
-    val navigateToDetailPage: LiveData<Articledata?>
+    val navigateToDetailPage: LiveData<ArticleData?>
         get() = _navigateToDetailPage
 
     fun navigateToDetailPage() {

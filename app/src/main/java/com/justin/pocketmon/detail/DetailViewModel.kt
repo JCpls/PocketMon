@@ -1,10 +1,6 @@
 package com.justin.pocketmon.detail
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
@@ -21,13 +17,13 @@ import java.util.*
 
 class DetailViewModel
 
-    (private val articledata: Articledata, private val repository: PocketmonRepository) : ViewModel() {
+    (private val articledata: ArticleData, private val repository: PocketmonRepository) : ViewModel() {
 
 
-    private val _selectedDream = MutableLiveData<Articledata>().apply {
+    private val _selectedDream = MutableLiveData<ArticleData>().apply {
         value = articledata
     }
-    val selectedDream: LiveData<Articledata>
+    val selectedDream: LiveData<ArticleData>
         get() = _selectedDream
 
 
@@ -62,9 +58,9 @@ class DetailViewModel
     }
 
     // Handle leave to comment
-    private val _navigateToComment = MutableLiveData<Articledata>()
+    private val _navigateToComment = MutableLiveData<ArticleData>()
 
-    val navigateToComment: LiveData<Articledata>
+    val navigateToComment: LiveData<ArticleData>
         get() = _navigateToComment
 
     fun navigateToCommentDialog() {

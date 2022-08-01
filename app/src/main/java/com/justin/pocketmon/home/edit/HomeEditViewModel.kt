@@ -1,19 +1,15 @@
 package com.justin.pocketmon.home.edit
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
-import com.justin.pocketmon.data.Plan
+import com.justin.pocketmon.data.ArticleData
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
 import com.justin.pocketmon.util.Logger
-import com.justin.pocketmon.util.ServiceLocator.repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -61,7 +57,7 @@ class HomeEditViewModel
         Logger.i("------------------------------------")
     }
 
-    fun pushArticle(articledata: Articledata) {
+    fun pushArticle(articledata: ArticleData) {
 
         coroutineScope.launch {
             _status.value = LoadApiStatus.LOADING

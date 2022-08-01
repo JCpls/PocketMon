@@ -54,7 +54,7 @@
         android:label="DetailFragment" >
 
         <argument android:name="articleKey"
-            app:argType="com.justin.pocketmon.data.Articledata"
+            app:argType="com.justin.pocketmon.data.ArticleData"
             app:nullable="false"/>
     </fragment>
 
@@ -77,7 +77,7 @@
         tools:layout="@layout/dialog_comment">
 
         <argument android:name="commentKey"
-            app:argType="com.justin.pocketmon.data.Articledata"
+            app:argType="com.justin.pocketmon.data.ArticleData"
             app:nullable="false"/>
     </dialog>
 

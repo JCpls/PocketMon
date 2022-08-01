@@ -1,11 +1,9 @@
 package com.justin.pocketmon.data.source.remote
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.ktx.toObject
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.*
@@ -214,7 +212,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
 
-    override suspend fun pushArticle(articledata: Articledata): Result<Boolean> = suspendCoroutine { continuation ->
+    override suspend fun pushArticle(articledata: ArticleData): Result<Boolean> = suspendCoroutine { continuation ->
         val articleCollection = FirebaseFirestore.getInstance().collection("Article")
         val document = articleCollection.document()
 
@@ -365,7 +363,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
     }
 
-    override suspend fun getCommentList(): Result<List<Articledata>> = suspendCoroutine { continuation ->
+    override suspend fun getCommentList(): Result<List<ArticleData>> = suspendCoroutine { continuation ->
 
         FirebaseFirestore.getInstance()
             .collection(PATH_ARTICLE)

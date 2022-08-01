@@ -10,13 +10,13 @@ interface PocketmonRepository {
 
     suspend fun getArticles(): Result<List<Plan>>
 
-    suspend fun pushArticle(articledata: Articledata): Result<Boolean>
+    suspend fun pushArticle(articledata: ArticleData): Result<Boolean>
 
     suspend fun getBroadcasts(): Result<List<Broadcast>>
 
     suspend fun getToDoList(plan: Plan): Result<Plan>
 
-    suspend fun getCommentList(): Result<List<Articledata>>
+    suspend fun getCommentList(): Result<List<ArticleData>>
 
     fun getLiveComments(articleId: String): MutableLiveData<List<Comment>>
 

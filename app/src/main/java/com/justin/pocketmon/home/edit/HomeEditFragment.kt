@@ -16,29 +16,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SeekBar
-import android.widget.TextView
 import androidx.core.content.FileProvider
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.Timestamp
 import com.justin.pocketmon.login.UserManager
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
 import com.justin.pocketmon.NavigationDirections
-import com.justin.pocketmon.NavigationDirections.Companion.navigateToHomeFragment
-import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
-import com.justin.pocketmon.data.User
+import com.justin.pocketmon.data.ArticleData
 import com.justin.pocketmon.databinding.FragmentHomeEditBinding
 import com.justin.pocketmon.ext.getVmFactory
-import com.justin.pocketmon.plan.todo.PlanToDoViewModel
 import com.justin.pocketmon.util.Logger
-import com.justin.pocketmon.util.ServiceLocator.repository
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -131,7 +121,7 @@ class HomeEditFragment : Fragment() {
         binding.buttonArticleAdd.setOnClickListener {
 
 
-            val articledata = Articledata()
+            val articledata = ArticleData()
 
             val time = Timestamp.now()
 

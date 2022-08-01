@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Articledata(
+data class ArticleData(
     var category: String = " ",
     var content: String = " ",
     var createdTime: Timestamp = Timestamp.now(),

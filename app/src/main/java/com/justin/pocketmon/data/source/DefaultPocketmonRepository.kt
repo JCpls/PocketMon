@@ -32,7 +32,7 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.getToDoList(plan)
     }
 
-    override suspend fun getCommentList(): Result<List<Articledata>> {
+    override suspend fun getCommentList(): Result<List<ArticleData>> {
         return remoteDataSource.getCommentList()
     }
 
@@ -40,7 +40,7 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
         return remoteDataSource.getLiveArticles()
     }
 
-    override suspend fun pushArticle(articledata: Articledata): Result<Boolean>{
+    override suspend fun pushArticle(articledata: ArticleData): Result<Boolean>{
         return remoteDataSource.pushArticle(articledata)
     }
 

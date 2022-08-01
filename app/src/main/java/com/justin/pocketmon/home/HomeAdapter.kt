@@ -1,22 +1,21 @@
 package com.justin.pocketmon.home
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.justin.pocketmon.data.Articledata
+import com.justin.pocketmon.data.ArticleData
 import com.justin.pocketmon.databinding.ItemDreamHomeBinding
 import java.text.SimpleDateFormat
 
-class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<Articledata, RecyclerView.ViewHolder>(DiffCallback) {
+class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<ArticleData, RecyclerView.ViewHolder>(DiffCallback) {
 
 
     class ArticleViewHolder(private var binding: ItemDreamHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(articledata: Articledata, onClickListener: OnClickListener) {
+        fun bind(articledata: ArticleData, onClickListener: OnClickListener) {
 
             binding.articledData = articledata
             binding.textAuthorName.text = articledata.name
@@ -51,7 +50,7 @@ class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<A
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ArticleViewHolder -> {
-                val articleItem = getItem(position) as Articledata
+                val articleItem = getItem(position) as ArticleData
 
                 holder.bind(articleItem, onClickListener)
             }
@@ -59,18 +58,18 @@ class HomeAdapter(private val onClickListener: OnClickListener)  : ListAdapter<A
     }
 
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Articledata>() {
-        override fun areItemsTheSame(oldItem: Articledata, newItem: Articledata): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<ArticleData>() {
+        override fun areItemsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Articledata, newItem: Articledata): Boolean {
+        override fun areContentsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean {
             return oldItem == newItem
         }
 
     }
-    class OnClickListener(val clickListener: (articledata: Articledata) -> Unit) {
-        fun onClick(articledata: Articledata) = clickListener(articledata)
+    class OnClickListener(val clickListener: (articledata: ArticleData) -> Unit) {
+        fun onClick(articledata: ArticleData) = clickListener(articledata)
     }
 
 }

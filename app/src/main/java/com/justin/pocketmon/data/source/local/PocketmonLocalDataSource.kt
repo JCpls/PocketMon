@@ -23,7 +23,7 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getCommentList(): Result<List<Articledata>> {
+    override suspend fun getCommentList(): Result<List<ArticleData>> {
         TODO("Not yet implemented")
     }
 
@@ -49,7 +49,7 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun pushArticle(articledata: Articledata): Result<Boolean> {
+    override suspend fun pushArticle(articledata: ArticleData): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
