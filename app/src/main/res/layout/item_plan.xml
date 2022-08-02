@@ -7,9 +7,8 @@
         <variable
             name="itemPlan"
             type="com.justin.pocketmon.data.Plan" />
+
     </data>
-
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -86,67 +85,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/plan_image"
                 app:layout_constraintTop_toTopOf="@+id/plan_degree_text"
                 app:layout_constraintBottom_toBottomOf="@+id/plan_degree_text"/>
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/text_author_name"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="16dp"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:text="計畫人"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/plan_degree" />-->
-
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/text_time"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="16dp"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:text="計畫時間"-->
-    <!--            android:textColor="#000000"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/text_author_name" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/text_content"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="16dp"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_marginEnd="16dp"-->
-    <!--            android:layout_marginBottom="16dp"-->
-    <!--            android:text="計畫內容"-->
-    <!--            android:textColor="#000000"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/text_time" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/text_content2"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="16dp"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_marginEnd="16dp"-->
-    <!--            android:layout_marginBottom="16dp"-->
-    <!--            android:text="計畫內容2"-->
-    <!--            android:textColor="#000000"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/text_content" />-->
-
-    <!--        <View-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="1dp"-->
-    <!--            android:background="#aaaaaa"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent" />-->
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

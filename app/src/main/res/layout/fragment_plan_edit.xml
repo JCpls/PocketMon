@@ -32,16 +32,6 @@
             app:layout_constraintVertical_bias="0.0">
 
 
-
-
-<!--            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--                android:id="@+id/swipeRefreshLayout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                tools:layout_editor_absoluteX="42dp"-->
-<!--                tools:layout_editor_absoluteY="0dp">-->
-
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_planEdit1"
                     android:layout_width="match_parent"
@@ -142,9 +132,6 @@
                         app:layout_constraintTop_toTopOf="@+id/planEdit_plan_content"
                         app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_content"/>
 
-                    <!--                  android:textColor="@{判斷數字級距給予顏色的判斷式}"-->
-
-
                     <TextView
                         android:id="@+id/planEdit_plan_degree_text"
                         android:layout_width="0dp"
@@ -161,7 +148,6 @@
                         app:layout_constraintStart_toStartOf="@+id/planEdit_plan_degree"
                         app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_degree"
                         tools:text="100" />
-    <!--                android:text="@{String.valueOf(viewModel.newDegree)}"-->
 
                     <TextView
                         android:id="@+id/planEdit_plan_degree_imageOfFinish"
@@ -198,28 +184,6 @@
                         app:layout_constraintStart_toEndOf="@+id/planEdit_plan_list"
                         app:layout_constraintTop_toTopOf="@+id/planEdit_plan_list" />
 
-    <!--                <TextView-->
-    <!--                    android:id="@+id/planEdit_plan_list_text"-->
-    <!--                    style="@style/DetailContent"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginEnd="16dp"-->
-    <!--                    android:layout_marginTop="10dp"-->
-    <!--                    android:layout_marginBottom="10dp"-->
-    <!--                    android:textSize="18sp"-->
-    <!--                    android:textColor="@color/black_3f3a3a"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_list"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list"-->
-    <!--                    tools:text = "您尚未有執行計畫，趕快新增，啟程逐夢吧!" />-->
-
-    <!--                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-    <!--                    android:id="@+id/swipeRefreshLayout"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="match_parent"-->
-    <!--                    tools:layout_editor_absoluteX="42dp"-->
-    <!--                    tools:layout_editor_absoluteY="0dp">-->
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/planEdit_recyclerView"
                         android:layout_width="match_parent"
@@ -234,9 +198,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list"
                         tools:listitem="@layout/item_plan_edit" />
 
-                <!--                 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
-<!--            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
         </ScrollView>
         
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -275,80 +237,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
                     tools:ignore="TouchTargetSizeCheck" />
-                <!--              android:onClick="@{() -> viewModel.navigateToStartPlan(viewModel.selectedDream)}"-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
-
-    <!--                <View-->
-    <!--                    android:id="@+id/view_title_separation"-->
-    <!--                    style="@style/DetailSeparation"-->
-    <!--                    android:layout_width="2dp"-->
-    <!--                    android:layout_height="9dp"-->
-    <!--                    android:layout_marginStart="13dp"-->
-    <!--                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_title"-->
-    <!--                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_title"-->
-    <!--                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_title" />-->
-
-    <!--                <View-->
-    <!--                    android:id="@+id/view_degree_separation"-->
-    <!--                    style="@style/DetailSeparation"-->
-    <!--                    android:layout_width="1dp"-->
-    <!--                    android:layout_height="7dp"-->
-    <!--                    android:layout_marginStart="13dp"-->
-    <!--                    app:layout_constraintBottom_toBottomOf="@+id/planEdit_plan_degree"-->
-    <!--                    app:layout_constraintStart_toEndOf="@+id/planEdit_plan_degree"-->
-    <!--                    app:layout_constraintTop_toTopOf="@+id/planEdit_plan_degree" />-->
-
-    <!--                <CheckBox-->
-    <!--                    android:id="@+id/checkBox1"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginTop="10dp"-->
-    <!--                    app:layout_constraintStart_toStartOf="@+id/planEdit_plan_list_text"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/planEdit_plan_list_text"/>-->
-
-    <!--                <EditText-->
-    <!--                    android:id="@+id/checkBox_text1"-->
-    <!--                    android:layout_width="200dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    app:layout_constraintBottom_toBottomOf="@+id/checkBox1"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toEndOf="@+id/checkBox1"-->
-    <!--                    app:layout_constraintTop_toTopOf="@+id/checkBox1" />-->
-
-    <!--                <CheckBox-->
-    <!--                    android:id="@+id/checkBox2"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginTop="10dp"-->
-    <!--                    app:layout_constraintStart_toStartOf="@+id/checkBox1"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/checkBox1"/>-->
-
-    <!--                <EditText-->
-    <!--                    android:id="@+id/checkBox_text2"-->
-    <!--                    android:layout_width="200dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    app:layout_constraintBottom_toBottomOf="@+id/checkBox2"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toEndOf="@+id/checkBox2"-->
-    <!--                    app:layout_constraintTop_toTopOf="@+id/checkBox2" />-->
-
-    <!--                <CheckBox-->
-    <!--                    android:id="@+id/checkBox3"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginTop="10dp"-->
-    <!--                    app:layout_constraintStart_toStartOf="@+id/checkBox2"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/checkBox2"/>-->
-
-    <!--                <EditText-->
-    <!--                    android:id="@+id/checkBox_text3"-->
-    <!--                    android:layout_width="200dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    app:layout_constraintBottom_toBottomOf="@+id/checkBox3"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toEndOf="@+id/checkBox3"-->
-    <!--                    app:layout_constraintTop_toTopOf="@+id/checkBox3" />-->

@@ -6,8 +6,8 @@
     <data>
         <variable name="articledData" type="com.justin.pocketmon.data.ArticleData" />
         <variable name="viewModel" type="com.justin.pocketmon.home.HomeViewModel"/>
-    </data>
 
+    </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -25,8 +25,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-    <!--         android:background="@drawable/bg_dream_item2"-->
-
 
             <ImageView
                 android:id="@+id/dream_image"
@@ -39,11 +37,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/image_bg_pocketmon"/>
-    <!--        可以直接用反引號把網址包起來locke-in-->
-    <!-- app:imageUrl="@{`https://img.kenalice.tw/2019/03/1551657543-00266a21b76f114bd8b5f508af2b0ed6.jpg`}"-->
-    <!--         android:padding="2dp"
-                 app:circularflow_defaultRadius="12dp"
-                 android:adjustViewBounds="true"-->
 
             <TextView
                 android:id="@+id/text_title"
@@ -126,28 +119,6 @@
                 app:layout_constraintStart_toStartOf="@+id/text_title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_author_name" />
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/text_content"-->
-    <!--            android:layout_width="200dp"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_marginEnd="16dp"-->
-    <!--            android:layout_marginBottom="16dp"-->
-    <!--            android:text="文章內容"-->
-    <!--            android:textColor="#000000"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="@+id/text_title"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/text_time" />-->
-
-    <!--        <View-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="1dp"-->
-    <!--            android:background="#aaaaaa"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent" />-->
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

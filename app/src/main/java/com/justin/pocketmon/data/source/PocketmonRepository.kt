@@ -6,8 +6,6 @@ import com.justin.pocketmon.data.*
 
 interface PocketmonRepository {
 
-    suspend fun loginMockData(id: String): Result<Author>
-
     suspend fun getArticles(): Result<List<Plan>>
 
     suspend fun pushArticle(articledata: ArticleData): Result<Boolean>
@@ -21,8 +19,6 @@ interface PocketmonRepository {
     fun getLiveComments(articleId: String): MutableLiveData<List<Comment>>
 
     fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan>
-
-    fun getLiveArticles(): MutableLiveData<List<Article>>
 
     fun getLiveChats(chatroomId: String): MutableLiveData<List<Chat>>
 

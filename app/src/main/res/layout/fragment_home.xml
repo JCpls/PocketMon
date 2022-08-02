@@ -13,31 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/home_tablayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/dreamCatalog"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="1" />-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="2" />-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="30dp"-->
-<!--                android:text="3" />-->
-<!--        </com.google.android.material.tabs.TabLayout>-->
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/home_calculation"
             android:layout_width="0dp"
@@ -46,47 +21,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-
-            <!--            <ImageButton-->
-            <!--                android:id="@+id/intro_friend_icon"-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:layout_marginTop="15dp"-->
-            <!--                android:layout_marginEnd="40dp"-->
-            <!--                android:background="@drawable/ic_smile_profile_selected"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/intro_dream_icon"-->
-            <!--                app:layout_constraintHorizontal_bias="0.5"-->
-            <!--                app:layout_constraintHorizontal_chainStyle="spread"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/intro_friend_count"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="30dp"-->
-            <!--                android:fontFamily="@font/press_start_2p"-->
-            <!--                android:text="好友數:"-->
-            <!--                android:textSize="16sp"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/intro_dream_count"-->
-            <!--                app:layout_constraintHorizontal_bias="0.5"-->
-            <!--                app:layout_constraintHorizontal_chainStyle="spread_inside"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/intro_friend_icon"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/intro_friend_icon" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/intro_friend_number"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="30dp"-->
-            <!--                android:fontFamily="@font/press_start_2p"-->
-            <!--                android:hint="0"-->
-            <!--                android:textSize="16sp"-->
-            <!--                app:layout_constraintEnd_toEndOf="@+id/intro_friend_count"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/intro_friend_count"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/intro_friend_count" />-->
-
 
             <ImageButton
                 android:id="@+id/intro_dream_icon"
@@ -195,21 +129,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_calculation">
 
-<!--            <androidx.viewpager2.widget.ViewPager2-->
-<!--                android:id="@+id/home_viewpager2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:orientation="horizontal"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"/>-->
-
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipeRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview_home"
@@ -228,7 +151,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/item_dream_home" />
 
-
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             <TextView
@@ -241,8 +163,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

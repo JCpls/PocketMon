@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         tools:context=".detail.DetailFragment">
 
-
         <ScrollView
             android:id="@+id/recycler_detail"
             android:layout_width="0dp"
@@ -37,27 +36,6 @@
                     android:background="@color/colorPrimary"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
-
-<!--                <TextView-->
-<!--                    android:id="@+id/button_detail_close"-->
-<!--                    android:layout_width="@dimen/size_detail_close"-->
-<!--                    android:layout_height="@dimen/size_detail_close"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:background="@color/green"-->
-<!--                    android:onClick="@{() -> viewModel.leaveDetail()}"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/detail_bg_mario"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:background="@drawable/bg_mario_03"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-                <!--                 app:layout_constraintHorizontal_bias="0.0"-->
 
 
                 <ImageView
@@ -100,21 +78,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/dream_detail_id" />
 
-
-
-
-                <!--                <ImageButton-->
-                <!--                    android:id="@+id/button_detail_message"-->
-                <!--                    android:layout_width="@dimen/size_detail_close"-->
-                <!--                    android:layout_height="@dimen/size_detail_close"-->
-                <!--                    android:background="@drawable/ic_detail_message"-->
-                <!--                    android:onClick="@{() -> viewModel.navigateToChat()}"-->
-                <!--                    android:layout_marginEnd="16dp"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    app:layout_constraintTop_toTopOf="@+id/button_detail_comment"-->
-                <!--                    app:layout_constraintBottom_toBottomOf="@+id/button_detail_comment"  />-->
-
-
                 <TextView
                     android:id="@+id/detail_dream_createdTime"
                     android:layout_width="0dp"
@@ -130,7 +93,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dream_detail_id" />
-
 
                 <!-- dream title -->
                 <TextView
@@ -313,7 +275,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-
             <Button
                 android:id="@+id/button_detail_add"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
@@ -334,7 +295,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
-            <!--              android:onClick="@{() -> viewModel.navigateToStartPlan(viewModel.selectedDream)}"-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@
         <variable
             name="commentData" type="com.justin.pocketmon.data.Comment" />
         <variable name="viewModel" type="com.justin.pocketmon.comment.CommentViewModel"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +40,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-            <!--         app:imageUrl="@{commentData.authorImage}"-->
 
             <TextView
                 android:id="@+id/item_comment_user"

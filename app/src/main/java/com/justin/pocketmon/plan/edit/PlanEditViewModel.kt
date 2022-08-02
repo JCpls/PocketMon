@@ -1,13 +1,8 @@
 package com.justin.pocketmon.plan.edit
 
-import android.graphics.Color
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.findNavController
-import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.*
@@ -155,7 +150,7 @@ class PlanEditViewModel
                     _status.value = LoadApiStatus.ERROR
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }
@@ -184,7 +179,7 @@ class PlanEditViewModel
                     _status.value = LoadApiStatus.ERROR
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }

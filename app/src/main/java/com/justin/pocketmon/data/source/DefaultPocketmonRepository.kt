@@ -8,10 +8,6 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
                                  private val localDataSource: PocketmonDataSource
 ) : PocketmonRepository {
 
-    override suspend fun loginMockData(id: String): Result<Author> {
-        return localDataSource.loginMockData(id)
-    }
-
     override suspend fun getArticles(): Result<List<Plan>> {
         return remoteDataSource.getArticles()
     }
@@ -34,10 +30,6 @@ class DefaultPocketmonRepository(private val remoteDataSource: PocketmonDataSour
 
     override suspend fun getCommentList(): Result<List<ArticleData>> {
         return remoteDataSource.getCommentList()
-    }
-
-    override fun getLiveArticles(): MutableLiveData<List<Article>> {
-        return remoteDataSource.getLiveArticles()
     }
 
     override suspend fun pushArticle(articledata: ArticleData): Result<Boolean>{

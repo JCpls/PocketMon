@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="chat"
             type="com.justin.pocketmon.data.Chat" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,14 +34,10 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-
                     android:scaleType="centerCrop"
                     app:imageUrlWithCircleCrop="@{chat.image}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
-<!--                 android:background="@drawable/bg_white_radius_15dip"-->
-<!--                tools:src="@drawable/badminton"-->
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/text_chat_other_name"

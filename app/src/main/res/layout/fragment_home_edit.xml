@@ -11,7 +11,6 @@
 
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,16 +29,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-
-<!--            <Button-->
-<!--                android:id="@+id/button_download_image"-->
-<!--                android:layout_width="60dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="20dp"-->
-<!--                android:text="載入圖片"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/text_article_image01" />-->
 
             <Button
                 android:id="@+id/button_upload_image"
@@ -60,25 +49,6 @@
                 app:layout_constraintStart_toStartOf="@+id/button_upload_image"
                 app:layout_constraintTop_toBottomOf="@+id/button_upload_image" />
 
-<!--            <Button-->
-<!--                android:id="@+id/button_proceed_image"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:background="@drawable/ic_photo_confirm"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/button_camera_open"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/button_camera_open" />-->
-
-
-<!--            <Button-->
-<!--                android:id="@+id/button_delete_image"-->
-<!--                android:layout_width="60dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="刪除"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/button_proceed_image"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
             <ImageView
                 android:id="@+id/text_article_image01"
                 android:layout_width="200dp"
@@ -91,19 +61,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_question" />
-            <!--             app:imageUrl="@{product.mainImage}"-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/text_article_image02"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:background="@drawable/ic_add_mark"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/text_article_image01"-->
-<!--                tools:src="@drawable/image_bg_pocketmon" />-->
 
             <TextView
                 android:id="@+id/text_title"
@@ -128,7 +85,6 @@
                 app:layout_constraintStart_toEndOf="@+id/text_title"
                 app:layout_constraintTop_toTopOf="@+id/text_title"
                 app:layout_constraintBottom_toBottomOf="@+id/text_title" />
-<!--            android:background="@null"-->
 
             <TextView
                 android:id="@+id/text_article_drgree_title"
@@ -183,7 +139,6 @@
                     app:layout_constraintStart_toEndOf="@+id/seekbar"
                     app:layout_constraintBottom_toBottomOf="@+id/seekbar"
                     app:layout_constraintTop_toTopOf="@+id/seekbar" />
-
             </LinearLayout>
 
             <TextView
@@ -207,7 +162,6 @@
                 app:layout_constraintStart_toEndOf="@+id/content"
                 app:layout_constraintTop_toTopOf="@+id/content"
                 app:layout_constraintBottom_toBottomOf="@+id/content"/>
-<!--            android:background="@null"-->
 
             <Button
                 android:id="@+id/button_article_add"
@@ -221,9 +175,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_article_drgree_title" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

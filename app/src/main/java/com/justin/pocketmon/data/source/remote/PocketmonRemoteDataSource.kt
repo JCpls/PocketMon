@@ -29,11 +29,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
 
 
 
-    override suspend fun loginMockData(id: String): Result<Author> {
-        TODO("Not yet implemented")
-    }
-
-
     override suspend fun getArticles(): Result<List<Plan>> = suspendCoroutine { continuation ->
         FirebaseFirestore.getInstance()
             .collection(PATH_PLANS)
@@ -56,7 +51,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -85,7 +80,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -113,7 +108,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -183,35 +178,6 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
     }
 
 
-    override fun getLiveArticles(): MutableLiveData<List<Article>> {
-
-        val liveData = MutableLiveData<List<Article>>()
-
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ARTICLE)
-            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
-            .addSnapshotListener { snapshot, exception ->
-
-                Logger.i("addSnapshotListener detect")
-
-                exception?.let {
-                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-                }
-
-                val list = mutableListOf<Article>()
-                for (document in snapshot!!) {
-                    Logger.d(document.id + " => " + document.data)
-
-                    val article = document.toObject(Article::class.java)
-                    list.add(article)
-                }
-
-                liveData.value = list
-            }
-        return liveData
-    }
-
-
     override suspend fun pushArticle(articledata: ArticleData): Result<Boolean> = suspendCoroutine { continuation ->
         val articleCollection = FirebaseFirestore.getInstance().collection("Article")
         val document = articleCollection.document()
@@ -230,7 +196,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -261,7 +227,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -286,7 +252,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -310,7 +276,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -334,7 +300,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -358,7 +324,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -379,7 +345,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -401,7 +367,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
-                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                    continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                 }
             }
     }
@@ -428,7 +394,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                         if (task.isSuccessful) {
                             if (task.result.isEmpty) {
                                 Logger.d("getGroupChatroom task.result.documents =${task.result.documents}")
-                                continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                                continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                             } else {
                                 for (document in task.result) {
                                     Logger.d("document=${document}")
@@ -443,7 +409,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                                 continuation.resume(Result.Error(it))
                                 return@addOnCompleteListener
                             }
-                            continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                            continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                         }
                     }
             }
@@ -469,7 +435,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                             continuation.resume(Result.Error(it))
                             return@addOnCompleteListener
                         }
-                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                     }
                 }
         }
@@ -496,7 +462,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                             continuation.resume(Result.Error(it))
                             return@addOnCompleteListener
                         }
-                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                     }
                 }
         }
@@ -527,7 +493,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                             continuation.resume(Result.Error(it))
                             return@addOnCompleteListener
                         }
-                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                     }
                 }
         }
@@ -555,7 +521,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                             continuation.resume(Result.Error(it))
                             return@addOnCompleteListener
                         }
-                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                     }
                 }
         }
@@ -586,7 +552,7 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
                             continuation.resume(Result.Error(it))
                             return@addOnCompleteListener
                         }
-                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.you_know_nothing)))
+                        continuation.resume(Result.Fail(PocketmonApplication.instance.getString(R.string.pls_try_again)))
                     }
                 }
         }
@@ -620,5 +586,4 @@ object PocketmonRemoteDataSource : PocketmonDataSource {
             }
         return liveData
     }
-
 }

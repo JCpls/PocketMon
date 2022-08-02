@@ -77,7 +77,7 @@ class HomeEditViewModel
                     _status.value = LoadApiStatus.ERROR
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }

@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,36 +38,35 @@ class HomeEditFragment : Fragment() {
     var uri: Uri? = null
     var PICK_CONTACT_REQUEST = 1
     var REQUEST_CODE = 42
-    var img1: ImageView? = null
-//    var img2: ImageView? = null
+    var image: ImageView? = null
     val FILE_NAME = "photo.jpg"
     var photoFile: File? = null
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        //來自檔案
+        // from album pic
         if (requestCode == PICK_CONTACT_REQUEST) {
             uri = data?.data
-            img1?.setImageURI(uri)
-            Log.d("justin","看一下上傳拿到的uri是啥 -> $uri")
-
+            image?.setImageURI(uri)
+            Logger.i("take a look at album pic uri -> $uri ")
         }
-        //來自相機
+
+        // from camera
         if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
 
-            val takeImage = BitmapFactory.decodeFile(photoFile?.absolutePath)
-            Log.d("justin","看一下拍照拿的的takeImage是啥 -> $takeImage")
-            img1?.setImageBitmap(takeImage)
+            val cameraImage = BitmapFactory.decodeFile(photoFile?.absolutePath)
+            Logger.i("take a look at camera uri -> $cameraImage")
 
-            uri = context?.let { getImageUri(it,takeImage) }
+            image?.setImageBitmap(cameraImage)
+            uri = context?.let { getImageUri(it,cameraImage) }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
 
     }
 
-        //Bitmap to Uri 為了傳firebase
+        // Bitmap to Uri
     fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
@@ -81,7 +79,7 @@ class HomeEditFragment : Fragment() {
         return Uri.parse(path)
     }
 
-        //取得暫存圖片檔案
+        // get pic from storage
     private fun getPhotoFile(fileName: String): File {
         val storageDirectory = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
 
@@ -89,19 +87,6 @@ class HomeEditFragment : Fragment() {
 
     }
 
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//    // [START storage_field_initialization]
-//        //storage = Firebase.storage
-//        // [END storage_field_initialization]
-//
-//    }
-
-//    private fun setContentView(fragmentHomeEdit: Int) {
-//
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -112,7 +97,7 @@ class HomeEditFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
 
-        //UserManager
+        // UserManager
         binding.homeEditData =  UserManager
 
         val db = FirebaseFirestore.getInstance()
@@ -120,9 +105,7 @@ class HomeEditFragment : Fragment() {
 
         binding.buttonArticleAdd.setOnClickListener {
 
-
             val articledata = ArticleData()
-
             val time = Timestamp.now()
 
             articledata.id = document.id
@@ -137,9 +120,6 @@ class HomeEditFragment : Fragment() {
             Logger.d("HomeEditFragment UserManager.user.name = ${UserManager.user.name}")
             Logger.d("HomeEditFragment UserManager.user.id = ${UserManager.user.id}")
 
-
-
-//          viewModel.checkAuthor(article)
             viewModel.pushArticle(articledata)
 
             this.findNavController().navigate(NavigationDirections.navigateToHomeFragment())
@@ -147,8 +127,6 @@ class HomeEditFragment : Fragment() {
         }
 
 
-        //打開攝影機----------------------------------------------------------------------
-        //打開相機按鈕
         binding.buttonCameraOpen.setOnClickListener {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             photoFile = getPhotoFile(FILE_NAME)
@@ -157,19 +135,13 @@ class HomeEditFragment : Fragment() {
                 photoFile!!
             ) }
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
-//            if(takePictureIntent.resolveActivity(MainActivity().packageManager)!= null){
-//            }
+
             startActivityForResult(takePictureIntent,REQUEST_CODE)
         }
 
-        //圖片上傳-------------------------------------------------------------------------
-        img1 = binding.textArticleImage01
-//        img2 = binding.textArticleImage02
+        image = binding.textArticleImage01
 
-        var storageReference = FirebaseStorage.getInstance().getReference()
-
-
-        //上傳照片按鈕
+        // upload the pic
         binding.buttonUploadImage.setOnClickListener {
             val intent = Intent()
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
@@ -179,51 +151,12 @@ class HomeEditFragment : Fragment() {
             startActivityForResult(intent, PICK_CONTACT_REQUEST)
         }
 
-        var unusedFileName = 0L
-        //變更照片按鈕
 
         viewModel.liveData.observe(viewLifecycleOwner){
             uploadImageToStorage()
         }
 
-//        binding.buttonProceedImage.setOnClickListener {
-//
-//            //上傳圖片   應該要改去viewModel用coroutineScope.launch
-//            val time = System.currentTimeMillis()
-//            val picStorage = storageReference.child("image$time")
-//            Log.d("justin", "點擊更換圖片1，看一下picStorage是啥 -> $picStorage")
-//
-//            uri?.let { it1 ->
-//                picStorage.putFile(it1).addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        Log.d("justin", "上傳成功")
-//                        picStorage.downloadUrl.addOnSuccessListener {
-//                            Log.d("justin", "看一下uri ->$it ")
-//                            Glide.with(this /* context */)
-//                                .load(it)
-//                                .into(img2!!)
-//
-//                            Log.d("justin", "成功更換圖片")
-//                            if(unusedFileName == 0L){
-//                                unusedFileName = time
-//                                Log.d("justin", "沒有過去的圖片")
-//                            }else{
-//                                storageReference.child("image$unusedFileName").delete()
-//                                unusedFileName = time
-//                                Log.d("justin", "刪除上次張上傳的圖片")
-//                            }
-//                        }.addOnFailureListener {
-//                            // Handle any errors
-//                        }
-//                    } else {
-//                        Log.d("justin", "上傳失敗")
-//                    }
-//                }
-//            }
-//
-//        }
-
-        //輸入完成度的 seekbar
+        // seekbar for degree of completion
         binding.seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekbar: SeekBar?, process: Int, fromUser: Boolean) {
                 binding.textArticleDegree.text = process.toString()
@@ -239,7 +172,6 @@ class HomeEditFragment : Fragment() {
 
         })
 
-
         return binding.root
     }
 
@@ -247,40 +179,33 @@ class HomeEditFragment : Fragment() {
 
         var unusedFileName = 0L
         var storageReference = FirebaseStorage.getInstance().getReference()
-        //上傳圖片   應該要改去viewModel用coroutineScope.launch
         val time = System.currentTimeMillis()
         val picStorage = storageReference.child("image$time")
-        Log.d("justin", "點擊更換圖片1，看一下picStorage是啥 -> $picStorage")
+        Logger.i("take a look at picStorage -> $picStorage ")
 
         uri?.let { it1 ->
             picStorage.putFile(it1).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("justin", "上傳成功")
+                    Logger.i("successfully uploaded")
                     picStorage.downloadUrl.addOnSuccessListener {
-                        Log.d("justin", "看一下uri ->$it ")
+                        Logger.i("take a look at uri ->$it ")
                         Glide.with(this /* context */)
                             .load(it)
-                            .into(img1!!)
+                            .into(image!!)
 
-                        Log.d("justin", "成功更換圖片")
                         if(unusedFileName == 0L){
                             unusedFileName = time
-                            Log.d("justin", "沒有過去的圖片")
+
                         }else{
                             storageReference.child("image$unusedFileName").delete()
                             unusedFileName = time
-                            Log.d("justin", "刪除上次張上傳的圖片")
                         }
                     }.addOnFailureListener {
-                        // Handle any errors
                     }
                 } else {
-                    Log.d("justin", "上傳失敗")
+                    Logger.i("fail to upload")
                 }
             }
         }
-
     }
-
-
 }

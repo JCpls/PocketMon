@@ -92,7 +92,7 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
                     null
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                     null
                 }

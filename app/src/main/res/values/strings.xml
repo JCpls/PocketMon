@@ -3,41 +3,9 @@
 
     <!-- General -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="you_know_nothing">you know nothing</string>
+    <string name="pls_try_again">please try again</string>
     <string name="chat">聊天</string>
     <string name="plan">收藏</string>
     <string name="profile">個人</string>
-    <string name="payment">結帳</string>
-
-    <!-- Detail -->
-    <string name="color">顏色</string>
-    <string name="size">尺寸</string>
-    <string name="stock">庫存</string>
-    <string name="texture">材質</string>
-    <string name="wash">洗滌</string>
-    <string name="place">產地</string>
-    <string name="note">備註</string>
-    <string name="add2cart">加入購物車</string>
-    <string name="select_color">選擇顏色</string>
-    <string name="select_size">選擇尺寸</string>
-    <string name="select_amount">選擇數量</string>
-    <string name="stock_not_enough">庫存不足</string>
-
-    <!-- Check Out Success -->
-    <string name="checkout_success_title">結帳結果</string>
-    <string name="checkout_success">結帳成功</string>
-    <string name="checkout_success_content">我們收到您的訂單了！將以最快的速度為您安排出貨。</string>
-    <string name="goto_shopping">再去逛逛</string>
-    <string name="profile_mystic_information">into the unknown</string>
-    <string name="title_activity_opening">OpeningActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
 
 </resources>

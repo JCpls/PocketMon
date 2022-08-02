@@ -6,9 +6,7 @@
 
     <data>
         <import type = "android.view.View"/>
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.justin.pocketmon.MainViewModel" />-->
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,8 +56,6 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/mario_animation_01" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

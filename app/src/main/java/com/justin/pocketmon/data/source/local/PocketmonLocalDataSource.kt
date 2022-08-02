@@ -7,9 +7,6 @@ import com.justin.pocketmon.data.source.PocketmonDataSource
 
 class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
 
-    override suspend fun loginMockData(id: String): Result<Author> {
-        TODO("Not yet implemented")
-    }
 
     override suspend fun getArticles(): Result<List<Plan>> {
         TODO("Not yet implemented")
@@ -34,10 +31,6 @@ class PocketmonLocalDataSource(val context: Context) : PocketmonDataSource {
     }
 
     override fun getLiveToDoList(userId: String, planId: String): MutableLiveData<Plan> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getLiveArticles(): MutableLiveData<List<Article>> {
         TODO("Not yet implemented")
     }
 

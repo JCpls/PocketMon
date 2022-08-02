@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="chat"
             type="com.justin.pocketmon.data.Chat" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,8 +49,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_chat_owner_time"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="妳好妳好" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/text_chat_owner_time"
@@ -63,8 +62,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/text_chat_owner_content"
                     app:layout_constraintEnd_toStartOf="@+id/text_chat_owner_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="18:00" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

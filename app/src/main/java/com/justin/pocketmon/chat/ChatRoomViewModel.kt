@@ -122,7 +122,7 @@ class ChatRoomViewModel(
                 }
                 else -> {
                     _error.value =
-                        PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                        PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                     null
                 }
@@ -149,7 +149,7 @@ class ChatRoomViewModel(
                 }
                 else -> {
                     _error.value =
-                        PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                        PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }
@@ -182,7 +182,7 @@ class ChatRoomViewModel(
                 }
                 else -> {
                     _error.value =
-                        PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                        PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                     null
                 }
@@ -236,7 +236,7 @@ class ChatRoomViewModel(
                 }
                 else -> {
                     _error.value =
-                        PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                        PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }
@@ -265,7 +265,7 @@ class ChatRoomViewModel(
                     _status.value = LoadApiStatus.ERROR
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }

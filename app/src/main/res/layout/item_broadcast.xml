@@ -7,9 +7,8 @@
         <variable
             name="itemBroadcast"
             type="com.justin.pocketmon.data.Broadcast" />
+
     </data>
-
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:shadowColor="@color/cardview_shadow_end_color">
-<!--        android:background="@drawable/bg_dream_item2"-->
 
         <TextView
             android:id="@+id/image_trophy"
@@ -50,17 +48,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/image_trophy"
             app:layout_constraintTop_toTopOf="parent"/>
-
-<!--        <TextView-->
-<!--            android:id="@+id/broadcast_by"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/noto_sans"-->
-<!--            android:text="by"-->
-<!--            android:textSize="15sp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/broadcast_title"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/broadcast_title" />-->
 
 
         <TextView
@@ -87,27 +74,6 @@
             app:layout_constraintTop_toTopOf="@+id/broadcast_from_who_image"
             app:layout_constraintBottom_toBottomOf="@+id/broadcast_from_who_image"/>
 
-<!--        <View-->
-<!--            android:layout_width="330dp"-->
-<!--            android:layout_height="2dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:background="@color/gray_cccccc"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/broadcast_by" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/broadcast_time_start"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:text="開始時間"-->
-<!--            android:textSize="15sp"-->
-<!--            android:fontFamily="@font/noto_sans"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/broadcast_title"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/broadcast_title" />-->
-
 
         <TextView
             android:id="@+id/broadcast_time_finish"
@@ -123,5 +89,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </layout>
