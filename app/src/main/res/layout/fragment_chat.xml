@@ -20,15 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--        <ImageView-->
-        <!--            android:layout_width="30dp"-->
-        <!--            android:layout_height="30dp"-->
-        <!--            android:background="@drawable/ic_mario_mushroom"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            android:layout_marginStart="50dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"/>-->
-
         <TextView
             android:id="@+id/broadcast_page_intro"
             android:layout_width="320dp"
@@ -37,7 +28,6 @@
             android:fontFamily="@font/press_start_2p"
             android:textSize="20sp"
             android:lineHeight="25dp"
-
             android:layout_marginTop="60dp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +54,10 @@
                     android:id="@+id/broadcast_bg_mario"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@drawable/bg_mario_02"
+                    android:background="@drawable/bg_mario_04"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
-                <!--原版-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview_broadcast"
                     android:layout_width="370dp"
@@ -81,7 +70,6 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ImageView
@@ -92,7 +80,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/broadcast_page" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

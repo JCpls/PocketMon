@@ -1,15 +1,12 @@
 package com.justin.pocketmon.plan.todo
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
-import com.justin.pocketmon.data.ToDo
 import com.justin.pocketmon.data.source.PocketmonRepository
 import com.justin.pocketmon.network.LoadApiStatus
 import com.justin.pocketmon.util.Logger
@@ -34,14 +31,9 @@ class PlanToDoViewModel
         val navigateToPlanEditPage: LiveData<Plan?>
             get() = _navigateToPlanEditPage
 
-        fun navigateToPlanEditPage() {
-            _navigateToPlanEditPage.value = plan
-        }
-
         fun onToDotoPlanEditNavigated() {
             _navigateToPlanEditPage.value = null
         }
-
 
         private val _leave = MutableLiveData<Boolean?>()
 
@@ -66,10 +58,7 @@ class PlanToDoViewModel
         // the Coroutine runs using the Main (UI) dispatcher
         private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-        /**
-         * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-         * Retrofit service to stop.
-         */
+
         override fun onCleared() {
             super.onCleared()
             viewModelJob.cancel()
@@ -83,9 +72,7 @@ class PlanToDoViewModel
 
 
         fun addToDo(plan: Plan) {
-            Log.i("justin","檢查ToDo有無收到plan1" )
             coroutineScope.launch {
-                Log.i("justin","檢查ToDo有無收到plan2")
                 _status.value = LoadApiStatus.LOADING
 
                 when (val result = repository.addToDo(plan)) {
@@ -103,7 +90,7 @@ class PlanToDoViewModel
                         _status.value = LoadApiStatus.ERROR
                     }
                     else -> {
-                        _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                        _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                         _status.value = LoadApiStatus.ERROR
                     }
                 }
@@ -114,7 +101,7 @@ class PlanToDoViewModel
             _leave.value = needRefresh
         }
 
-    }
+}
 
 
 

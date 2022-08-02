@@ -20,9 +20,3 @@
     <style name="Theme.PocketMon.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.PocketMon.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
-<!--rasin black-->
-<!--#2D2D34-->
-
-<!--yellow-->
-<!--#FAC748-->
-<!--#FFD23F-->

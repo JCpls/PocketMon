@@ -1,17 +1,10 @@
 package com.justin.pocketmon.plan
 
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
-import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
 import com.justin.pocketmon.data.Result
 import com.justin.pocketmon.data.source.PocketmonRepository
@@ -30,13 +23,10 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
     val plan: LiveData<List<Plan>>
         get() = _plan
 
-
     private val _leave = MutableLiveData<Boolean?>()
 
     val leave: LiveData<Boolean?>
         get() = _leave
-
-
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -62,50 +52,20 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    /**
-     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-     * Retrofit service to stop.
-     */
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
 
     init {
+
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
         getArticlesResult()
-//        publishPlan()
+
     }
 
-//    fun publishPlan(plan: Plan) {
-//        Log.i("justin","檢查計畫頁有無收到plan1" )
-//        coroutineScope.launch {
-//            Log.i("justin","檢查計畫頁有無收到plan2")
-//            _status.value = LoadApiStatus.LOADING
-//
-//            when (val result = repository.publishPlan(plan)) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    leave(true)
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//                else -> {
-//                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//            }
-//        }
-//    }
 
     fun getArticlesResult() {
 
@@ -132,7 +92,7 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
                     null
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                     null
                 }
@@ -141,26 +101,10 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
         }
     }
 
-    fun refresh() {
-
-        if (PocketmonApplication.instance.isLiveDataDesign()) {
-            _status.value = LoadApiStatus.DONE
-            _refreshStatus.value = false
-
-        } else {
-            if (status.value != LoadApiStatus.LOADING) {
-//                getArticlesResult()
-            }
-        }
-    }
-
     fun leave(needRefresh: Boolean = false) {
         _leave.value = needRefresh
     }
 
-    fun onLeft() {
-        _leave.value = null
-    }
 
     // Handle navigation to planEditFragment
     private val _navigateToPlanEdit = MutableLiveData<Plan>()
@@ -174,7 +118,5 @@ class PlanViewModel(private val repository: PocketmonRepository) : ViewModel() {
     fun onPlanNavigated() {
         _navigateToPlanEdit.value = null
     }
-
-
 
 }

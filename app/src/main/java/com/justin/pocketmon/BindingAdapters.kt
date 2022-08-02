@@ -7,7 +7,6 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 
-
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
@@ -38,16 +37,3 @@ fun bindImageWithCircleCrop(imgView: ImageView, imgUrl: String?) {
             .into(imgView)
     }
 }
-
-//@BindingAdapter("images")
-//fun bindRecyclerViewWithImages(recyclerView: RecyclerView, images: List<String>?) {
-//    images?.let {
-//        recyclerView.adapter?.apply {
-//            when (this) {
-//                is DetailGalleryAdapter -> {
-//                    submitImages(it)
-//                }
-//            }
-//        }
-//    }
-//}

@@ -15,6 +15,13 @@
     <!-- White Series -->
     <color name="white">#ffffff</color>
 
+    <!-- Green Series -->
+    <color name="green">#FF018786</color>
+    <color name="light_green">#FF03DAC5</color>
+    <color name="court_green">#FF00BCD4</color>
+
+
+
     <!-- Black Series -->
     <color name="black">#000000</color>
     <color name="black_3f3a3a">#3f3a3a</color>
@@ -46,7 +53,7 @@
     <color name="blue_voyage">#33a4cc</color>
 
     <!-- Original -->
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#878C8F</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="mario_red">#D83428</color>

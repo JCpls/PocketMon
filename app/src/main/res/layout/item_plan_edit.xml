@@ -23,14 +23,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <CheckBox
             android:id="@+id/item_todo_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-<!--         android:onCheckedChanged= ''-->
 
         <TextView
             android:id="@+id/item_plan_edit_todo"
@@ -58,10 +56,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/item_todo_checkbox"
             app:layout_constraintBottom_toBottomOf="@+id/item_todo_checkbox" />
-
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

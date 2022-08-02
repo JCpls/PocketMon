@@ -2,12 +2,8 @@ package com.justin.pocketmon.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.justin.pocketmon.data.Articledata
 import com.justin.pocketmon.data.Plan
-import com.justin.pocketmon.data.User
 import com.justin.pocketmon.data.source.PocketmonRepository
-import com.justin.pocketmon.detail.DetailViewModel
-import com.justin.pocketmon.plan.PlanViewModel
 import com.justin.pocketmon.plan.edit.PlanEditViewModel
 import com.justin.pocketmon.plan.todo.PlanToDoViewModel
 

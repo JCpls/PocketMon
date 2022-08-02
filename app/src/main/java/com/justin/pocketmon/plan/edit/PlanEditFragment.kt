@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.data.Broadcast
 import com.justin.pocketmon.data.Plan
+import com.justin.pocketmon.data.PlanMethod
 import com.justin.pocketmon.databinding.FragmentPlanEditBinding
 import com.justin.pocketmon.ext.getVmFactory
 import com.justin.pocketmon.util.Logger
@@ -34,35 +36,23 @@ class PlanEditFragment: Fragment() {
         binding.isLiveDataDesign = PocketmonApplication.instance.isLiveDataDesign()
         binding.viewModel = viewModel
 
-
         val adapter = PlanEditAdapter(viewModel)
         binding.planEditRecyclerView.adapter = adapter
 
-
         // recyclerView
-        viewModel.planEdit.observe(viewLifecycleOwner, Observer {
+        viewModel.isLiveToDoListReady.observe(viewLifecycleOwner) {
+            Logger.i("isLiveToDoListReady = $it")
 
-                it.method.let {
+            viewModel.liveToDoList.observe(viewLifecycleOwner) {
+                viewModel.getDegree()
+                adapter.submitList(it.method)
+            }
+        }
 
+        binding.layoutPlanEditBottom.setOnClickListener{
 
-                    viewModel.getDegree()
-
-                    adapter.submitList(it)
-
-                    // - dead circle of observe and upload -- paralyze firebase
-//                    viewModel.getToDoResult(plan)
-
-//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
-//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
-                }
-
-//            binding.swipeRefreshLayout.isRefreshing = false
-            Logger.i("second viewModel.planEdit = $it")
-//                id = "fzKBm4kriaxT3qMnCGFW"
-//            ))
-            Logger.i("Justin Livedata todo list = $it")
-
-        })
+            viewModel.navigateToAddTodo()
+        }
 
         // observe for checkBox status in recyclerView
         viewModel.newDegree.observe(viewLifecycleOwner, Observer {
@@ -77,27 +67,22 @@ class PlanEditFragment: Fragment() {
 
                 val broadcast = Broadcast()
                 broadcast.id = document.id
-                // livedata 必須要 .value 才能夠賦值
-                viewModel.planEdit.value?.let {
+
+                viewModel.liveToDoList.value?.let {
                     broadcast.title = it.title
-                    broadcast.from = it.ownerId
+                    broadcast.fromId = it.ownerId
+                    broadcast.fromName = it.name
                     broadcast.timeFinish = com.google.firebase.Timestamp.now()
                     broadcast.timeStart = it.createdTime.toString()
-                    Log.d("justin","檢查 -上傳前- broadcast 長這樣 => $broadcast ")
+                    Logger.i("Check how does broadcast look after liveToDoList => $broadcast")
                 }
 
                 viewModel.publishToBroadcast(broadcast)
-//                findNavController().navigate(NavigationDirections.navigateToIntroFragment())
-//
+
             }
 
-            Logger.i("observe有無啟動")
+            Logger.i("observe is working")
         })
-
-
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//            viewModel.getArticlesResult()
-//        }
 
 
         viewModel.leavePlanEdit.observe(

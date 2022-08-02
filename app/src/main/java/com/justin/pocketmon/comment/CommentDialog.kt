@@ -1,6 +1,7 @@
 package com.justin.pocketmon.comment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.R
+import com.justin.pocketmon.data.Broadcast
+import com.justin.pocketmon.data.Comment
+import com.justin.pocketmon.login.UserManager
 import com.justin.pocketmon.databinding.DialogCommentBinding
 import com.justin.pocketmon.databinding.DialogPlanTodoBinding
 import com.justin.pocketmon.ext.getVmFactory
@@ -45,59 +49,29 @@ class CommentDialog : AppCompatDialogFragment() {
 
         // add data from Dialog to PlanEdit page
         val db = FirebaseFirestore.getInstance()
-        val document = db.collection("Article").document()
+        val document = db.collection("Comments").document()
 
         binding.addCommentButton.setOnClickListener{
 
-            val articledata = viewModel.addComment.value!!
+            val comment = Comment()
+            comment.id = document.id
 
-            articledata.comment.add(binding.commentEdit.text.toString())
-            Logger.i("articledata.comment = ${articledata.comment}")
-//             plan.method = binding.planTodoEdit.text
+            viewModel.addComment.value?.let {
+                Log.d("justin","初檢查從detail帶過來的資料 => $comment ")
+                comment.articleId = it.id
+                comment.authorId = UserManager.user.id
+                comment.authorName = UserManager.user.name
+                comment.authorImage = UserManager.user.image
+                comment.content = binding.commentEdit.text.toString()
+                comment.createdTime = com.google.firebase.Timestamp.now()
 
-            Logger.d("first check for data from PlanEditPage => $articledata")
-
-            viewModel.addComment(articledata)
-            Logger.d("再檢查從detailPage帶過來的資料 => $articledata")
-
+            }
+            viewModel.addComment(comment)
+            Log.d("justin","再檢查從detail帶過來的資料 => $comment ")
             viewModel.navigateToDetailPage()
-            viewModel.getComment()
+            dismiss()
 
         }
-
-//       //recyclerView
-//        val adapter = CommentAdapter()
-//        binding.commentRecyclerview.adapter = adapter
-//
-//        // recyclerView
-//        viewModel.commentAdded.observe(viewLifecycleOwner, Observer {
-//
-//            (binding.commentRecyclerview.adapter as CommentAdapter).submitList(it)
-//            (binding.commentRecyclerview.adapter as CommentAdapter).notifyDataSetChanged()
-//            binding.swipeRefreshLayout.isRefreshing = false
-
-//            it.method.let {
-//
-//                adapter.submitList(it)
-//            }
-
-//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).submitList(it)
-//              (binding.planEditRecyclerView.adapter as PlanEditAdapter).notifyDataSetChanged()
-
-
-//            binding.swipeRefreshLayout.isRefreshing = false
-//            Logger.i("second viewModel.planEdit = $it")
-//            viewModel.getToDoResult(Plan(
-//                id = "fzKBm4kriaxT3qMnCGFW"
-//            ))
-
-//            Logger.i("Justin Livedata todo list = $it")
-
-//        })
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//            viewModel.getComment()
-//        }
-
 
         viewModel.navigateToDetailPage.observe(
             viewLifecycleOwner,
@@ -108,7 +82,6 @@ class CommentDialog : AppCompatDialogFragment() {
                 }
             }
         )
-
 
         return binding.root
     }

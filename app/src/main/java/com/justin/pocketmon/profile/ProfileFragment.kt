@@ -30,24 +30,16 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Logger.i("onCreate 來看看 ")
-
 
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.user = UserManager.user
 
-//        binding.profileName.text = UserManager.user.name
 
         Logger.i("binding.profileName.text = ${binding.profileName.text}")
         Logger.i("username profile = ${user.name}")
 
-//      binding.profileImage. =  viewModel.user.image
-//      viewModel.user.name = binding.profileName.text.toString()
-
-
         return binding.root
     }
-    
 }

@@ -1,13 +1,8 @@
 package com.justin.pocketmon.plan.edit
 
-import android.graphics.Color
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.findNavController
-import com.justin.pocketmon.NavigationDirections
 import com.justin.pocketmon.PocketmonApplication
 import com.justin.pocketmon.R
 import com.justin.pocketmon.data.*
@@ -34,19 +29,21 @@ class PlanEditViewModel
     val newDegree = MutableLiveData<Long>()
 
 
+    // for livedata observe
+    private val _isLiveToDoListReady = MutableLiveData<Boolean>()
+
+    val isLiveToDoListReady: LiveData<Boolean>
+        get() = _isLiveToDoListReady
+
+
     // the liveData to get "getToDoResult" data from firebase
     private val _planEdit = MutableLiveData<Plan>()
-
-    val planEdit: LiveData<Plan>
-        get() = _planEdit
-
 
     // Handle leave planEdit
     private val _leavePlanEdit = MutableLiveData<Boolean>()
 
     val leavePlanEdit: LiveData<Boolean>
         get() = _leavePlanEdit
-
 
     // Handle navigate to PlanTodo dialog
     private val _navigateToPlanTodo = MutableLiveData<Plan>()
@@ -96,10 +93,7 @@ class PlanEditViewModel
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    /**
-     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-     * Retrofit service to stop.
-     */
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -111,65 +105,34 @@ class PlanEditViewModel
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
-        getToDoResult(plan)
-
+        getLiveToDoList(plan.ownerId, plan.id )
 
     }
 
-    // 宣告 把前面拿到的degree 轉成 newDegree 才能對它進行加工(+,-)
+
+    // pass the value from degree to newDegree for editing its value with plus and minus calculation
     fun getDegree(){
-        newDegree.value = planEdit.value?.degree
+        newDegree.value = liveToDoList.value?.degree
     }
 
 
-    fun getToDoResult(plan: Plan) {
+    // the liveData to get "getLiveToDoList" data from firebase
+    var liveToDoList = MutableLiveData<Plan>()
 
+    private fun getLiveToDoList(userId: String, planId: String) {
         coroutineScope.launch {
-
-            _status.value = LoadApiStatus.LOADING
-
-            val result = repository.getToDoList(plan)
-
-            _planEdit?.value = when (result) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-                    result.data
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-            }
-            _refreshStatus.value = false
+            liveToDoList = repository.getLiveToDoList(userId, planId)
+            Logger.i("getLiveTodoResult() liveToDo = $liveToDoList")
+            Logger.i("getLiveTodoResult() liveToDo.value = ${liveToDoList.value}")
+            _isLiveToDoListReady.value = true
         }
     }
 
 
-
-    // when checkbox is selected and
-//    fun removeProduct(product: Product) {
-//        coroutineScope.launch {
-//            PocketmonRepository.removeProductInCart(product.id, product.selectedVariant.colorCode, product.selectedVariant.size)
-//        }
-//    }
-
-    //
     fun addCheckboxStatus(plan: Plan) {
-        Log.i("justin","檢查ToDo有無收到plan1" )
+        Logger.i("1st check if receive plan")
         coroutineScope.launch {
-            Log.i("justin","檢查ToDo有無收到plan2")
+        Logger.i("2nd check if receive plan")
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.addCheckboxStatus(plan)) {
@@ -187,7 +150,7 @@ class PlanEditViewModel
                     _status.value = LoadApiStatus.ERROR
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }
@@ -196,9 +159,9 @@ class PlanEditViewModel
 
 
     fun publishToBroadcast(broadcast: Broadcast) {
-        Log.i("justin","檢查ToDo有無收到plan1" )
+        Logger.i("1st check if receive plan")
         coroutineScope.launch {
-            Log.i("justin","檢查ToDo有無收到plan2")
+        Logger.i("2nd check if receive plan")
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.publishBroadcast(broadcast)) {
@@ -216,7 +179,7 @@ class PlanEditViewModel
                     _status.value = LoadApiStatus.ERROR
                 }
                 else -> {
-                    _error.value = PocketmonApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = PocketmonApplication.instance.getString(R.string.pls_try_again)
                     _status.value = LoadApiStatus.ERROR
                 }
             }
@@ -232,85 +195,77 @@ class PlanEditViewModel
         _leavePlanEdit.value = true
     }
 
-    fun onLeft() {
-        _leave.value = null
-    }
 
     fun DoneIsTrue(value:Boolean, todo: String){
 
-        _planEdit.value?.method
+        liveToDoList.value?.method
 
-        for (value in _planEdit.value?.method!!) {
+        for (value in liveToDoList.value?.method!!) {
             if (value.todo == todo) {
 
-                Logger.i("進到DoneIsTrue的value? = ${value}")
+                Logger.i("into value of DoneIsTrue? = ${value}")
 
                 value.done = true
 
-                Logger.i("進到DoneIsTrue的改變後的value? = ${value}")
+                Logger.i("into CHANGED value of DoneIsTrue? = ${value}")
 
                 updateData()
             }
         }
 
-        Logger.i("true 有無啟動? = ${newDegree.value}")
+        Logger.i("true is activated? = ${newDegree.value}")
     }
 
     fun DoneIsFalse(value:Boolean, todo:String){
 
-        _planEdit.value?.method
+        liveToDoList.value?.method
 
-        for (value in _planEdit.value?.method!!) {
+        for (value in liveToDoList.value?.method!!) {
             if (value.todo == todo) {
 
-                Logger.i("進到DoneIsFalsee的value? = ${value}")
+                Logger.i("into value of DoneIsFalse? = ${value}")
 
                 value.done = false
 
-                Logger.i("進到DoneIsFalse改變後的value? = ${value}")
+                Logger.i("into CHANGED value of DoneIsFalse? = ${value}")
 
                 updateData()
 
             }
         }
 
-        Logger.i("false 有無啟動? = ${newDegree.value}")
+        Logger.i("false is activated? = ${newDegree.value}")
     }
 
 
     // plus score of box checked into Dream degree
     fun addPoint(value:String){
-//      newDegree.value?.toLong()?.plus(value.toLong())
+
         val score = value.toLong()
         newDegree.value = newDegree.value?.plus(score)
-//      newDegree.value = newDegree.value
-        Logger.i("add 有無啟動?.plus(value.toLong()) = ${newDegree.value}")
+        Logger.i("add is activated?.plus(value.toLong()) = ${newDegree.value}")
+
     }
 
     // minus score of box checked into Dream degree
     fun minusPoint(value:String){
-//        newDegree.value?.toLong()?.plus(value.toLong())
+
         val score = value.toLong()
         newDegree.value = newDegree.value?.minus(score)
-//      newDegree.value = newDegree.value
-        Logger.i("minus 有無啟動?.minus(value.toLong()) = ${newDegree.value}")
+        Logger.i("minus is activated?.minus(value.toLong()) = ${newDegree.value}")
+
     }
 
     fun updateData(){
-        Logger.i("確認東西到底長怎樣 = ${planEdit.value}")
+        Logger.i("liveToDoList.value looks like = ${liveToDoList.value}")
 
-        planEdit.value?.degree = newDegree.value!!
+        liveToDoList.value?.degree = newDegree.value!!
 
-
-        val plan = planEdit.value!!
+        val plan = liveToDoList.value!!
 
         addCheckboxStatus(plan)
 
-        Logger.i("看一下要傳上去的東西長怎樣 = ${planEdit.value}")
-    }
-
-    fun newDegreeColorChanged(){
-
+        Logger.i("new liveToDoList.value looks like = ${liveToDoList.value}")
     }
 
 }

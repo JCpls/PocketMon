@@ -27,16 +27,13 @@ import java.lang.NullPointerException
 
 class LoginDialog : AppCompatDialogFragment() {
 
-    /**
-     * Lazily initialize our [LoginViewModel].
-     */
     private val viewModel by viewModels<LoginViewModel> { getVmFactory() }
     private lateinit var binding: DialogLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            Logger.d("有沒有進到googleSignIn ")
+            Logger.d("successfully move to google sign in")
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             viewModel.handleSignInResult(task)
         }
@@ -47,7 +44,7 @@ class LoginDialog : AppCompatDialogFragment() {
         setStyle(DialogFragment.STYLE_NO_FRAME, R.style.LoginDialog)
 
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("")
+            .requestIdToken("879844148049-6gp99r41tluqbre69kd77krn9fd906k9.apps.googleusercontent.com")
             .requestEmail()
             .build()
 
@@ -72,9 +69,10 @@ class LoginDialog : AppCompatDialogFragment() {
         viewModel.leaveLogin.observe(
             viewLifecycleOwner,
             Observer {
-                Logger.i("leave的值變化 -> $it")
+                Logger.i("leave observe -> $it")
                 it?.let {
-                    if (it) findNavController().popBackStack()
+
+                    dismiss()
 
                 }
             }
@@ -86,17 +84,13 @@ class LoginDialog : AppCompatDialogFragment() {
 
     private fun signIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken( "")
+            .requestIdToken( "879844148049-6gp99r41tluqbre69kd77krn9fd906k9.apps.googleusercontent.com")
             .requestEmail()
             .build()
 
-//        .requestIdToken("44039700708-qg19e235nofihjbsjkrv3efsklst64o8.apps.googleusercontent.com")
-
             googleSignInClient = context?.let { GoogleSignIn.getClient(it, gso) }!!
             signInGoogle()
-//            val signInIntent = googleSignInClient?.signInIntent
-//            startActivityForResult(signInIntent, RC_SIGN_IN)
-        //...
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -109,32 +103,23 @@ class LoginDialog : AppCompatDialogFragment() {
                 val email = account?.email
                 val token = account?.idToken
 
-                Logger.i("givemepass , email:$email, token:$token")
-
                 UserManager.userToken = token
                 UserManager.userId = id.toString()
                 UserManager.user.name = account?.displayName.toString()
                 UserManager.user.image = account?.photoUrl.toString()
-                Logger.d ("google profie is ${user.image}")
-                Logger.d ("my name is ${user.name}")
-
-//                user?.email = email
-//                user?.name = account?.displayName
-//                user?.let { viewModel.userSignIn(it) }
-//                viewModel.userManager.value = UserManager
-                Logger.i(" user.value $user")
+                Logger.d ("google profile is ${user.image}")
+                Logger.d ("user name is ${user.name}")
                 Logger.d("UserManager.userToken ${UserManager.userToken}")
-//                Logger.d("UserManager.user ${user?.accountType}")
                 Logger.d("user?.email ${user?.email}")
-                Toast.makeText(context, "登入成功", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "successfully log in", Toast.LENGTH_SHORT).show()
 
             } catch (e: ApiException) {
                 Logger.i("givemepass , signInResult:failed code=" + e.statusCode)
-                Toast.makeText(context, "登入失敗", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "fail to log in", Toast.LENGTH_SHORT).show()
             }
         } else {
             Logger.i("givemepass login fail")
-            Toast.makeText(context, "登入失敗", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "fail to log in", Toast.LENGTH_SHORT).show()
         }
     }
 

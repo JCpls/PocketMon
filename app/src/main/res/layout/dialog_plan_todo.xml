@@ -9,7 +9,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<!--        android:onClick="@{() -> viewModel.leave()}"-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_login"
@@ -19,7 +18,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-            <!--        android:onClick="@{() -> viewModel.nothing()}"-->
 
             <TextView
                 android:id="@+id/plan_todo_title"
@@ -65,16 +63,15 @@
                 android:id="@+id/plan_todo_score_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="完成這項計畫可以獲得點數 "
+                android:text="完成這項計畫可以增加 "
                 android:textSize="18dp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/plan_todo_edit"
                 app:layout_constraintTop_toBottomOf="@+id/plan_todo_edit" />
 
             <SeekBar
                 android:id="@+id/seekbar_plan_todo"
-                android:layout_width="130dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:min="0"
@@ -87,9 +84,12 @@
                 android:id="@+id/plan_todo_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="0"
-                android:textSize="20dp"
+                android:textSize="15dp"
+                android:fontFamily="@font/press_start_2p"
                 android:padding="2dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/seekbar_plan_todo"
                 app:layout_constraintBottom_toBottomOf="@+id/seekbar_plan_todo"
                 app:layout_constraintTop_toTopOf="@+id/seekbar_plan_todo" />
@@ -99,28 +99,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans"
-                android:text=" / 100 points"
-                android:textSize="18dp"
+                android:text=" % 完成度"
+                android:textSize="20dp"
                 android:padding="2dp"
                 app:layout_constraintStart_toEndOf="@+id/plan_todo_score"
                 app:layout_constraintBottom_toBottomOf="@+id/plan_todo_score"
                 app:layout_constraintTop_toTopOf="@+id/plan_todo_score" />
-
-<!--            <EditText-->
-<!--                android:id="@+id/plan_todo_score"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/noto_sans"-->
-<!--                android:hint="價值分數"-->
-<!--                android:letterSpacing="0.15"-->
-<!--                android:maxLines="2"-->
-<!--                android:textAlignment="textStart"-->
-<!--                android:textColor="@color/black_3f3a3a"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/plan_todo_edit"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/plan_todo_edit"-->
-<!--                tools:text="價值分數 (0-20)" />-->
 
             <Button
                 android:id="@+id/plan_todo_button"
@@ -134,17 +118,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/plan_todo_edit"/>
 
 
-            <!--            <View-->
-            <!--                android:id="@+id/view_login_separation"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="1dp"-->
-            <!--                android:layout_marginBottom="16dp"-->
-            <!--                android:background="@color/gray_cccccc"-->
-            <!--                app:layout_constraintBottom_toTopOf="@+id/button_login_facebook"-->
-            <!--                app:layout_constraintEnd_toEndOf="@+id/button_login_facebook"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/button_login_facebook"/>-->
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

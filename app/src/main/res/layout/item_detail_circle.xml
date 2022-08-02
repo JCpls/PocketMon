@@ -11,16 +11,5 @@
         android:layout_width="@dimen/size_detail_circle"
         android:layout_height="@dimen/size_detail_circle">
 
-<!--        <ImageView-->
-<!--            android:id="@+id/image_detail_circle"-->
-<!--            android:layout_width="@dimen/size_detail_circle"-->
-<!--            android:layout_height="@dimen/size_detail_circle"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            app:circleStatus="@{isSelected}"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            tools:src="@drawable/ic_fire"/>-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
