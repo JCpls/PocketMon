@@ -38,33 +38,18 @@ Password: 123test123
 * 進入細節頁面確認揪團細節符合需求後可報名參加
 * Enter the details page and confirm all the details of the group are right for your needs and then sign up to participate
 
-<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_03_01.png" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable-v24/readme_07.gif" width="200" />　
-
-<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_03_02.png" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable-v24/readme_06.gif" width="200" />
+<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_03_01.png" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable-v24/readme_07.gif" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable-v24/readme_06.gif" width="200" />
 
 #### 創建揪團 Create a group
 * 可以創建揪團讓其他使用者加入
 * You can create groups for other users to join
 
-<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_03_03.png" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_03_04.png" width="200" />
+<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_03_03.png" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_03_04.png" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable-v24/readme_08.gif" width="200" />
 
 #### 即時聊天 live chat
 * 可以和團主即時聊天確認相關資訊
 * You can chat with the group leader to confirm the relevant information
 
-<img src="https://github.com/FreeStarChen/BadmintonPeer/blob/develop/images/8742a9b0-d3db-4a97-bc40-850c6b61fc19_AdobeExpress.gif?raw=true" width="200" />
-
-#### 公告消息 Announcement message
-* 可以查看羽壇相關資訊及即將滿團資訊
-* You can read badminton related news and latest information about the which groups are about to be full
-
-<img src="https://github.com/FreeStarChen/BadmintonPeer/blob/develop/images/f0f2132d-c90a-4fe5-ac3e-85d7e1ec4c69_AdobeExpress.gif?raw=true" width="200" />
-
-#### 個人頁面 Profile page
-* 可以查看個人過往紀錄及當前參與揪團
-* You can view personal history records as well as those groups in which you are currently participating 
-
-<img src="https://github.com/FreeStarChen/BadmintonPeer/blob/develop/images/f557df44-26f7-4025-84f4-4c975f300bdc_AdobeExpress.gif?raw=true" width="200" />
 
 # Implementation
 ### Pattern
