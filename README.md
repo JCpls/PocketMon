@@ -21,7 +21,7 @@ Password: 123test123
 * The log-in page is in retro video game style, hoping to awake your imagination of dream :)
 * You are very welcome to have a quick log-in with your Google account and to enjoy PocketMon<br><br>
 
-<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable-v24/readme_01.gif" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_04_04.png" width="200" /><br><br>
+<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable-v24/readme_01.gif" width="200" /><br><br>
 
 #### Browse through users' dreams n wishes
 * You can find you and other users' dreams n wishes here in DreamPage
@@ -33,7 +33,7 @@ Password: 123test123
 * You can click the button to add yours, it would be great to find you post your own dream or wish to share
 * You are able to upload the pic from your photo album, your google drive, or take a photo by your camera to post<br><br>
 
-<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_02_04.PNG" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_02_03.png" width="200" /><br><br>
+<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_04_01.png" width="200" />　<img src="https://github.com/JCpls/PocketMon/blob/main/app/src/main/res/drawable/readme_04_02.png" width="200" /><br><br>
 
 #### Leave comments
 * You can click the comment button to leave your words
